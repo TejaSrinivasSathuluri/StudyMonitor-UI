@@ -35,7 +35,7 @@ angular.module('studymonitorApp')
                   //Params @email,@password and @role
                   loginService.authenticateUser(data, LoginCtrl.loginfields.role).then(function (response) {
                       if (response) {
-                          $cookies.put('uds', {
+                          $cookies.putObject('uds', {
                               accessToken: response.id,
                               userId: response.userId
                           });
