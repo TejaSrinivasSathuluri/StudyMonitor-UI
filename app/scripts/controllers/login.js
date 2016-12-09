@@ -35,11 +35,19 @@ angular.module('studymonitorApp')
                   //Params @email,@password and @role
                   loginService.authenticateUser(data, LoginCtrl.loginfields.role).then(function (response) {
                       if (response) {
-                          $cookies.putObject('uds', {
+                          $cookies.putObject('uts', {
                               accessToken: response.id,
                               userId: response.userId
                           });
-                          $state.go('console');
+                          loginService.getAuthenticateUserDetails(response.userId, response.id).then(function (result) {
+                              if (result) {
+                                  $cookies.putObject('uds', result);
+                                  $state.go('console'); //Navigate to console landing page on successfull login
+                              }
+                          }, function (error) {
+                              LoginCtrl.showError = true;
+                              LoginCtrl.errorMessage = APP_MESSAGES.LOGIN_INVALID;
+                          });
                       }
                   }, function (error) {
                       if (error) {

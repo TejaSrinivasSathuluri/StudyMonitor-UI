@@ -32,5 +32,16 @@ angular.module('studymonitorApp')
           }
           //@@TODO - Remaining things are pending
           return _activepromise.promise;
+      };
+
+      this.getAuthenticateUserDetails = function (userID, accessToken) {
+          var _activepromise = $q.defer();
+          $http.get(API_SERVER + '/Admins/' + userID + '?access_token=' + accessToken).success(function (response) {
+              _activepromise.resolve(response);
+          })
+          .error(function (error) {
+              _activepromise.reject(error);
+          });
+          return _activepromise.promise;
       }
   });

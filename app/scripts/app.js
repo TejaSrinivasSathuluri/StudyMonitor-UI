@@ -18,7 +18,8 @@ angular
  'ngRoute',
  'ngSanitize',
  'ngTouch',
- 'ui.router'
+ 'ui.router',
+ 'datatables'
 ])
 .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -46,6 +47,12 @@ angular
         controller: 'ConsoleController',
         controllerAs: 'ConsoleCtrl'
     })
+    .state('class', {
+        url: '/class',
+        templateUrl: 'views/class-template.html',
+        controller: 'ClassController',
+        controllerAs: 'ClassCtrl'
+    });
     $urlRouterProvider.otherwise('/login');
 }).run(function ($rootScope, $state, $cookies) {
     //Capture an event whenever the route changes
@@ -55,7 +62,7 @@ angular
         * Not logged in but trying to navigate page directly then user should be sent to login screen
         */
         //First condition to check whether user logged in or not
-        var uds = $cookies.getObject('uds');
+        var uds = $cookies.getObject('uts');
         if (uds === undefined && nextState.name !== 'login') {
             event.preventDefault();
             $state.go('login');
