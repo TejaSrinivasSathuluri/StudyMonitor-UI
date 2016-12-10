@@ -15,9 +15,9 @@ angular.module('studymonitorApp')
           //var GetClassDetails = function () {
           var schoolId = $cookies.getObject('uds').schoolId;
           classService.getClassDetails(schoolId).then(function (result) {
-              if (result) {
-                  if (result.length > 0) {
-                      ClassCtrl.classList = result;
+              if (result && result.status===200) {
+                  if (result.data.length > 0) {
+                      ClassCtrl.classList = result.data;
                   }
               }
           }, function (error) {
