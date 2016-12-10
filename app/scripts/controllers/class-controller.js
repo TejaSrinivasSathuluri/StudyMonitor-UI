@@ -15,9 +15,12 @@ angular.module('studymonitorApp')
           //var GetClassDetails = function () {
           var schoolId = $cookies.getObject('uds').schoolId;
           classService.getClassDetails(schoolId).then(function (result) {
-              if (result && result.status===200) {
+              if (result && result.status === 200) {
                   if (result.data.length > 0) {
                       ClassCtrl.classList = result.data;
+                      $timeout(function () {
+                          TableEditable.init();
+                      });
                   }
               }
           }, function (error) {
@@ -28,4 +31,9 @@ angular.module('studymonitorApp')
           //}
       }
       init();
+
+      ////Table Properties
+      //ClassCtrl.classdtOptions = [
+      //    DTOptionsBuilder.newOptions().withDOM('lrtip')
+      //];
   });

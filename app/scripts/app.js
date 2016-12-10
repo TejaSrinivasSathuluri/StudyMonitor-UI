@@ -18,8 +18,7 @@ angular
  'ngRoute',
  'ngSanitize',
  'ngTouch',
- 'ui.router',
- 'datatables'
+ 'ui.router'
 ])
 .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider

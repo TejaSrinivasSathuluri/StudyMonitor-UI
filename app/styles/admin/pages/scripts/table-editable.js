@@ -45,7 +45,7 @@ var TableEditable = function () {
             oTable.fnDraw();
         }
 
-        var table = $('#sample_editable_1');
+        var table = $('.sm_editable_grid');
 
         var oTable = table.dataTable({
 
@@ -79,7 +79,16 @@ var TableEditable = function () {
             }],
             "order": [
                 [0, "asc"]
-            ] // set first column as a default sort by asc
+            ], // set first column as a default sort by asc
+            "columns": [null, null, {
+                "orderable": false,
+                "width": "10%",
+                "targets": 0
+            }, {
+                "orderable": false,
+                "width": "10%",
+                "targets": 0
+            }]
         });
 
         var tableWrapper = $("#sample_editable_1_wrapper");
@@ -105,7 +114,7 @@ var TableEditable = function () {
                     oTable.fnDeleteRow(nEditing); // cancel
                     nEditing = null;
                     nNew = false;
-                    
+
                     return;
                 }
             }
