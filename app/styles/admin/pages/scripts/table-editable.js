@@ -80,7 +80,11 @@ var TableEditable = function () {
             "order": [
                 [0, "asc"]
             ], // set first column as a default sort by asc
-            "columns": [null, null, {
+            "columns": [null, null, null, {
+                "orderable": false,
+                "width": "10%",
+                "targets": 0
+            }, {
                 "orderable": false,
                 "width": "10%",
                 "targets": 0

@@ -13,13 +13,35 @@ angular.module('studymonitorApp')
 
       function init() {
           //var GetClassDetails = function () {
-          var schoolId = $cookies.getObject('uds').schoolId;
-          classService.getClassDetails(schoolId).then(function (result) {
+          ClassCtrl.schoolId = $cookies.getObject('uds').schoolId;
+          classService.getClassDetails(ClassCtrl.schoolId).then(function (result) {
               if (result && result.status === 200) {
                   if (result.data.length > 0) {
                       ClassCtrl.classList = result.data;
-                      $timeout(function () {
-                          TableEditable.init();
+                      /**
+                       * @getStaffBySchoolID service
+                       * @description
+                       * Get details of staff exists by school ID and relate it to classlist array
+                       * to display in datatable
+                       */
+                      classService.getStaffBySchoolID(ClassCtrl.schoolId).then(function (response) {
+                          if (response && response.status === 200) {
+                              ClassCtrl.staffList = response.data;
+                              angular.forEach(ClassCtrl.classList, function (value, index) {
+                                  var staffObject = ClassCtrl.staffList.filter(function (staff) {
+                                      return staff.id == value.staffId;
+                                  });
+
+                                  if (staffObject && staffObject.length > 0) {
+                                      value.staffName = staffObject[0].firstName + ' ' + staffObject[0].lastName;
+                                  }
+                              });
+                              $timeout(function () {
+                                  TableEditable.init();
+                              });
+                          }
+                      }, function (errorResponse) {
+                          console.log('Error while fetching staff records. ErrorStack : ' + errorResponse);
                       });
                   }
               }
