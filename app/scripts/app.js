@@ -18,7 +18,8 @@ angular
  'ngRoute',
  'ngSanitize',
  'ngTouch',
- 'ui.router'
+ 'ui.router',
+ 'lbServices'
 ])
 .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -51,6 +52,12 @@ angular
         templateUrl: 'views/class-template.html',
         controller: 'ClassController',
         controllerAs: 'ClassCtrl'
+    })
+    .state('subjects', {
+        url: '/subjects',
+        templateUrl: 'views/subjects-template.html',
+        controller: 'SubjectsController',
+        controllerAs: 'SubjectsCtrl'
     });
     $urlRouterProvider.otherwise('/login');
 }).run(function ($rootScope, $state, $cookies) {

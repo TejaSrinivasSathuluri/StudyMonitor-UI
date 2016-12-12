@@ -559,8 +559,8 @@
                             <div class="portlet light portlet-fit ">
                                 <div class="portlet-title">
                                     <div class="caption">
-                                        <i class="fa fa-building-o font-green"></i>
-                                        <span class="caption-subject font-green bold uppercase">CLASS LIST</span>
+                                        <i class="fa fa-book font-green"></i>
+                                        <span class="caption-subject font-green bold uppercase">SUBJECTS LIST</span>
                                     </div>
                                 </div>
                                 <div class="portlet-body">
@@ -595,20 +595,20 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <table class="table table-striped table-hover table-bordered sm_editable_grid" id="class_datatable">
+                                    <table class="table table-striped table-hover table-bordered sm_editable_grid" id="subjects_datatable">
                                         <thead>
                                             <tr>
                                                 <th>
-                                                    Class
+                                                    Subject
                                                 </th>
                                                 <th>
-                                                    Section
+                                                    Class
                                                 </th>
                                                 <th>
                                                     Teacher
                                                 </th>
                                                 <th class="text-center">
-                                                    More Details
+                                                    Enable Exam
                                                 </th>
                                                 <th class="text-center">
                                                     Edit
@@ -619,16 +619,10 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr data-ng-repeat="class in ClassCtrl.classList">
-                                                <td>
-                                                    {{class.className}}
-                                                </td>
-                                                <td>
-                                                    {{class.sectionName}}
-                                                </td>
-                                                <td>
-                                                    {{class.staffName}}
-                                                </td>
+                                            <tr data-ng-repeat="subject in SubjectsCtrl.subjectList">
+                                                <td>{{subject.subjectName}}</td>
+                                                <td>{{subject.class.className}} {{subject.class.sectionName}}</td>
+                                                <td>{{subject.staff.firstName}} {{subject.staff.lastName}}</td>
                                                 <td class="text-center">
                                                     <a class="" href="javascript:void(0)">
                                                         <i class="fa fa-file-text-o"></i>
