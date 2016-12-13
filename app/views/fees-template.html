@@ -547,7 +547,10 @@
                         <a ui-sref="console">Home</a><i class="fa fa-circle"></i>
                     </li>
                     <li class="active">
-                        Class
+                        Fees Management <i class="fa fa-circle"></i>
+                    </li>
+                    <li class="active">
+                        Fees
                     </li>
                 </ul>
                 <!-- END PAGE BREADCRUMB -->
@@ -559,8 +562,8 @@
                             <div class="portlet light portlet-fit ">
                                 <div class="portlet-title">
                                     <div class="caption">
-                                        <i class="fa fa-building-o font-green"></i>
-                                        <span class="caption-subject font-green bold uppercase">CLASS LIST</span>
+                                        <i class="fa fa-money font-green"></i>
+                                        <span class="caption-subject font-green bold uppercase">FEES LIST</span>
                                     </div>
                                 </div>
                                 <div class="portlet-body">
@@ -595,17 +598,23 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <table class="table table-striped table-hover table-bordered sm_editable_grid" id="class_datatable">
+                                    <table class="table table-striped table-hover table-bordered sm_fees_editable_grid" id="fees_datatable">
                                         <thead>
                                             <tr>
                                                 <th>
+                                                    Occurance
+                                                </th>
+                                                <th>
+                                                    Fees Type
+                                                </th>
+                                                <th>
+                                                    Month
+                                                </th>
+                                                <th>
+                                                    Amount
+                                                </th>
+                                                <th>
                                                     Class
-                                                </th>
-                                                <th>
-                                                    Section
-                                                </th>
-                                                <th>
-                                                    Teacher
                                                 </th>
                                                 <th class="text-center">
                                                     More Details
@@ -619,16 +628,12 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr data-ng-repeat="class in ClassCtrl.classList">
-                                                <td>
-                                                    {{class.className}}
-                                                </td>
-                                                <td>
-                                                    {{class.sectionName}}
-                                                </td>
-                                                <td>
-                                                    {{class.staffName}}
-                                                </td>
+                                            <tr data-ng-repeat="fees in FeesCtrl.feesList">
+                                                <td>{{fees.occurance}}</td>
+                                                <td>{{fees.feeType}}</td>
+                                                <td>{{fees.month}}</td>
+                                                <td>{{fees.amount}}</td>
+                                                <td>{{fees.class.className}} - {{fees.class.sectionName}}</td>
                                                 <td class="text-center">
                                                     <a class="" href="javascript:void(0)">
                                                         <i class="fa fa-file-text-o"></i>

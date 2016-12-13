@@ -59,11 +59,17 @@ angular
         controller: 'SubjectsController',
         controllerAs: 'SubjectsCtrl'
     })
-    .state ('expenses', {
+    .state('expenses', {
         url: '/expenses',
         templateUrl: 'views/expenses-template.html',
         controller: 'ExpensesController',
         controllerAs: 'ExpensesCtrl'
+    })
+    .state('fees', {
+        url: '/fees',
+        templateUrl: 'views/fees-template.html',
+        controller: 'FeesController',
+        controllerAs: 'FeesCtrl'
     });
     $urlRouterProvider.otherwise('/login');
 }).run(function ($rootScope, $state, $cookies) {

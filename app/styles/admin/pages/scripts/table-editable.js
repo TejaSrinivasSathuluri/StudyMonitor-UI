@@ -45,9 +45,9 @@ var TableEditable = function () {
             oTable.fnDraw();
         }
 
-        var table = $('.sm_editable_grid');
+        var table1 = $('.sm_editable_grid');
 
-        var oTable = table.dataTable({
+        var oTable = table1.dataTable({
 
             // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
             // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js). 
@@ -81,6 +81,104 @@ var TableEditable = function () {
                 [0, "asc"]
             ], // set first column as a default sort by asc
             "columns": [null, null, null, {
+                "orderable": false,
+                "width": "10%",
+                "targets": 0
+            }, {
+                "orderable": false,
+                "width": "10%",
+                "targets": 0
+            }, {
+                "orderable": false,
+                "width": "10%",
+                "targets": 0
+            }]
+        });
+
+        var table2 = $('.sm_expense_editable_grid');
+
+        var oTable = table2.dataTable({
+
+            // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
+            // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js). 
+            // So when dropdowns used the scrollable div should be removed. 
+            //"dom": "<'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>",
+
+            "lengthMenu": [
+                [5, 15, 20, -1],
+                [5, 15, 20, "All"] // change per page values here
+            ],
+
+            // Or you can use remote translation file
+            //"language": {
+            //   url: '//cdn.datatables.net/plug-ins/3cfcc339e89/i18n/Portuguese.json'
+            //},
+
+            // set the initial value
+            "pageLength": 10,
+
+            "language": {
+                "lengthMenu": " _MENU_ records"
+            },
+            "columnDefs": [{ // set default column settings
+                'orderable': true,
+                'targets': [0]
+            }, {
+                "searchable": true,
+                "targets": [0]
+            }],
+            "order": [
+                [0, "asc"]
+            ], // set first column as a default sort by asc
+            "columns": [null, null, null, null, {
+                "orderable": false,
+                "width": "10%",
+                "targets": 0
+            }, {
+                "orderable": false,
+                "width": "10%",
+                "targets": 0
+            }, {
+                "orderable": false,
+                "width": "10%",
+                "targets": 0
+            }]
+        });
+        var table3 = $('.sm_fees_editable_grid');
+        var oTable = table3.dataTable({
+
+            // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
+            // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js). 
+            // So when dropdowns used the scrollable div should be removed. 
+            //"dom": "<'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>",
+
+            "lengthMenu": [
+                [5, 15, 20, -1],
+                [5, 15, 20, "All"] // change per page values here
+            ],
+
+            // Or you can use remote translation file
+            //"language": {
+            //   url: '//cdn.datatables.net/plug-ins/3cfcc339e89/i18n/Portuguese.json'
+            //},
+
+            // set the initial value
+            "pageLength": 10,
+
+            "language": {
+                "lengthMenu": " _MENU_ records"
+            },
+            "columnDefs": [{ // set default column settings
+                'orderable': true,
+                'targets': [0]
+            }, {
+                "searchable": true,
+                "targets": [0]
+            }],
+            "order": [
+                [0, "asc"]
+            ], // set first column as a default sort by asc
+            "columns": [null, null, null, null, null, {
                 "orderable": false,
                 "width": "10%",
                 "targets": 0
