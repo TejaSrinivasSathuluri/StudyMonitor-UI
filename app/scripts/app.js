@@ -58,6 +58,12 @@ angular
         templateUrl: 'views/subjects-template.html',
         controller: 'SubjectsController',
         controllerAs: 'SubjectsCtrl'
+    })
+    .state ('expenses', {
+        url: '/expenses',
+        templateUrl: 'views/expenses-template.html',
+        controller: 'ExpensesController',
+        controllerAs: 'ExpensesCtrl'
     });
     $urlRouterProvider.otherwise('/login');
 }).run(function ($rootScope, $state, $cookies) {
