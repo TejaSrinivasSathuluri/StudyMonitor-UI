@@ -37,7 +37,20 @@ angular.module('studymonitorApp')
                                   }
                               });
                               $timeout(function () {
-                                  TableEditable.init();
+                                  var columnsDefs = [null, null, null, {
+                                      "orderable": false,
+                                      "width": "10%",
+                                      "targets": 0
+                                  }, {
+                                      "orderable": false,
+                                      "width": "10%",
+                                      "targets": 0
+                                  }, {
+                                      "orderable": false,
+                                      "width": "10%",
+                                      "targets": 0
+                                  }];
+                                  TableEditable.init("#class_datatable", columnsDefs);
                               });
                           }
                       }, function (errorResponse) {

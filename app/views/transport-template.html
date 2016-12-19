@@ -614,8 +614,8 @@
                             <div class="portlet light portlet-fit ">
                                 <div class="portlet-title">
                                     <div class="caption">
-                                        <i class="fa fa-book font-green"></i>
-                                        <span class="caption-subject font-green bold uppercase">SUBJECTS LIST</span>
+                                        <i class="fa fa-bus font-green"></i>
+                                        <span class="caption-subject font-green bold uppercase">TRANSPORT MANAGEMENT</span>
                                     </div>
                                 </div>
                                 <div class="portlet-body">
@@ -650,20 +650,20 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <table class="table table-striped table-hover table-bordered sm_editable_grid" id="subjects_datatable">
+                                    <table class="table table-striped table-hover table-bordered sm_editable_grid" id="transport_datatable">
                                         <thead>
                                             <tr>
                                                 <th>
-                                                    Subject
+                                                    Number
                                                 </th>
                                                 <th>
-                                                    Class
+                                                    Type
                                                 </th>
                                                 <th>
-                                                    Teacher
+                                                    Capacity
                                                 </th>
                                                 <th class="text-center">
-                                                    Enable Exam
+                                                    More Details
                                                 </th>
                                                 <th class="text-center">
                                                     Edit
@@ -674,12 +674,12 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr data-ng-repeat="subject in SubjectsCtrl.subjectList">
-                                                <td>{{subject.subjectName}}  - {{subject.class.className}} {{subject.class.sectionName}}</td>
-                                                <td>{{subject.class.className}} {{subject.class.sectionName}}</td>
-                                                <td>{{subject.staff.firstName}} {{subject.staff.lastName}}</td>
+                                            <tr data-ng-repeat="transport in TransportCtrl.transportList">
+                                                <td>{{transport.busNo}}</td>
+                                                <td>{{transport.busType}}</td>
+                                                <td>{{transport.busCapacity}}</td>
                                                 <td class="text-center">
-                                                    <input bs-switch ng-model="subject.examFlag" type="checkbox" switch-size="mini" switch-on-text="Yes" switch-off-text="No" />
+                                                    <i class="fa fa-file-text-o font-blue"></i>
                                                 </td>
                                                 <td class="text-center">
                                                     <a class="edit" href="javascript:void(0);">

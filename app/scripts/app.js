@@ -19,7 +19,8 @@ angular
  'ngSanitize',
  'ngTouch',
  'ui.router',
- 'lbServices'
+ 'lbServices',
+ 'frapontillo.bootstrap-switch'
 ])
 .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -70,6 +71,18 @@ angular
         templateUrl: 'views/fees-template.html',
         controller: 'FeesController',
         controllerAs: 'FeesCtrl'
+    })
+    .state('transport', {
+        url: '/transport',
+        templateUrl: 'views/transport-template.html',
+        controller: 'TransportController',
+        controllerAs: 'TransportCtrl'
+    })
+    .state('assignments', {
+        url: '/assignments',
+        templateUrl: 'views/assignments-template.html',
+        controller: 'AssignmentsController',
+        controllerAs: 'AssignmentsCtrl'
     });
     $urlRouterProvider.otherwise('/login');
 }).run(function ($rootScope, $state, $cookies) {

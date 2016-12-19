@@ -20,7 +20,20 @@ angular.module('studymonitorApp')
 
                       //Trigger the editable datatable
                       $timeout(function () {
-                          TableEditable.init();
+                          var columnsDefs = [null, null, null, null, {
+                              "orderable": false,
+                              "width": "10%",
+                              "targets": 0
+                          }, {
+                              "orderable": false,
+                              "width": "10%",
+                              "targets": 0
+                          }, {
+                              "orderable": false,
+                              "width": "10%",
+                              "targets": 0
+                          }];
+                          TableEditable.init("#expenses_datatable", columnsDefs);
                       });
                   }
               }, function (error) {

@@ -20,7 +20,20 @@ angular.module('studymonitorApp')
                       FeesCtrl.feesList = response;
 
                       $timeout(function () {
-                          TableEditable.init();
+                          var columnsDefs = [null, null, null, null, null, {
+                              "orderable": false,
+                              "width": "10%",
+                              "targets": 0
+                          }, {
+                              "orderable": false,
+                              "width": "10%",
+                              "targets": 0
+                          }, {
+                              "orderable": false,
+                              "width": "10%",
+                              "targets": 0
+                          }];
+                          TableEditable.init("#fees_datatable", columnsDefs);
                       });
                   }
               }, function (error) {
