@@ -24,65 +24,127 @@ angular
 ])
 .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
-    .state('home', {
-        url: '/',
-        templateUrl: 'views/main.html',
-        conroller: 'MainCtrl',
-        controllerAs: 'main'
-    })
-    .state('about', {
-        url: '/about',
-        controller: 'AboutCtrl',
-        controllerAs: 'about',
-        templateUrl: 'views/about.html'
-    })
     .state('login', {
         url: '/login',
         controller: 'LoginController',
         controllerAs: 'LoginCtrl',
         templateUrl: 'views/login.html'
     })
-    .state('console', {
-        url: '/dashboard',
-        templateUrl: 'views/console.html',
-        controller: 'ConsoleController',
-        controllerAs: 'ConsoleCtrl'
+    .state('home', {
+        url: '/',
+        templateUrl: 'views/main-template.html'
     })
-    .state('class', {
-        url: '/class',
-        templateUrl: 'views/class-template.html',
-        controller: 'ClassController',
-        controllerAs: 'ClassCtrl'
+    .state('home.console', {
+        url: 'dashboard',
+        views: {
+            "content": {
+                templateUrl: 'views/console.html',
+                controller: 'ConsoleController',
+                controllerAs: 'ConsoleCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
     })
-    .state('subjects', {
-        url: '/subjects',
-        templateUrl: 'views/subjects-template.html',
-        controller: 'SubjectsController',
-        controllerAs: 'SubjectsCtrl'
+    .state('home.class', {
+        url: 'class',
+        views: {
+            "content": {
+                templateUrl: 'views/class-template.html',
+                controller: 'ClassController',
+                controllerAs: 'ClassCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
     })
-    .state('expenses', {
-        url: '/expenses',
-        templateUrl: 'views/expenses-template.html',
-        controller: 'ExpensesController',
-        controllerAs: 'ExpensesCtrl'
+    .state('home.subjects', {
+        url: 'subjects',
+        views: {
+            "content": {
+                templateUrl: 'views/subjects-template.html',
+                controller: 'SubjectsController',
+                controllerAs: 'SubjectsCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
     })
-    .state('fees', {
-        url: '/fees',
-        templateUrl: 'views/fees-template.html',
-        controller: 'FeesController',
-        controllerAs: 'FeesCtrl'
+    .state('home.expenses', {
+        url: 'expenses',
+        views: {
+            "content": {
+                templateUrl: 'views/expenses-template.html',
+                controller: 'ExpensesController',
+                controllerAs: 'ExpensesCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
     })
-    .state('transport', {
-        url: '/transport',
-        templateUrl: 'views/transport-template.html',
-        controller: 'TransportController',
-        controllerAs: 'TransportCtrl'
+    .state('home.fees', {
+        url: 'fees',
+        views: {
+            "content": {
+                templateUrl: 'views/fees-template.html',
+                controller: 'FeesController',
+                controllerAs: 'FeesCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
     })
-    .state('assignments', {
-        url: '/assignments',
-        templateUrl: 'views/assignments-template.html',
-        controller: 'AssignmentsController',
-        controllerAs: 'AssignmentsCtrl'
+    .state('home.transport', {
+        url: 'transport',
+        views: {
+            "content": {
+                templateUrl: 'views/transport-template.html',
+                controller: 'TransportController',
+                controllerAs: 'TransportCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
+    .state('home.assignments', {
+        url: 'assignments',
+        views: {
+            "content": {
+                templateUrl: 'views/assignments-template.html',
+                controller: 'AssignmentsController',
+                controllerAs: 'AssignmentsCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
     });
     $urlRouterProvider.otherwise('/login');
 }).run(function ($rootScope, $state, $cookies) {
