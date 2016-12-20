@@ -16,6 +16,15 @@ angular.module('studymonitorApp')
               noticeboardService.getNoticeDetailsBySchoolId(NoticeboardCtrl.schoolId).then(function (result) {
                   if (result) {
                       NoticeboardCtrl.noticeList = result;
+
+                      $('#noticescroller').slimScroll({
+                          position: 'right',
+                          height: '350px',
+                          railVisible: true,
+                          alwaysVisible: false,
+                          handleColor: '#D7DCE2'
+
+                      });
                   }
               }, function (error) {
                   console.log('Error while fetching notice details. Error stack : ' + error);

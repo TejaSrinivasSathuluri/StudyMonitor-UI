@@ -49,40 +49,43 @@
                                 </div>
                             </div>
                             <div class="portlet-body notice">
-                                <!-- NOTICE START-->
-                                <ul class="feeds">
-                                    <li data-ng-repeat="notice in NoticeboardCtrl.noticeList | filter:NoticeboardCtrl.search">
-                                        <a href="javascript:void(0)" ng-click="NoticeboardCtrl.noticeList[$index].showDescription = !NoticeboardCtrl.noticeList[$index].showDescription">
-                                            <div class="col1">
-                                                <div class="cont">
-                                                    <div class="cont-col1">
-                                                        <div class="label label-sm" ng-class="($index==0 || $index==1) ? 'label-info': 'label-success'">
-                                                            <i class="fa" ng-class="($index==0 || $index==1) ? 'fa-bullhorn': 'fa-bell-o'"></i>
+                                <!--ADDING NICE SCROLLER -->
+                                <div id="noticescroller">
+                                    <!-- NOTICE START-->
+                                    <ul class="feeds">
+                                        <li data-ng-repeat="notice in NoticeboardCtrl.noticeList | filter:NoticeboardCtrl.search">
+                                            <a href="javascript:void(0)" ng-click="NoticeboardCtrl.noticeList[$index].showDescription = !NoticeboardCtrl.noticeList[$index].showDescription">
+                                                <div class="col1">
+                                                    <div class="cont">
+                                                        <div class="cont-col1">
+                                                            <div class="label label-sm" ng-class="($index==0 || $index==1) ? 'label-info': 'label-success'">
+                                                                <i class="fa" ng-class="($index==0 || $index==1) ? 'fa-bullhorn': 'fa-bell-o'"></i>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="cont-col2">
-                                                        <div class="desc" style="text-transform:uppercase;">
-                                                            {{notice.title}}
+                                                        <div class="cont-col2">
+                                                            <div class="desc" style="text-transform:uppercase;">
+                                                                {{notice.title}}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col2" style="width:175px;margin-left:-175px;">
-                                                <div class="date">
-                                                    {{notice.date1 | date:'dd-MM-yyyy'}} - {{notice.date2 | date:'dd-MM-yyyy'}}
+                                                <div class="col2" style="width:175px;margin-left:-175px;">
+                                                    <div class="date">
+                                                        {{notice.date1 | date:'dd-MM-yyyy'}} - {{notice.date2 | date:'dd-MM-yyyy'}}
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <div id="collapse_2_1" class="panel-collapse collapse" ng-class="NoticeboardCtrl.noticeList[$index].showDescription ? 'in':''" aria-expanded="true">
+                                                <div class="panel-body">
+                                                    <p>
+                                                        {{notice.description}}
+                                                    </p>
                                                 </div>
                                             </div>
-                                        </a>
-                                        <div id="collapse_2_1" class="panel-collapse collapse" ng-class="NoticeboardCtrl.noticeList[$index].showDescription ? 'in':''" aria-expanded="true">
-                                            <div class="panel-body">
-                                                <p>
-                                                    {{notice.description}}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <!-- NOTICE END -->
+                                        </li>
+                                    </ul>
+                                    <!-- NOTICE END -->
+                                </div>
                             </div>
                         </div>
                         <!-- END EXAMPLE TABLE PORTLET-->
