@@ -1,0 +1,97 @@
+<!-- BEGIN PAGE CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN PAGE CONTENT -->
+    <div class="page-content">
+        <div class="container">
+            <!-- BEGIN PAGE BREADCRUMB -->
+            <ul class="page-breadcrumb breadcrumb">
+                <li>
+                    <a ui-sref="console">Home</a><i class="fa fa-circle"></i>
+                </li>
+                <li class="active">
+                    Fees Management <i class="fa fa-circle"></i>
+                </li>
+                <li class="active">
+                    Expenses
+                </li>
+            </ul>
+            <!-- END PAGE BREADCRUMB -->
+            <!-- BEGIN PAGE CONTENT INNER -->
+            <div class="page-content-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- SEARCH START-->
+                        <div class="search-page">
+                            <div class="search-bar ">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" ng-model="NoticeboardCtrl.search" placeholder="Search" />
+                                            <span class="input-group-btn">
+                                                <button class="btn blue uppercase bold" type="button">Search</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- SEARCH END -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                        <div class="portlet light portlet-fit ">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-bullhorn font-green"></i>
+                                    <span class="caption-subject font-green bold uppercase">NOTICEBOARD</span>
+                                </div>
+                            </div>
+                            <div class="portlet-body notice">
+                                <!-- NOTICE START-->
+                                <ul class="feeds">
+                                    <li data-ng-repeat="notice in NoticeboardCtrl.noticeList | filter:NoticeboardCtrl.search">
+                                        <a href="javascript:void(0)" ng-click="NoticeboardCtrl.noticeList[$index].showDescription = !NoticeboardCtrl.noticeList[$index].showDescription">
+                                            <div class="col1">
+                                                <div class="cont">
+                                                    <div class="cont-col1">
+                                                        <div class="label label-sm" ng-class="($index==0 || $index==1) ? 'label-info': 'label-success'">
+                                                            <i class="fa" ng-class="($index==0 || $index==1) ? 'fa-bullhorn': 'fa-bell-o'"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cont-col2">
+                                                        <div class="desc" style="text-transform:uppercase;">
+                                                            {{notice.title}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col2" style="width:175px;margin-left:-175px;">
+                                                <div class="date">
+                                                    {{notice.date1 | date:'dd-MM-yyyy'}} - {{notice.date2 | date:'dd-MM-yyyy'}}
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div id="collapse_2_1" class="panel-collapse collapse" ng-class="NoticeboardCtrl.noticeList[$index].showDescription ? 'in':''" aria-expanded="true">
+                                            <div class="panel-body">
+                                                <p>
+                                                    {{notice.description}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <!-- NOTICE END -->
+                            </div>
+                        </div>
+                        <!-- END EXAMPLE TABLE PORTLET-->
+                    </div>
+                </div>
+            </div>
+            <!-- END PAGE CONTENT INNER -->
+        </div>
+    </div>
+    <!-- END PAGE CONTENT -->
+</div>
+<!-- END PAGE CONTAINER -->

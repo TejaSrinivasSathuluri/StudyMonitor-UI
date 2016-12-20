@@ -145,6 +145,74 @@ angular
                 templateUrl: 'views/footer-template.html'
             }
         }
+    })
+    .state('home.exams', {
+        url: 'exams',
+        views: {
+            "content": {
+                templateUrl: 'views/examlist-template.html',
+                controller: 'ExamlistController',
+                controllerAs: 'ExamlistCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
+    .state('home.grade', {
+        url: 'grades',
+        views: {
+            "content": {
+                templateUrl: 'views/grade-template.html',
+                controller: 'GradeController',
+                controllerAs: 'GradeCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
+    .state('home.library', {
+        url: 'library',
+        views: {
+            "content": {
+                templateUrl: 'views/library-template.html',
+                controller: 'LibraryController',
+                controllerAs: 'LibraryCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
+    .state('home.noticeboard', {
+        url: 'noticeboard',
+        views: {
+            "content": {
+                templateUrl: 'views/noticeboard-template.html',
+                controller: 'NoticeboardController',
+                controllerAs: 'NoticeboardCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
+    .state('404', {
+        templateUrl: '404.html',
+        url: '/404'
     });
     $urlRouterProvider.otherwise('/login');
 }).run(function ($rootScope, $state, $cookies) {
