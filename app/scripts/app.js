@@ -20,7 +20,8 @@ angular
  'ngTouch',
  'ui.router',
  'lbServices',
- 'frapontillo.bootstrap-switch'
+ 'frapontillo.bootstrap-switch',
+ 'ui.calendar'
 ])
 .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -201,6 +202,22 @@ angular
                 templateUrl: 'views/noticeboard-template.html',
                 controller: 'NoticeboardController',
                 controllerAs: 'NoticeboardCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
+    .state('home.schooltimetable', {
+        url: 'schoool/timetable',
+        views: {
+            "content": {
+                templateUrl: 'views/schooltimetable-template.html',
+                controller: 'SchooltimetableController',
+                controllerAs: 'SchooltimetableCtrl'
             },
             "header": {
                 templateUrl: 'views/header-template.html'

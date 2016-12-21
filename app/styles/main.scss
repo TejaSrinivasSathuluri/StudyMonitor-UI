@@ -94,7 +94,7 @@ body {
         li {
             /*height: 45px;*/
             margin-bottom: 15px;
-            margin-right:10px;
+            margin-right: 10px;
         }
 
         .panel-collapse {
@@ -117,4 +117,14 @@ body {
     padding-bottom: 13px !important;
     overflow: hidden;
     font-size: 14px !important;
+}
+
+.schooltimetable {
+    .fc-toolbar {
+        display: none;
+    }
+
+    .fc-head {
+        display: none;
+    }
 }
