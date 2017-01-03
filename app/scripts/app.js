@@ -44,7 +44,9 @@ angular
                 controllerAs: 'ConsoleCtrl'
             },
             "header": {
-                templateUrl: 'views/header-template.html'
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
             },
             "footer": {
                 templateUrl: 'views/footer-template.html'
@@ -60,7 +62,9 @@ angular
                 controllerAs: 'ClassCtrl'
             },
             "header": {
-                templateUrl: 'views/header-template.html'
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
             },
             "footer": {
                 templateUrl: 'views/footer-template.html'
@@ -76,7 +80,9 @@ angular
                 controllerAs: 'SubjectsCtrl'
             },
             "header": {
-                templateUrl: 'views/header-template.html'
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
             },
             "footer": {
                 templateUrl: 'views/footer-template.html'
@@ -92,7 +98,9 @@ angular
                 controllerAs: 'ExpensesCtrl'
             },
             "header": {
-                templateUrl: 'views/header-template.html'
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
             },
             "footer": {
                 templateUrl: 'views/footer-template.html'
@@ -108,7 +116,9 @@ angular
                 controllerAs: 'FeesCtrl'
             },
             "header": {
-                templateUrl: 'views/header-template.html'
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
             },
             "footer": {
                 templateUrl: 'views/footer-template.html'
@@ -124,7 +134,9 @@ angular
                 controllerAs: 'TransportCtrl'
             },
             "header": {
-                templateUrl: 'views/header-template.html'
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
             },
             "footer": {
                 templateUrl: 'views/footer-template.html'
@@ -140,7 +152,9 @@ angular
                 controllerAs: 'AssignmentsCtrl'
             },
             "header": {
-                templateUrl: 'views/header-template.html'
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
             },
             "footer": {
                 templateUrl: 'views/footer-template.html'
@@ -156,7 +170,9 @@ angular
                 controllerAs: 'ExamlistCtrl'
             },
             "header": {
-                templateUrl: 'views/header-template.html'
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
             },
             "footer": {
                 templateUrl: 'views/footer-template.html'
@@ -172,7 +188,9 @@ angular
                 controllerAs: 'GradeCtrl'
             },
             "header": {
-                templateUrl: 'views/header-template.html'
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
             },
             "footer": {
                 templateUrl: 'views/footer-template.html'
@@ -188,7 +206,9 @@ angular
                 controllerAs: 'LibraryCtrl'
             },
             "header": {
-                templateUrl: 'views/header-template.html'
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
             },
             "footer": {
                 templateUrl: 'views/footer-template.html'
@@ -204,7 +224,9 @@ angular
                 controllerAs: 'NoticeboardCtrl'
             },
             "header": {
-                templateUrl: 'views/header-template.html'
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
             },
             "footer": {
                 templateUrl: 'views/footer-template.html'
@@ -220,7 +242,9 @@ angular
                 controllerAs: 'SchooltimetableCtrl'
             },
             "header": {
-                templateUrl: 'views/header-template.html'
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
             },
             "footer": {
                 templateUrl: 'views/footer-template.html'
