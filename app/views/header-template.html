@@ -5,11 +5,13 @@
         <div class="container">
             <!-- BEGIN LOGO -->
             <div class="page-logo">
-                <a ui-sref="console"><img src="../images/company.png" height="75" style="margin-top:0;" alt="logo" class="logo-default"></a>
+                <a ui-sref="home.console"><img src="../images/company.png" height="75" style="margin-top:0;" alt="logo" class="logo-default"></a>
             </div>
             <!-- END LOGO -->
             <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-            <a href="javascript:;" class="menu-toggler"></a>
+            <div class="schoollogo" ng-if="HeaderCtrl.schoolLogo">
+                <img ng-src="{{HeaderCtrl.schoolLogo}}" alt="School Logo" />
+            </div>
             <!-- END RESPONSIVE MENU TOGGLER -->
             <!-- BEGIN TOP NAVIGATION MENU -->
             <div class="top-menu">
@@ -398,7 +400,7 @@
             <div class="hor-menu ">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a ui-sref="console">Console</a>
+                        <a ui-sref="home.console">Console</a>
                     </li>
                     <li class="menu-dropdown mega-menu-dropdown active">
                         <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;" class="dropdown-toggle">

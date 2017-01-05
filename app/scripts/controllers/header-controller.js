@@ -20,4 +20,16 @@ angular.module('studymonitorApp')
           $cookies.remove('uts');
           $state.go('login');
       }
+      /*
+       * Initialize the controller
+       */
+      function init() {
+          this.getSchoolLogo = function () {
+              var schoolDetails = $cookies.getObject('__s');
+              if (!angular.equals({}, schoolDetails)) {
+                  HeaderCtrl.schoolLogo = schoolDetails.image;
+              }
+          }
+      }
+      (new init()).getSchoolLogo();
   });

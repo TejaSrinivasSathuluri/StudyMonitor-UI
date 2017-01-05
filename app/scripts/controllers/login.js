@@ -15,8 +15,9 @@ angular.module('studymonitorApp')
     //@@TODO - Clear the below lines while production
     $timeout(function () {
         LoginCtrl.loginfields = {};
-        LoginCtrl.loginfields.username = 'admin@studymonitor.com';
+        LoginCtrl.loginfields.username = 'smradmin@sm.in';
         LoginCtrl.loginfields.password = 'admin';
+        LoginCtrl.loginfields.role = 'Admin';
     });
     //@@TODO - Clear the above lines in prod
 
@@ -42,7 +43,12 @@ angular.module('studymonitorApp')
                         loginService.getAuthenticateUserDetails(response.data.userId, response.data.id).then(function (result) {
                             if (result && result.status === 200) {
                                 $cookies.putObject('uds', result.data);
-                                $state.go('home.console'); //Navigate to console landing page on successfull login
+                                loginService.getSchoolDetailsById(result.data.schoolId).then(function (res) {
+                                    if (res) {
+                                        $cookies.putObject('__s', res);
+                                        $state.go('home.console'); //Navigate to console landing page on successfull login
+                                    }
+                                });
                             }
                         }, function (error) {
                             LoginCtrl.showError = true;
