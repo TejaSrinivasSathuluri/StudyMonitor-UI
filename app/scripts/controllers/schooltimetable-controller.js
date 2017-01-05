@@ -8,11 +8,22 @@
  * Controller of the studymonitorApp
  */
 angular.module('studymonitorApp')
-  .controller('SchooltimetableController', function (schooltimetableService, $cookies, $scope, uiCalendarConfig) {
+  .controller('SchooltimetableController', function (schooltimetableService, $cookies, $scope, uiCalendarConfig, $timeout) {
       var SchooltimetableCtrl = this;
 
       //Defaults
       SchooltimetableCtrl.calendarEvent = [];
+      SchooltimetableCtrl.formFields = {};
+      $timeout(function () {
+          $('#starttimepicker').datetimepicker({
+              format: 'HH:mm'
+          });
+          $('#endtimepicker').datetimepicker({
+              format: 'HH:mm'
+          });
+          //Initialize metronic
+          Metronic.init();
+      });
 
       SchooltimetableCtrl.schoolId = $cookies.getObject('uds').schoolId;
       /*
