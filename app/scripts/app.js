@@ -82,6 +82,22 @@ angular
             }
         }
     })
+     .state('home.classtimetable', {
+        url: 'timetable',
+        views: {
+            "content": {
+                templateUrl: 'views/classtimetable-template.html',
+                controller: 'ClasstimetableController',
+                controllerAs: 'ClasstimetableCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
     .state('home.expenses', {
         url: 'expenses',
         views: {
@@ -121,6 +137,38 @@ angular
                 templateUrl: 'views/transport-template.html',
                 controller: 'TransportController',
                 controllerAs: 'TransportCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
+     .state('home.directory', {
+        url: 'directory',
+        views: {
+            "content": {
+                templateUrl: 'views/directory-template.html',
+                controller: 'DirectoryController',
+                controllerAs: 'DirectoryCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
+     .state('home.noticeboard', {
+        url: 'noticeboard',
+        views: {
+            "content": {
+                templateUrl: 'views/noticeboard-template.html',
+                controller: 'NoticeboardController',
+                controllerAs: 'NoticeboardCtrl'
             },
             "header": {
                 templateUrl: 'views/header-template.html'
