@@ -21,7 +21,8 @@ angular
  'ui.router',
  'lbServices',
  'frapontillo.bootstrap-switch',
- 'ui.calendar'
+ 'ui.calendar',
+ 'toastr'
 ])
 .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -251,6 +252,24 @@ angular
             }
         }
     })
+    .state('home.bulkupload', {
+        url: 'settings/bulkupload',
+        views: {
+            "content": {
+                templateUrl: 'views/bulkupload-template.html',
+                controller: 'BulkuploadController',
+                controllerAs: 'BulkuploadCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
     .state('404', {
         templateUrl: '404.html',
         url: '/404'
@@ -270,4 +289,4 @@ angular
             $state.go('login');
         }
     });
-}).constant('API_SERVER', 'http://meanstage.cloudapp.net:3000/api'); //Mean Stage
+}).constant('API_SERVER', 'http://localhost:3000/api'); //Mean Stage

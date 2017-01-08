@@ -1,0 +1,88 @@
+<!-- BEGIN PAGE CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN PAGE CONTENT -->
+    <div class="page-content">
+        <div class="container">
+            <!-- BEGIN PAGE BREADCRUMB -->
+            <ul class="page-breadcrumb breadcrumb">
+                <li>
+                    <a ui-sref="console">Home</a><i class="fa fa-circle"></i>
+                </li>
+                <li class="active">
+                    Subjects
+                </li>
+            </ul>
+            <!-- END PAGE BREADCRUMB -->
+            <!-- BEGIN PAGE CONTENT INNER -->
+            <div class="page-content-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                        <div class="portlet light portlet-fit ">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <span class="caption-subject font-green bold uppercase">BULK UPLOAD</span>
+                                </div>
+                            </div>
+                            <div class="portlet-body form">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Important Notes</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul>
+                                            <li>
+                                                The maximum file size for uploads is <strong>5 MB</strong>.
+                                            </li>
+                                            <li>
+                                                Only <strong>CSV</strong> format files are allowed to upload.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <form class="form-bordered form-horizontal" name="fileuploadform" data-ng-submit="BulkuploadCtrl.uploadFiles()" novalidate>
+                                    <div class="form-group">
+                                        <div class="col-md-5">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                <div class="input-group input-large">
+                                                    <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                                                        <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                                                        <span class="fileinput-filename"></span>
+                                                    </div>
+                                                    <span class="input-group-addon btn default btn-file">
+                                                        <span class="fileinput-new"> Select file </span>
+                                                        <span class="fileinput-exists"> Change </span>
+                                                        <input type="hidden" value="" name="..."><input type="file" name="file" required>
+                                                    </span>
+                                                    <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <select ng-model="BulkuploadCtrl.classId" name="classid" class="form-control" required>
+                                                <option value="">Class </option>
+                                                <option ng-repeat="y in BulkuploadCtrl.classList" value="{{y.id}}">{{y.className}}-{{y.sectionName}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="btn-group">
+                                                <button class="btn green" type="submit" data-ng-disabled="fileuploadform.$invalid">
+                                                    Submit
+                                                    <i class="fa fa-upload"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- END EXAMPLE TABLE PORTLET-->
+                    </div>
+                </div>
+            </div>
+            <!-- END PAGE CONTENT INNER -->
+        </div>
+    </div>
+    <!-- END PAGE CONTENT -->
+</div>
+<!-- END PAGE CONTAINER -->
