@@ -51,6 +51,8 @@ angular.module('studymonitorApp')
                                       "targets": 0
                                   }];
                                   TableEditable.init("#class_datatable", columnsDefs);
+                                  //Initialize metronic
+                                  Metronic.init();
                               });
                           }
                       }, function (errorResponse) {
