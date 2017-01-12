@@ -15,8 +15,8 @@ angular.module('studymonitorApp')
     //@@TODO - Clear the below lines while production
     $timeout(function () {
         LoginCtrl.loginfields = {};
-        LoginCtrl.loginfields.username = 'teja@study.com';
-        LoginCtrl.loginfields.password = '12345';
+        LoginCtrl.loginfields.username = 'smradmin@sm.in';
+        LoginCtrl.loginfields.password = 'admin';
         LoginCtrl.loginfields.role = 'Admin';
     });
     //@@TODO - Clear the above lines in prod

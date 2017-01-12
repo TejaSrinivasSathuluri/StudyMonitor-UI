@@ -289,4 +289,4 @@ angular
             $state.go('login');
         }
     });
-}).constant('API_SERVER', 'http://localhost:3000/api'); //Mean Stage
+}).constant('API_SERVER', 'http://meanstage.cloudapp.net:3000/api'); //Mean Stage

@@ -89,7 +89,7 @@
                                                 {{class.sectionName}}
                                             </td>
                                             <td>
-                                                {{class.staffName}}
+                                                {{class.staff.firstName}} {{class.staff.lastName}}
                                             </td>
                                             <td class="text-center">
                                                 <a class="" href="javascript:void(0)">
@@ -97,12 +97,12 @@
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a class="edit" href="javascript:void(0);">
+                                                <a class="edit" href="javascript:void(0);" data-ng-click="ClassCtrl.editClass($index)">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a class="delete" href="javascript:void(0);">
+                                                <a class="delete" href="javascript:void(0);" data-ng-click="ClassCtrl.deleteClass($index)">
                                                     <i class="fa fa-remove"></i>
                                                 </a>
                                             </td>
@@ -131,7 +131,7 @@
             </div>
             <div class="modal-body form">
                 <div class="form-container">
-                    <form name="classform" novalidate role="form">
+                    <form name="classform" novalidate role="form" data-ng-submit="ClassCtrl.classAction(classform.$invalid)">
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
                             <input type="text" class="form-control input-sm" name="classname" data-ng-model="ClassCtrl.formFields.className" maxlength="50" required />
                             <label for="form_control_1">Class Name</label>
@@ -141,8 +141,9 @@
                             <label for="form_control_1">Section Name</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <select data-ng-model="ClassCtrl.formFields.teacherName" class="form-control input-sm" required name="teachername">
+                            <select data-ng-model="ClassCtrl.formFields.staffName" class="form-control input-sm" required name="teachername">
                                 <option value="">Select Teacher</option>
+                                <option ng-repeat="staff in ClassCtrl.staffList" value="{{staff.id}}">{{staff.firstName}} {{staff.lastName}}</option>
                             </select>
                         </div>
                         <div class="form-group">
