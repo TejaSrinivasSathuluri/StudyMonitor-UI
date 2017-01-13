@@ -22,7 +22,8 @@ angular
  'lbServices',
  'frapontillo.bootstrap-switch',
  'ui.calendar',
- 'toastr'
+ 'toastr',
+ 'ngBootbox'
 ])
 .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider

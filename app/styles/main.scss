@@ -209,47 +209,21 @@ body {
 }
 
 .modal-header {
-    border-bottom-color: #EEEEEE;
-    background-color: #FAFAFA;
+    border-bottom: none !important;
 }
 
-/* ----- v CAN BE DELETED v ----- */
-body {
-    background-color: #78909C;
+.form-group.form-md-line-input select.form-control.input-sm {
+    padding: 0;
 }
 
-.demo {
-    padding-top: 60px;
-    padding-bottom: 110px;
+.modal-title {
+    font-size: 1.7em;
 }
 
-.btn-demo {
-    margin: 15px;
-    padding: 10px 15px;
-    border-radius: 0;
-    font-size: 16px;
-    background-color: #FFFFFF;
-}
+.modal-close {
+    margin: 10px 0;
 
-.btn-demo:focus {
-    outline: 0;
-}
-
-.demo-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    padding: 15px;
-    background-color: #212121;
-    text-align: center;
-}
-
-.demo-footer > a {
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
-    color: #fff;
-}
-.form-group.form-md-line-input select.form-control.input-sm{
-    padding:0;
+    span {
+        font-size: 2em;
+    }
 }

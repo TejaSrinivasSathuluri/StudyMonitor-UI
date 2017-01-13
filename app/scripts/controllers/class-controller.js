@@ -19,7 +19,6 @@ angular.module('studymonitorApp')
               if (result && result.hasOwnProperty('classes')) {
                   ClassCtrl.classList = result.classes;
                   ClassCtrl.staffList = result.staffs;
-
                   //Initialize metronic
                   Metronic.init();
               }
@@ -48,9 +47,11 @@ angular.module('studymonitorApp')
           }
           if (data) {
               classService.classAddOrUpdate(data).then(function (result) {
-                  if (result && result.status === 200) {
+                  if (result) {
                       //On Successfull refill the data list
                       init();
+                      //Close Modal
+                      closeModal();
                   }
               }, function (error) {
                   console.log('Error while creating or updating records. Error stack' + error);
@@ -58,12 +59,13 @@ angular.module('studymonitorApp')
           }
       }
       //Delete Action
-      ClassCtrl.deleteClass = function (index) {
+      var deleteClass = function (index) {
           if (ClassCtrl.classList) {
               classService.deleteClass(ClassCtrl.classList[index].id).then(function (result) {
                   if (result) {
                       //On Successfull refill the data list
                       init();
+                      closeModal();
                   }
               }, function (error) {
                   console.log('Error while deleting class. Error Stack' + error);
@@ -77,7 +79,30 @@ angular.module('studymonitorApp')
           ClassCtrl.formFields.staffName = ClassCtrl.classList[index].staff.firstName + ' ' + ClassCtrl.classList[index].staff.lastName;
 
           //Open Modal
-          $('#edit-class').modal('show');
+          openModal();
 
+          Metronic.setFlotLabel($('input[name=sectionname]'));
+          Metronic.setFlotLabel($('input[name=classname]'));
+          Metronic.setFlotLabel($('input[name=staffname]'));
+
+      }
+
+      //Close or Open modal
+      function closeModal() {
+          var modal = $('#edit-class');
+          modal.modal('hide');
+      }
+      function openModal() {
+          var modal = $('#edit-class');
+          modal.modal('show');
+      }
+
+      //Delete confirmation box
+      ClassCtrl.confirmCallbackMethod = function (index) {
+          deleteClass(index);
+      }
+      //Delete cancel box
+      ClassCtrl.confirmCallbackCancel = function (index) {
+          return false;
       }
   });

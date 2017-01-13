@@ -48,6 +48,8 @@ module.exports = function(config) {
       'bower_components/papaparse/papaparse.js',
       'bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.js',
       'bower_components/angular-toastr/dist/angular-toastr.tpls.js',
+      'bower_components/bootbox/bootbox.js',
+      'bower_components/ngBootbox/dist/ngBootbox.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
