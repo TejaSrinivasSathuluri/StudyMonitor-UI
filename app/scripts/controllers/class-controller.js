@@ -51,7 +51,7 @@ angular.module('studymonitorApp')
                       //On Successfull refill the data list
                       init();
                       //Close Modal
-                      closeModal();
+                      ClassCtrl.closeModal();
                   }
               }, function (error) {
                   console.log('Error while creating or updating records. Error stack' + error);
@@ -65,7 +65,7 @@ angular.module('studymonitorApp')
                   if (result) {
                       //On Successfull refill the data list
                       init();
-                      closeModal();
+                      ClassCtrl.closeModal();
                   }
               }, function (error) {
                   console.log('Error while deleting class. Error Stack' + error);
@@ -81,20 +81,29 @@ angular.module('studymonitorApp')
           //Open Modal
           openModal();
 
-          Metronic.setFlotLabel($('input[name=sectionname]'));
-          Metronic.setFlotLabel($('input[name=classname]'));
-          Metronic.setFlotLabel($('input[name=staffname]'));
+          $timeout(function () {
+              Metronic.setFlotLabel($('input[name=sectionname]'));
+              Metronic.setFlotLabel($('input[name=classname]'));
+              Metronic.setFlotLabel($('input[name=staffname]'));
+          });
 
       }
 
       //Close or Open modal
-      function closeModal() {
+      ClassCtrl.closeModal = function () {
           var modal = $('#edit-class');
           modal.modal('hide');
+
+          //ClearFields
+          clearformfields();
       }
       function openModal() {
           var modal = $('#edit-class');
           modal.modal('show');
+      }
+      //Clear Fields
+      function clearformfields() {
+          ClassCtrl.formFields = {};
       }
 
       //Delete confirmation box
