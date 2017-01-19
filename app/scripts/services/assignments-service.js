@@ -19,4 +19,26 @@ angular.module('studymonitorApp')
           });
           return _activepromise.promise;
       }
+      this.getExistingAssignmentRecords= function (data){
+          var _activepromise = $q.defer();
+          Assignment.findOne({filter:{where:{schoolId: data.schoolId, title: data.title, classId: data.classId, fromDate: data.fromDate, toDate: data.toDate}}},
+          function (response) {
+                  _activepromise.resolve(response);
+              }, function (error) {
+                  _activepromise.reject(response);
+              });
+          return _activepromise.promise;
+
+      } 
+      this.CreateOrUpdateAssignment= function (data){
+          var _activepromise = $q.defer();
+          Assignment.create({schoolId: data.schoolId,title: data.title,classId:data.classId,description:data.description,fromDate:data.fromDate,toDate:data.toDate},
+          function (response) {
+                  _activepromise.resolve(response);
+              }, function (error) {
+                  _activepromise.reject(response);
+              });
+          return _activepromise.promise;
+
+      } 
   });

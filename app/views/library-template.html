@@ -9,10 +9,7 @@
                     <a ui-sref="console">Home</a><i class="fa fa-circle"></i>
                 </li>
                 <li class="active">
-                    Fees Management <i class="fa fa-circle"></i>
-                </li>
-                <li class="active">
-                    Expenses
+                    Library
                 </li>
             </ul>
             <!-- END PAGE BREADCRUMB -->
@@ -25,7 +22,7 @@
                             <div class="portlet-title">
                                 <div class="caption">
                                     <i class="fa fa-lightbulb-o font-green"></i>
-                                    <span class="caption-subject font-green bold uppercase">LIBRARY LIST</span>
+                                    <span class="caption-subject font-green bold uppercase">LIBRARY</span>
                                 </div>
                             </div>
                             <div class="portlet-body">
@@ -33,8 +30,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="btn-group">
-                                                <button id="sample_editable_1_new" class="btn green">
-                                                    Add New
+                                                <button data-toggle="modal" data-target="#edit-library" class="btn green">
+                                                    Add New Book
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </div>
@@ -126,3 +123,45 @@
     <!-- END PAGE CONTENT -->
 </div>
 <!-- END PAGE CONTAINER -->
+<!-- EDIT MODAL -->
+<div id="edit-library" class="modal right fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="javascript:void(0)" class="modal-close pull-right" aria-hidden="true" data-ng-click=" LibraryCtrl.closeModal()"><span class="icon-close"></span></a>
+                <h4 class="modal-title font-green">LIBRARY</h4>
+            </div>
+            <div class="modal-body form">
+                <div class="form-container">
+                    <form name="libraryform" novalidate role="form" data-ng-submit=" LibraryCtrl.libraryAction(libraryform.$invalid)">
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <input type="text" class="form-control input-sm" name="name" data-ng-model=" LibraryCtrl.formFields.name" maxlength="50" required />
+                            <label for="form_control_1">NAME OF THE BOOK</label>
+                        </div>
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <input type="texts" class="form-control input-sm" name="author" data-ng-model=" LibraryCtrl.formFields.author" maxlength="50" required />
+                            <label for="form_control_1">NAME OF THE AUTHOR</label>
+                        </div>
+                         <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <input type="text" class="form-control input-sm" name="description" data-ng-model=" LibraryCtrl.formFields.description" maxlength="50" required />
+                            <label for="form_control_1">Description</label>
+                        </div>
+                         <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <input type="text" class="form-control input-sm" name="price" data-ng-model=" LibraryCtrl.formFields.price" maxlength="50" required />
+                            <label for="form_control_1">PRICE</label>
+                        </div>
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <input type="text" class="form-control input-sm" name="available" data-ng-model=" LibraryCtrl.formFields.available" maxlength="50" required />
+                            <label for="form_control_1">AVAILABLE NUMBER OF BOOKS</label>
+                        </div>
+                        <div class="form-group">
+                            <button type="reset" class="btn default">Cancel</button>
+                            <button type="submit" class="btn green" data-ng-disabled="libraryform.$invalid"><i class="fa fa-check"></i> Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- EDIT MODAL END-->

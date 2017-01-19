@@ -1,4 +1,4 @@
-    <!-- BEGIN PAGE CONTAINER -->
+<!-- BEGIN PAGE CONTAINER -->
 <div class="page-container">
     <!-- BEGIN PAGE CONTENT -->
     <div class="page-content">
@@ -25,7 +25,7 @@
                             <div class="portlet-title">
                                 <div class="caption">
                                     <i class="fa fa-money font-green"></i>
-                                    <span class="caption-subject font-green bold uppercase">FEES LIST</span>
+                                    <span class="caption-subject font-green bold uppercase">FEES</span>
                                 </div>
                             </div>
                             <div class="portlet-body">
@@ -33,8 +33,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="btn-group">
-                                                <button id="sample_editable_1_new" class="btn green">
-                                                    Add New
+                                                <button data-toggle="modal" data-target="#edit-fees" class="btn green">
+                                                    Add New Fee
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </div>
@@ -126,3 +126,52 @@
     <!-- END PAGE CONTENT -->
 </div>
 <!-- END PAGE CONTAINER -->
+<!-- EDIT MODAL -->
+<div id="edit-fees" class="modal right fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="javascript:void(0)" class="modal-close pull-right" aria-hidden="true" data-ng-click=" FeesCtrl.closeModal()"><span class="icon-close"></span></a>
+                <h4 class="modal-title font-green">FEE MANAGEMENT</h4>
+            </div>
+            <div class="modal-body form">
+                <div class="form-container">
+                    <form name="feesform" novalidate role="form" data-ng-submit=" FeesCtrl.feeAction(feesform.$invalid)">
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <select data-ng-model="FeesCtrl.formFields.occurance" name="occurance" class="form-control input-sm" required >
+                                <option value="">Fee Occurance</option>
+                                <option>Monthly</option>
+                                <option>Quarterly</option>
+                                <option>Half-Yearly</option>
+                                <option>Yearly</option>
+                                <option>Only Once</option>
+                            </select>
+                        </div>
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <select data-ng-model="FeesCtrl.formFields.classId" name="classId" class="form-control input-sm" required >
+                                <option value="">Class</option>
+                                <option ng-repeat="class in ClassCtrl.classList" value="{{class.id}}">{{class.firstName}} {{class.lastName}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <input type="text" class="form-control input-sm" name="feeType" data-ng-model=" FeesCtrl.formFields.feeType" maxlength="50"
+                                required />
+                            <label for="form_control_1">Fee Type</label>
+                        </div>
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <input type="text" class="form-control input-sm" name="amount" data-ng-model=" FeesCtrl.formFields.amount" maxlength="50"
+                                required />
+                            <label for="form_control_1">Fee Amount</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="reset" class="btn default">Cancel</button>
+                            <button type="submit" class="btn green" data-ng-disabled="feesform.$invalid"><i class="fa fa-check"></i> Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- EDIT MODAL END-->

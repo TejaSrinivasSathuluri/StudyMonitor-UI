@@ -19,4 +19,26 @@ angular.module('studymonitorApp')
           });
           return _activepromise.promise;
       }
+      this.getExistingGrades= function (data){
+          var _activepromise = $q.defer();
+          Grade.findOne({ filter:{ where:{ schoolId: data.schoolId,gradeName:data.gradeName }}},
+          function (response) {
+                  _activepromise.resolve(response);
+              }, function (error) {
+                  _activepromise.reject(response);
+              });
+          return _activepromise.promise;
+
+      } 
+      this.CreateOrUpdateGrade= function (data){
+          var _activepromise = $q.defer();
+          Grade.create({schoolId:data.schoolId,gradeName:data.gradeName,gradePoint: data.gradePoint,percentageRangeFrom:data.percentageRangeFrom,percentageRangeTo :data.percentageRangeTo},
+          function (response) {
+                  _activepromise.resolve(response);
+              }, function (error) {
+                  _activepromise.reject(response);
+              });
+          return _activepromise.promise;
+
+      } 
   });

@@ -1,43 +1,47 @@
 ﻿<!doctype html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="bower_components/simple-line-icons/css/simple-line-icons.css" />
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" />
-    <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
-    <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
-    <link rel="stylesheet" href="bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
-    <link href="styles/global/css/plugins.css" rel="stylesheet" />
-    <link href="styles/global/css/components.css" rel="stylesheet" />
-    <link href="styles/admin/layout3/css/layout.css" rel="stylesheet" />
-    <link href="styles/admin/layout3/css/themes/default.css" rel="stylesheet" />
-    <link href="styles/admin/layout3/css/custom.css" rel="stylesheet" />
-    <link href="styles/admin/pages/css/search.css" rel="stylesheet" />
-    <!-- Page CSS -->
-    <link href="styles/admin/pages/css/login.css" rel="stylesheet" />
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+  <link rel="stylesheet" href="bower_components/simple-line-icons/css/simple-line-icons.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" />
+  <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
+  <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"
+  />
+  <link rel="stylesheet" href="bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"
+  />
+  <link href="styles/global/css/plugins.css" rel="stylesheet" />
+  <link href="styles/global/css/components.css" rel="stylesheet" />
+  <link href="styles/admin/layout3/css/layout.css" rel="stylesheet" />
+  <link href="styles/admin/layout3/css/themes/default.css" rel="stylesheet" />
+  <link href="styles/admin/layout3/css/custom.css" rel="stylesheet" />
+  <link href="styles/admin/pages/css/search.css" rel="stylesheet" />
+  <!-- Page CSS -->
+  <link href="styles/admin/pages/css/login.css" rel="stylesheet" />
 </head>
+
 <body ng-app="studymonitorApp" class="login">
-    <!--[if lte IE 8]>
+  <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <!-- Add your site or application content here -->
-    <!-- <div class="header">
+  <!-- Add your site or application content here -->
+  <!-- <div class="header">
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
           <div class="navbar-header">
@@ -63,99 +67,116 @@
         </div>
       </div>
     </div> -->
-    <!-- <div class="container"> -->
-    <div ui-view=""></div>
-    <!-- </div> -->
-    <!-- <div class="footer">
+  <!-- <div class="container"> -->
+  <div ui-view=""></div>
+  <!-- </div> -->
+  <!-- <div class="footer">
       <div class="container">
         <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
       </div>
     </div> -->
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-    <script>
-        !function (A, n, g, u, l, a, r) {
-            A.GoogleAnalyticsObject = l, A[l] = A[l] || function () {
-                (A[l].q = A[l].q || []).push(arguments)
-            }, A[l].l = +new Date, a = n.createElement(g),
-            r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
-        }(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+  <script>
+    !function (A, n, g, u, l, a, r) {
+      A.GoogleAnalyticsObject = l, A[l] = A[l] || function () {
+        (A[l].q = A[l].q || []).push(arguments)
+      }, A[l].l = +new Date, a = n.createElement(g),
+        r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
+    } (window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-        ga('create', 'UA-XXXXX-X');
-        ga('send', 'pageview');
-    </script>
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-messages/angular-messages.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/select2/dist/js/select2.js"></script>
-    <!--<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>-->
-    <script src="bower_components/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
-    <script src="bower_components/datatables.net/js/jquery.dataTables.js"></script>
-    <script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>
-    <script src="bower_components/jquery-slimscroll/jquery.slimscroll.js"></script>
-    <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="bower_components/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
-    <script src="bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch.js"></script>
-    <script src="bower_components/moment/moment.js"></script>
-    <script src="bower_components/fullcalendar/dist/fullcalendar.js"></script>
-    <script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
-    <script src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="bower_components/papaparse/papaparse.js"></script>
-    <script src="bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.js"></script>
-    <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
-    <script src="bower_components/bootbox/bootbox.js"></script>
-    <script src="bower_components/ngBootbox/dist/ngBootbox.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/about.js"></script>
-    <script src="scripts/controllers/login.js"></script>
-    <script src="scripts/services/login-service.js"></script>
-    <script src="scripts/services/app-messages.js"></script>
-    <script src="scripts/controllers/console-controller.js"></script>
-    <script src="scripts/controllers/class-controller.js"></script>
-    <script src="scripts/services/class-service.js"></script>
-    <script src="scripts/controllers/subjects-controller.js"></script>
-    <script src="scripts/services/subjects-service.js"></script>
-    <script src="scripts/services/lb-services.js"></script>
-    <script src="scripts/controllers/expenses-controller.js"></script>
-    <script src="scripts/services/expenses-service.js"></script>
-    <script src="scripts/controllers/fees-controller.js"></script>
-    <script src="scripts/services/fees-service.js"></script>
-    <script src="scripts/controllers/transport-controller.js"></script>
-    <script src="scripts/services/transport-service.js"></script>
-    <script src="scripts/controllers/assignments-controller.js"></script>
-    <script src="scripts/services/assignments-service.js"></script>
-    <script src="scripts/controllers/header-controller.js"></script>
-    <script src="scripts/controllers/examlist-controller.js"></script>
-    <script src="scripts/services/examlist-service.js"></script>
-    <script src="scripts/controllers/grade-controller.js"></script>
-    <script src="scripts/services/grade-service.js"></script>
-    <script src="scripts/controllers/library-controller.js"></script>
-    <script src="scripts/services/library-service.js"></script>
-    <script src="scripts/controllers/noticeboard-controller.js"></script>
-    <script src="scripts/services/noticeboard-service.js"></script>
-    <script src="scripts/controllers/schooltimetable-controller.js"></script>
-    <script src="scripts/services/schooltimetable-service.js"></script>
-    <script src="scripts/controllers/bulkupload-controller.js"></script>
-    <script src="scripts/services/bulkupload-service.js"></script>
-    <!-- endbuild -->
-    <!--Custom Scripts-->
-    <script src="styles/global/scripts/metronic.js"></script>
-    <script src="styles/admin/layout3/scripts/layout.js"></script>
-    <script src="styles/admin/layout3/scripts/demo.js"></script>
-    <script src="styles/admin/pages/scripts/table-editable.js"></script>
+    ga('create', 'UA-XXXXX-X');
+    ga('send', 'pageview');
+  </script>
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-messages/angular-messages.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/select2/dist/js/select2.js"></script>
+<!--<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>-->
+<script src="bower_components/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
+<script src="bower_components/datatables.net/js/jquery.dataTables.js"></script>
+<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>
+<script src="bower_components/jquery-slimscroll/jquery.slimscroll.js"></script>
+<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="bower_components/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
+<script src="bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/fullcalendar/dist/fullcalendar.js"></script>
+<script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+<script src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<script src="bower_components/papaparse/papaparse.js"></script>
+<script src="bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.js"></script>
+<script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+<script src="bower_components/bootbox/bootbox.js"></script>
+<script src="bower_components/ngBootbox/dist/ngBootbox.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/main.js"></script>
+<script src="scripts/controllers/about.js"></script>
+<script src="scripts/controllers/login.js"></script>
+<script src="scripts/services/login-service.js"></script>
+<script src="scripts/services/app-messages.js"></script>
+<script src="scripts/controllers/console-controller.js"></script>
+<script src="scripts/controllers/class-controller.js"></script>
+<script src="scripts/services/class-service.js"></script>
+<script src="scripts/controllers/subjects-controller.js"></script>
+<script src="scripts/services/subjects-service.js"></script>
+<script src="scripts/services/lb-services.js"></script>
+<script src="scripts/controllers/expenses-controller.js"></script>
+<script src="scripts/services/expenses-service.js"></script>
+<script src="scripts/controllers/fees-controller.js"></script>
+<script src="scripts/services/fees-service.js"></script>
+<script src="scripts/controllers/transport-controller.js"></script>
+<script src="scripts/services/transport-service.js"></script>
+<script src="scripts/controllers/assignments-controller.js"></script>
+<script src="scripts/services/assignments-service.js"></script>
+<script src="scripts/controllers/header-controller.js"></script>
+<script src="scripts/controllers/examlist-controller.js"></script>
+<script src="scripts/services/examlist-service.js"></script>
+<script src="scripts/controllers/grade-controller.js"></script>
+<script src="scripts/services/grade-service.js"></script>
+<script src="scripts/controllers/library-controller.js"></script>
+<script src="scripts/services/library-service.js"></script>
+<script src="scripts/controllers/noticeboard-controller.js"></script>
+<script src="scripts/services/noticeboard-service.js"></script>
+<script src="scripts/controllers/schooltimetable-controller.js"></script>
+<script src="scripts/services/schooltimetable-service.js"></script>
+<script src="scripts/controllers/bulkupload-controller.js"></script>
+<script src="scripts/services/bulkupload-service.js"></script>
+<!-- endbuild -->
+<!--Custom Scripts-->
+<script src="styles/global/scripts/metronic.js"></script>
+<script src="styles/admin/layout3/scripts/layout.js"></script>
+<script src="styles/admin/layout3/scripts/demo.js"></script>
+<script src="styles/admin/pages/scripts/table-editable.js"></script>
+<!--- Support Chat Script---->
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+      var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+      (function () {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/586cced89d4fd220380c69b1/default';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+      })();
+</script>
+<!--End of Tawk.to Script-->
+<!--- End Of Support Chat Script---->
+
 </body>
+
 </html>

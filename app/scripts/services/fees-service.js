@@ -19,4 +19,26 @@ angular.module('studymonitorApp')
           });
           return _activepromise.promise;
       }
+      this.getExistingFeeRecords= function (data){
+          var _activepromise = $q.defer();
+          FeeSetup.findOne({filter:{where:{occurance : data.occurance,feeType  : data.feeType,classId  : data.classId,schoolId : data.schoolId}}},
+          function (response) {
+                  _activepromise.resolve(response);
+              }, function (error) {
+                  _activepromise.reject(response);
+              });
+          return _activepromise.promise;
+
+      } 
+      this.CreateOrUpdateFee= function (data){
+          var _activepromise = $q.defer();
+          FeeSetup.create({occurance : data.occurance,feeType   : data.feeType,schoolId  : data.schoolId,amount    : data.amount,classId   : data.classId},
+          function (response) {
+                  _activepromise.resolve(response);
+              }, function (error) {
+                  _activepromise.reject(response);
+              });
+          return _activepromise.promise;
+
+      } 
   });

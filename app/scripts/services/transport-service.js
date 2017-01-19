@@ -17,4 +17,26 @@ angular.module('studymonitorApp')
           });
           return _activepromise.promise;
       }
+      this.getExistingBusRecords= function (data){
+          var _activepromise = $q.defer();
+          Bus.findOne({filter:{where:{schoolId:data.schoolId,busNo:data.busNo}}},
+          function (response) {
+                  _activepromise.resolve(response);
+              }, function (error) {
+                  _activepromise.reject(response);
+              });
+          return _activepromise.promise;
+
+      } 
+      this.CreateOrUpdateBus= function (data){
+          var _activepromise = $q.defer();
+          Bus.create({schoolId: data.schoolId,busNo:data.busNo,busType:data.busType,busCapacity:data.busCapacity},
+          function (response) {
+                  _activepromise.resolve(response);
+              }, function (error) {
+                  _activepromise.reject(response);
+              });
+          return _activepromise.promise;
+
+      } 
   });

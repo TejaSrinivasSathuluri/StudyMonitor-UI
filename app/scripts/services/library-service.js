@@ -19,4 +19,26 @@ angular.module('studymonitorApp')
           });
           return _activepromise.promise;
       }
+      this.getExistingLibraryRecords= function (data){
+          var _activepromise = $q.defer();
+          Library.findOne({filter:{where:{schoolId: data.schoolId, name:  data.name, author:  data.author}}},
+          function (response) {
+                  _activepromise.resolve(response);
+              }, function (error) {
+                  _activepromise.reject(response);
+              });
+          return _activepromise.promise;
+
+      } 
+      this.CreateOrUpdateLibrary= function (data){
+          var _activepromise = $q.defer();
+          Library.create({schoolId: data.schoolId,name:data.name,author:data.author,description:data.description,price:data.price,available:data.available},
+          function (response) {
+                  _activepromise.resolve(response);
+              }, function (error) {
+                  _activepromise.reject(response);
+              });
+          return _activepromise.promise;
+
+      } 
   });

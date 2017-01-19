@@ -19,4 +19,26 @@ angular.module('studymonitorApp')
           });
           return _activepromise.promise;
       }
+      this.getExistingExamlists= function (data){
+          var _activepromise = $q.defer();
+          Exam.findOne({filter:{where:{schoolId: data.schoolId,examName:data.examName,classId:data.classId}}},
+          function (response) {
+                  _activepromise.resolve(response);
+              }, function (error) {
+                  _activepromise.reject(response);
+              });
+          return _activepromise.promise;
+
+      } 
+      this.CreateOrUpdateExam= function (data){
+          var _activepromise = $q.defer();
+          Exam.create({examName:data.examName,classId:data.classId,fromDate:data.fromDate,toDate:data.toDate,schoolId:data.schoolId},
+          function (response) {
+                  _activepromise.resolve(response);
+              }, function (error) {
+                  _activepromise.reject(response);
+              });
+          return _activepromise.promise;
+
+      } 
   });

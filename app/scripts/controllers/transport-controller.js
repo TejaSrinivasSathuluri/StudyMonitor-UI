@@ -43,5 +43,51 @@
               }
           }
           (new init()).getTransportDetailsForSchool();
+          //Close or Open modal
+        TransportCtrl.closeModal = function () {
+            var modal = $('#edit-transport');
+            modal.modal('hide');
+
+            //ClearFields
+            clearformfields();
+        }
+        TransportCtrl.openModal = function () {
+            var modal = $('#edit-transport');
+            modal.modal('show');
+        }
+        //Clear Fields
+        function clearformfields() {
+            TransportCtrl.formFields = {};
+        }
+        // Add Action
+        TransportCtrl.transportAction = function (invalid) {
+            if (invalid) {
+                return;
+            }
+            var data = {
+                schoolId: TransportCtrl.schoolId,
+                busNo: TransportCtrl.formFields.busNo,
+                busType: TransportCtrl.formFields.busType,
+                busCapacity: TransportCtrl.formFields.busCapacity
+            }
+            if (data) {
+                transportService.getExistingBusRecords(data).then(function (result) {
+                    if (result) {
+                        console.log('data already exists');
+                        return;
+                    }
+                }, function (result1) {
+                    transportService.CreateOrUpdateBus(data).then(function (res) {
+                        if (res) {
+                            (new init()).getTransportDetailsForSchool();
+                            TransportCtrl.closeModal();
+                        }
+
+                    }, function (error) {
+                        console.log("Error while Fetching the Records" + error);
+                    });
+                });
+            }
+        }
       });
 })();

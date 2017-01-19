@@ -9,10 +9,10 @@
                     <a ui-sref="console">Home</a><i class="fa fa-circle"></i>
                 </li>
                 <li class="active">
-                    Fees Management <i class="fa fa-circle"></i>
+                   Exams <i class="fa fa-circle"></i>
                 </li>
                 <li class="active">
-                    Expenses
+                    Grades
                 </li>
             </ul>
             <!-- END PAGE BREADCRUMB -->
@@ -25,7 +25,7 @@
                             <div class="portlet-title">
                                 <div class="caption">
                                     <i class="fa fa-graduation-cap font-green"></i>
-                                    <span class="caption-subject font-green bold uppercase">GRADES LIST</span>
+                                    <span class="caption-subject font-green bold uppercase">GRADES</span>
                                 </div>
                             </div>
                             <div class="portlet-body">
@@ -33,8 +33,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="btn-group">
-                                                <button id="sample_editable_1_new" class="btn green">
-                                                    Add New
+                                                <button data-toggle="modal" data-target="#edit-grades" class="btn green">
+                                                    Add New Grade
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </div>
@@ -122,3 +122,41 @@
     <!-- END PAGE CONTENT -->
 </div>
 <!-- END PAGE CONTAINER -->
+<!-- EDIT MODAL -->
+<div id="edit-grades" class="modal right fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="javascript:void(0)" class="modal-close pull-right" aria-hidden="true" data-ng-click="GradeCtrl.closeModal()"><span class="icon-close"></span></a>
+                <h4 class="modal-title font-green">GRADE</h4>
+            </div>
+            <div class="modal-body form">
+                <div class="form-container">
+                    <form name="gradesform" novalidate role="form" data-ng-submit="GradeCtrl.gradeAction(gradesform.$invalid)">
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <input type="text" class="form-control input-sm" name="expensetype" data-ng-model="GradeCtrl.formFields.gradeName" maxlength="50" required />
+                            <label for="form_control_1">Grade Name</label>
+                        </div>
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <input type="text" class="form-control input-sm" name="expensedate" data-ng-model="GradeCtrl.formFields.gradePoint" maxlength="50" required />
+                            <label for="form_control_1">Grade Point</label>
+                        </div>
+                         <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <input type="text" class="form-control input-sm" name="description" data-ng-model="GradeCtrl.formFields.percentageRangeFrom" maxlength="50" required />
+                            <label for="form_control_1">From %</label>
+                        </div>
+                         <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <input type="text" class="form-control input-sm" name="amount" data-ng-model="GradeCtrl.formFields.percentageRangeTo" maxlength="50" required />
+                            <label for="form_control_1">To %</label>
+                        </div>
+                        <div class="form-group">
+                            <button type="reset" class="btn default">Cancel</button>
+                            <button type="submit" class="btn green" data-ng-disabled="gradesform.$invalid"><i class="fa fa-check"></i> Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- EDIT MODAL END-->
