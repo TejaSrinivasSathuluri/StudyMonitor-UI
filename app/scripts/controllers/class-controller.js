@@ -11,6 +11,7 @@ angular.module('studymonitorApp')
   .controller('ClassController', function ($log, $timeout, classService, APP_MESSAGES, $cookies, $state) {
       var ClassCtrl = this;
       ClassCtrl.formFields = {};
+      ClassCtrl.editmode = false;
 
       function init() {
           //var GetClassDetails = function () {
@@ -46,16 +47,30 @@ angular.module('studymonitorApp')
               staffId: ClassCtrl.formFields.staffName
           }
           if (data) {
-              classService.classAddOrUpdate(data).then(function (result) {
-                  if (result) {
-                      //On Successfull refill the data list
-                      init();
-                      //Close Modal
-                      ClassCtrl.closeModal();
-                  }
-              }, function (error) {
-                  console.log('Error while creating or updating records. Error stack' + error);
-              });
+
+              //Check whether editmode or normal mode
+              if (ClassCtrl.editmode) {
+                  classService.classAddOrUpdate({ id: ClassCtrl.editingClassId, staffId: data.staffId }, function (response) {
+                      if (response) {
+                          //On successfull refill the data list
+                          init();
+                          //Close Modal
+                          ClassCtrl.closeModal();
+                      }
+                  }, function (error) { });
+              }
+              else {
+                  classService.classAddOrUpdate(data).then(function (result) {
+                      if (result) {
+                          //On Successfull refill the data list
+                          init();
+                          //Close Modal
+                          ClassCtrl.closeModal();
+                      }
+                  }, function (error) {
+                      console.log('Error while creating or updating records. Error stack' + error);
+                  });
+              }
           }
       }
       //Delete Action
@@ -76,17 +91,25 @@ angular.module('studymonitorApp')
       ClassCtrl.editClass = function (index) {
           ClassCtrl.formFields.className = ClassCtrl.classList[index].className;
           ClassCtrl.formFields.sectionName = ClassCtrl.classList[index].sectionName;
-          ClassCtrl.formFields.staffName = ClassCtrl.classList[index].staff.firstName + ' ' + ClassCtrl.classList[index].staff.lastName;
-
+          ClassCtrl.formFields.staffName = ClassCtrl.classList[index].staffId;
+          ClassCtrl.editingClassId = ClassCtrl.classList[index].id;
           //Open Modal
-          openModal();
+          ClassCtrl.openModal();
 
           $timeout(function () {
-              Metronic.setFlotLabel($('input[name=sectionname]'));
-              Metronic.setFlotLabel($('input[name=classname]'));
-              Metronic.setFlotLabel($('input[name=staffname]'));
+
+              ClassCtrl.setFloatLabel();
+              //Enable Edit Mode
+              ClassCtrl.editmode = true;
           });
 
+      }
+
+      //Setting up float label
+      ClassCtrl.setFloatLabel = function () {
+          Metronic.setFlotLabel($('input[name=sectionname]'));
+          Metronic.setFlotLabel($('input[name=classname]'));
+          Metronic.setFlotLabel($('input[name=staffname]'));
       }
 
       //Close or Open modal
@@ -97,7 +120,7 @@ angular.module('studymonitorApp')
           //ClearFields
           clearformfields();
       }
-      function openModal() {
+      ClassCtrl.openModal = function () {
           var modal = $('#edit-class');
           modal.modal('show');
       }

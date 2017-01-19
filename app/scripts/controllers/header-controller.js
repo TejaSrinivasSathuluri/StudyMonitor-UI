@@ -11,6 +11,9 @@ angular.module('studymonitorApp')
   .controller('HeaderController', function ($cookies, $state) {
       var HeaderCtrl = this;
 
+      //Defaults
+      HeaderCtrl.userName = $cookies.getObject('uds').firstName;
+
       /*
        * Logout screen and clear all cookies values
        */

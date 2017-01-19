@@ -227,3 +227,9 @@ body {
         font-size: 2em;
     }
 }
+
+.form-group.form-md-line-input .form-control[readonly], .form-group.form-md-line-input .form-control[disabled], fieldset[disabled] .form-group.form-md-line-input .form-control {
+    background: none;
+    cursor: not-allowed;
+    border-bottom: 1px dashed #e5e5e5;
+}

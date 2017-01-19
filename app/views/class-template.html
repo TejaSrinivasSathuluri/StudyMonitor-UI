@@ -30,8 +30,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="btn-group">
-                                                <button data-toggle="modal" data-target="#edit-class" class="btn green">
-                                                    Add New Class
+                                                <button data-toggle="modal" data-target="#edit-class" data-ng-click="ClassCtrl.editmode = false;ClassCtrl.setFloatLabel()" class="btn green">
+                                                    Add New
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </div>
@@ -132,16 +132,16 @@
             <div class="modal-body form">
                 <div class="form-container">
                     <form name="classform" novalidate role="form" data-ng-submit="ClassCtrl.classAction(classform.$invalid)">
-                        <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm" name="classname" data-ng-model="ClassCtrl.formFields.className" maxlength="50" required />
-                            <label for="form_control_1">Class Name</label>
+                        <div class="form-group form-md-floating-label has-info" data-ng-class="{'form-md-line-input': !ClassCtrl.editmode}">
+                            <input type="text" class="form-control input-sm" name="classname" data-ng-model="ClassCtrl.formFields.className" maxlength="50" data-ng-hide="ClassCtrl.editmode" required />
+                            <label for="form_control_1">Class Name</label><span data-ng-show="ClassCtrl.editmode"> : {{ClassCtrl.formFields.className}}</span>
+                        </div>
+                        <div class="form-group form-md-floating-label has-info" data-ng-class="{'form-md-line-input': !ClassCtrl.editmode}">
+                            <input type="text" class="form-control input-sm" name="sectionname" data-ng-model="ClassCtrl.formFields.sectionName" maxlength="50" ng-hide="ClassCtrl.editmode" required />
+                            <label for="form_control_1">Section Name</label><span data-ng-show="ClassCtrl.editmode">: {{ClassCtrl.formFields.sectionName}}</span>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm" name="sectionname" data-ng-model="ClassCtrl.formFields.sectionName" maxlength="50" required />
-                            <label for="form_control_1">Section Name</label>
-                        </div>
-                        <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <select data-ng-model="ClassCtrl.formFields.staffName" name="staffname" class="form-control input-sm" required name="teachername">
+                            <select data-ng-model="ClassCtrl.formFields.staffName" name="teachername" class="form-control input-sm" required>
                                 <option value="">Select Teacher</option>
                                 <option ng-repeat="staff in ClassCtrl.staffList" value="{{staff.id}}">{{staff.firstName}} {{staff.lastName}}</option>
                             </select>

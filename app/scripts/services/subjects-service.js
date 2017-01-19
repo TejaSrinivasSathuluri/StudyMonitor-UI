@@ -8,11 +8,41 @@
  * Service in the studymonitorApp.
  */
 angular.module('studymonitorApp')
-  .service('subjectsService', function ($q, Subject) {
+  .service('subjectsService', function ($q, Subject, School) {
       // AngularJS will instantiate a singleton by calling "new" on this function
       this.getSubjectListBySchoolId = function (schoolId) {
           var _activepromise = $q.defer();
           Subject.find({ filter: { where: { schoolId: schoolId }, include: ['staff', 'class'] } }, function (response) {
+              _activepromise.resolve(response);
+          }, function (error) {
+              _activepromise.reject(error);
+          });
+          return _activepromise.promise;
+      }
+      //Verify data exists or not
+      this.verifyDataExistsOrNot = function (data) {
+          var _activepromise = $q.defer();
+          Subject.findOne({ filter: { where: { schoolId: data.schoolId, classId: data.classId, subjectName: data.subjectName } } }, function (response) {
+              _activepromise.resolve(response);
+          }, function (error) {
+              _activepromise.reject(error);
+          });
+          return _activepromise.promise;
+      }
+      //get Staff or class List
+      this.getClassAndStaffList = function (schoolId) {
+          var _activepromise = $q.defer();
+          School.findOne({ filter: { where: { id: schoolId }, include: ['classes', 'staffs'] } }, function (response) {
+              _activepromise.resolve(response);
+          }, function (error) {
+              _activepromise.reject(error);
+          });
+          return _activepromise.promise;
+      }
+      //Create New Subject
+      this.CreateSubject = function (data) {
+          var _activepromise = $q.defer();
+          Subject.create({ schoolId: data.schoolId, classId: data.classId, subjectName: data.subjectName, staffId: data.staffId }, function (response) {
               _activepromise.resolve(response);
           }, function (error) {
               _activepromise.reject(error);

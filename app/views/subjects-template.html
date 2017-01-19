@@ -30,7 +30,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="btn-group">
-                                                <button id="sample_editable_1_new" class="btn green">
+                                                <button class="btn green" data-toggle="modal" data-target="#edit-subject" data-ng-click="SubjectsCtrl.editmode = false;">
                                                     Add New
                                                     <i class="fa fa-plus"></i>
                                                 </button>
@@ -113,3 +113,43 @@
     <!-- END PAGE CONTENT -->
 </div>
 <!-- END PAGE CONTAINER -->
+
+<!-- EDIT MODAL -->
+<div id="edit-subject" class="modal right fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="javascript:void(0)" class="modal-close pull-right" aria-hidden="true" data-ng-click="SubjectsCtrl.closeModal()"><span class="icon-close"></span></a>
+                <h4 class="modal-title font-green">Subjects</h4>
+            </div>
+            <div class="modal-body form">
+                <div class="form-container">
+                    <form name="subjectform" novalidate role="form" data-ng-submit="SubjectsCtrl.CreateOrUpdate(subjectform.$invalid)">
+                        <div class="form-group form-md-floating-label has-info" data-ng-class="{'form-md-line-input': !SubjectsCtrl.editmode}">
+                            <input type="text" class="form-control input-sm" name="subjectname" data-ng-model="SubjectsCtrl.formFields.subjectName" maxlength="50" data-ng-hide="SubjectsCtrl.editmode" required />
+                            <label for="form_control_1">Subject Name</label><span data-ng-show="SubjectsCtrl.editmode"> : {{SubjectsCtrl.formFields.subjectName}}</span>
+                        </div>
+                        <div class="form-group form-md-floating-label has-info" data-ng-class="{'form-md-line-input': !SubjectsCtrl.editmode}">
+                            <select class="form-control input-sm" name="classname" data-ng-model="SubjectsCtrl.formFields.classId" maxlength="50" ng-hide="SubjectsCtrl.editmode" required>
+                                <option value="">Select Class</option>
+                                <option data-ng-repeat="subject in SubjectsCtrl.classList" value="{{subject.id}}">{{subject.className}} - {{subject.sectionName}}</option>
+                            </select>
+                            <!--<label for="form_control_1">Class Name</label><span data-ng-show="SubjectsCtrl.editmode">: {{SubjectsCtrl.formFields.sectionName}}</span>-->
+                        </div>
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <select data-ng-model="SubjectsCtrl.formFields.staffName" name="teachername" class="form-control input-sm" required>
+                                <option value="">Select Teacher</option>
+                                <option ng-repeat="staff in SubjectsCtrl.staffList" value="{{staff.id}}">{{staff.firstName}} {{staff.lastName}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="reset" class="btn default">Cancel</button>
+                            <button type="submit" class="btn green" data-ng-disabled="subjectform.$invalid"><i class="fa fa-check"></i> Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- EDIT MODAL END-->
