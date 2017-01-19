@@ -33,7 +33,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="btn-group">
-                                                <button id="sample_editable_1_new" class="btn green">
+                                             <button data-toggle="modal" data-target="#edit-expenses" class="btn green">
                                                     Add New
                                                     <i class="fa fa-plus"></i>
                                                 </button>
@@ -122,3 +122,41 @@
     <!-- END PAGE CONTENT -->
 </div>
 <!-- END PAGE CONTAINER -->
+<!-- EDIT MODAL -->
+<div id="edit-expenses" class="modal right fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="javascript:void(0)" class="modal-close pull-right" aria-hidden="true" data-ng-click=" ExpensesCtrl.closeModal()"><span class="icon-close"></span></a>
+                <h4 class="modal-title font-green">Class</h4>
+            </div>
+            <div class="modal-body form">
+                <div class="form-container">
+                    <form name="expensesform" novalidate role="form" data-ng-submit=" ExpensesCtrl.expenseAction(expensesform.$invalid)">
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <input type="text" class="form-control input-sm" name="expensetype" data-ng-model=" ExpensesCtrl.formFields.expenseType" maxlength="50" required />
+                            <label for="form_control_1">Expense Type</label>
+                        </div>
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <input type="date" class="form-control input-sm" name="expensedate" data-ng-model=" ExpensesCtrl.formFields.date" maxlength="50" required />
+                            <label for="form_control_1">Expense Date</label>
+                        </div>
+                         <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <input type="text" class="form-control input-sm" name="description" data-ng-model=" ExpensesCtrl.formFields.description" maxlength="50" required />
+                            <label for="form_control_1">Description</label>
+                        </div>
+                         <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <input type="text" class="form-control input-sm" name="amount" data-ng-model=" ExpensesCtrl.formFields.amount" maxlength="50" required />
+                            <label for="form_control_1">Expense Amount</label>
+                        </div>
+                        <div class="form-group">
+                            <button type="reset" class="btn default">Cancel</button>
+                            <button type="submit" class="btn green" data-ng-disabled="expensesform.$invalid"><i class="fa fa-check"></i> Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- EDIT MODAL END-->
