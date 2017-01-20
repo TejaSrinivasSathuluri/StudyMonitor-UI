@@ -1,0 +1,116 @@
+    <!-- BEGIN PAGE CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN PAGE CONTENT -->
+    <div class="page-content">
+        <div class="container">
+            <!-- BEGIN PAGE BREADCRUMB -->
+            <ul class="page-breadcrumb breadcrumb">
+                <li>
+                    <a ui-sref="console">Home</a><i class="fa fa-circle"></i>
+                </li>
+                <li class="active">
+                    School Calendar
+                </li>
+            </ul>
+            <!-- END PAGE BREADCRUMB -->
+            <!-- BEGIN PAGE CONTENT INNER -->
+            <div class="page-content-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                        <div class="portlet light portlet-fit ">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <!--<i class="fa fa-book font-green"></i>-->
+                                    <span class="caption-subject font-green bold uppercase">SCHOOL CALENDAR</span>
+                                </div>
+                            </div>
+                            <div class="portlet-body schooltimetable">
+                                <div class="table-toolbar">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="btn-group pull-right">
+                                                <button class="btn green btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    Tools
+                                                    <i class="fa fa-angle-down"></i>
+                                                </button>
+                                                <ul class="dropdown-menu pull-right">
+                                                    <li>
+                                                        <a href="javascript:;"> Print </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;"> Save as PDF </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;"> Export to Excel </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-12">
+                                        <form name="timetableForm" class="form" novalidate>
+                                            <div class="form-group form-md-line-input form-md-floating-label has-info">
+                                                <input type="text" class="form-control input-sm" name="title" data-ng-model="SchooltimetableCtrl.formFields.title" maxlength="50" required />
+                                                <label for="form_control_1">Title</label>
+                                            </div>
+                                            <div class="form-group form-md-line-input form-md-floating-label has-info">
+                                                <input type="text" class="form-control input-sm" name="starttime" data-ng-model="SchooltimetableCtrl.formFields.starttime" id="starttimepicker" required />
+                                                <label for="form_control_1">Start Time</label>
+                                            </div>
+                                            <div class="form-group form-md-line-input form-md-floating-label has-info datetimepicker">
+                                                <input type="text" class="form-control input-sm" name="starttime" data-ng-model="SchooltimetableCtrl.formFields.endtime" required id="endtimepicker" />
+                                                <label for="form_control_1">End Time</label>
+                                            </div>
+                                            <div class="form-group form-md-radios">
+                                                <label>Attendance</label>
+                                                <div class="md-radio-inline">
+                                                    <div class="md-radio">
+                                                        <input type="radio" id="radio6" name="radio2" data-ng-model="SchooltimetableCtrl.formFields.attendance" class="md-radiobtn" required>
+                                                        <label for="radio6">
+                                                            <span class="inc"></span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span> Yes
+                                                        </label>
+                                                    </div>
+                                                    <div class="md-radio">
+                                                        <input type="radio" id="radio7" name="radio2" data-ng-model="SchooltimetableCtrl.formFields.attendance" class="md-radiobtn" required>
+                                                        <label for="radio7">
+                                                            <span class="inc"></span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span> No
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-actions">
+                                                <div class="row">
+                                                    <div class="col-md-12 text-left">
+                                                        <button type="reset" class="btn default">Cancel</button>
+                                                        <button type="submit" class="btn blue">Add</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="col-md-9 col-sm-12">
+                                        <div ui-calendar="SchooltimetableCtrl.calendarConfig.calendar" calendar="schoolCalendar" ng-model="SchooltimetableCtrl.eventSources"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END EXAMPLE TABLE PORTLET-->
+                    </div>
+                </div>
+            </div>
+            <!-- END PAGE CONTENT INNER -->
+        </div>
+    </div>
+    <!-- END PAGE CONTENT -->
+</div>
+<!-- END PAGE CONTAINER -->

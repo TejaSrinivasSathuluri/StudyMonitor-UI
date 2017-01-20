@@ -271,6 +271,186 @@ angular
             }
         }
     })
+    .state('home.timetable', {
+        url: 'collaborate/timetable',
+        views: {
+            "content": {
+                templateUrl: 'views/classtimetable-template.html',
+                controller: 'ClasstimetableController',
+                controllerAs: 'ClasstimetableCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
+    .state('home.schooldirectory', {
+        url: 'communicate/directory',
+        views: {
+            "content": {
+                templateUrl: 'views/schooldirectory-template.html',
+                controller: 'SchooldirectoryController',
+                controllerAs: 'SchooldirectoryCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
+    .state('home.messages', {
+        url: 'communicate/messages',
+        views: {
+            "content": {
+                templateUrl: 'views/messages-template.html',
+                controller: 'MessagesController',
+                controllerAs: 'MessagesCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
+    .state('home.marks', {
+        url: 'compete/marks',
+        views: {
+            "content": {
+                templateUrl: 'views/marks-template.html',
+                controller: 'MarksController',
+                controllerAs: 'MarksCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
+    .state('home.profile', {
+        url: 'myprofile',
+        views: {
+            "content": {
+                templateUrl: 'views/profile-template.html',
+                controller: 'ProfileController',
+                controllerAs: 'ProfileCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
+    .state('home.workingdays', {
+        url: 'settings/workingdays',
+        views: {
+            "content": {
+                templateUrl: 'views/workingdays-template.html',
+                controller: 'WorkingdaysController',
+                controllerAs: 'WorkingDays'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
+    .state('home.schoolcalendar', {
+        url: 'settings/schoolcalendar',
+        views: {
+            "content": {
+                templateUrl: 'views/schoolcalendar-template.html',
+                controller: 'SchoolcalendarController',
+                controllerAs: 'SchoolCalendarCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
+    .state('home.bulkremovals', {
+        url: 'settings/bulkremovals',
+        views: {
+            "content": {
+                templateUrl: 'views/bulkremovals-template.html',
+                controller: 'BulkremovalsController',
+                controllerAs: 'BulkRemovalsCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
+    .state('home.mediauploads', {
+        url: 'settings/mediauploads',
+        views: {
+            "content": {
+                templateUrl: 'views/mediauploads-template.html',
+                controller: 'MediauploadsController',
+                controllerAs: 'MediaUploadCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
+    .state('home.classupgrade', {
+        url: 'settings/classupgrade',
+        views: {
+            "content": {
+                templateUrl: 'views/classupgrade-template.html',
+                controller: 'ClassupgradeController',
+                controllerAs: 'ClassUpgradeCtrl'
+            },
+            "header": {
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
+            },
+            "footer": {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
     .state('404', {
         templateUrl: '404.html',
         url: '/404'

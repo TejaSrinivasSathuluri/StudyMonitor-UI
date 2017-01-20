@@ -25,7 +25,7 @@ angular.module('studymonitorApp')
           function (response) {
                   _activepromise.resolve(response);
               }, function (error) {
-                  _activepromise.reject(response);
+                  _activepromise.reject(error);
               });
           return _activepromise.promise;
 
@@ -36,7 +36,7 @@ angular.module('studymonitorApp')
           function (response) {
                   _activepromise.resolve(response);
               }, function (error) {
-                  _activepromise.reject(response);
+                  _activepromise.reject(error);
               });
           return _activepromise.promise;
 
