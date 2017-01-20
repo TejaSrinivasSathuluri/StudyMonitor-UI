@@ -41,4 +41,8 @@ angular.module('studymonitorApp')
           return _activepromise.promise;
 
       } 
+      this.deleteAssignment = function (assignmentId) {
+          var _activepromise = $q.defer();
+          Assignment.deleteById({ id: assignmentId }, function (response) { _activepromise.resolve(response) }, function (error) { _activepromise.reject(error) }); return _activepromise.promise;
+      }
   });

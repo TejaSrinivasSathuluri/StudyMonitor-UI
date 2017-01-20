@@ -104,7 +104,8 @@
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a class="delete" href="javascript:void(0);">
+                                                <a class="delete" href="javascript:void(0);" ng-bootbox-confirm="Are you sure you want to delete this record ?" ng-bootbox-confirm-action="LibraryCtrl.confirmCallbackMethod($index)"
+                                                    ng-bootbox-confirm-action-cancel="LibraryCtrl.confirmCallbackCancel($index)">
                                                     <i class="fa fa-remove"></i>
                                                 </a>
                                             </td>
@@ -135,23 +136,28 @@
                 <div class="form-container">
                     <form name="libraryform" novalidate role="form" data-ng-submit=" LibraryCtrl.libraryAction(libraryform.$invalid)">
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm" name="name" data-ng-model=" LibraryCtrl.formFields.name" maxlength="50" required />
+                            <input type="text" class="form-control input-sm" name="name" data-ng-model=" LibraryCtrl.formFields.name" maxlength="50"
+                                required />
                             <label for="form_control_1">NAME OF THE BOOK</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="texts" class="form-control input-sm" name="author" data-ng-model=" LibraryCtrl.formFields.author" maxlength="50" required />
+                            <input type="texts" class="form-control input-sm" name="author" data-ng-model=" LibraryCtrl.formFields.author" maxlength="50"
+                                required />
                             <label for="form_control_1">NAME OF THE AUTHOR</label>
                         </div>
-                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm" name="description" data-ng-model=" LibraryCtrl.formFields.description" maxlength="50" required />
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <input type="text" class="form-control input-sm" name="description" data-ng-model=" LibraryCtrl.formFields.description" maxlength="50"
+                                required />
                             <label for="form_control_1">Description</label>
                         </div>
-                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm" name="price" data-ng-model=" LibraryCtrl.formFields.price" maxlength="50" required />
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <input type="text" class="form-control input-sm" name="price" data-ng-model=" LibraryCtrl.formFields.price" maxlength="50"
+                                required />
                             <label for="form_control_1">PRICE</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm" name="available" data-ng-model=" LibraryCtrl.formFields.available" maxlength="50" required />
+                            <input type="text" class="form-control input-sm" name="available" data-ng-model=" LibraryCtrl.formFields.available" maxlength="50"
+                                required />
                             <label for="form_control_1">AVAILABLE NUMBER OF BOOKS</label>
                         </div>
                         <div class="form-group">

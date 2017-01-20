@@ -102,7 +102,8 @@
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a class="delete" href="javascript:void(0);">
+                                                <a class="delete" href="javascript:void(0);" ng-bootbox-confirm="Are you sure you want to delete this record ?" ng-bootbox-confirm-action="AssignmentsCtrl.confirmCallbackMethod($index)"
+                                                    ng-bootbox-confirm-action-cancel="AssignmentsCtrl.confirmCallbackCancel($index)">
                                                     <i class="fa fa-remove"></i>
                                                 </a>
                                             </td>
@@ -144,15 +145,18 @@
                             </select>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm" name="description" data-ng-model="AssignmentsCtrl.formFields.description" maxlength="50" required />
+                            <input type="text" class="form-control input-sm" name="description" data-ng-model="AssignmentsCtrl.formFields.description"
+                                maxlength="50" required />
                             <label for="form_control_1">DESCRIPTION</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="date" class="form-control input-sm" name="fromDate" data-ng-model="AssignmentsCtrl.formFields.fromDate" maxlength="50" required />
+                            <input type="date" class="form-control input-sm" name="fromDate" data-ng-model="AssignmentsCtrl.formFields.fromDate" maxlength="50"
+                                required />
                             <label for="form_control_1">FROM DATE</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="date" class="form-control input-sm" name="toDate" data-ng-model="AssignmentsCtrl.formFields.toDate" maxlength="50" required />
+                            <input type="date" class="form-control input-sm" name="toDate" data-ng-model="AssignmentsCtrl.formFields.toDate" maxlength="50"
+                                required />
                             <label for="form_control_1">TO DATE</label>
                         </div>
                         <div class="form-group">

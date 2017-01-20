@@ -60,6 +60,14 @@ angular.module('studymonitorApp')
         function clearformfields() {
             ExamlistCtrl.formFields = {};
         }
+         //Delete confirmation box
+      ExamlistCtrl.confirmCallbackMethod = function (index) {
+          deleteExam(index);
+      }
+      //Delete cancel box
+      ExamlistCtrl.confirmCallbackCancel = function (index) {
+          return false;
+      }
         // Add Action
         ExamlistCtrl.examAction = function (invalid) {
             if (invalid) {
@@ -91,5 +99,19 @@ angular.module('studymonitorApp')
                 });
             }
         }
+        //Delete Action
+      var deleteExam = function (index) {
+          if (ExamlistCtrl.examList) {
+              examlistService.deleteExam(ExamlistCtrl.examList[index].id).then(function (result) {
+                  if (result) {
+                      //On Successfull refill the data list
+                      (new init()).getExamList();
+                      ExamlistCtrl.closeModal();
+                  }
+              }, function (error) {
+                  console.log('Error while deleting class. Error Stack' + error);
+              });
+          }
+      }
 
     });

@@ -41,4 +41,8 @@ angular.module('studymonitorApp')
           return _activepromise.promise;
 
       } 
+      this.deleteFee = function (feeId) {
+          var _activepromise = $q.defer();
+          FeeSetup.deleteById({ id: feeId }, function (response) { _activepromise.resolve(response) }, function (error) { _activepromise.reject(error) }); return _activepromise.promise;
+      }
   });
