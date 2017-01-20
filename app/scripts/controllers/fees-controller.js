@@ -8,41 +8,41 @@
  * Controller of the studymonitorApp
  */
 angular.module('studymonitorApp')
-  .controller('FeesController', function (feesService, $cookies, $timeout) {
-      var FeesCtrl = this;
+    .controller('FeesController', function (feesService, $cookies, $timeout) {
+        var FeesCtrl = this;
 
-      function init() {
-          FeesCtrl.schoolId = $cookies.getObject('uds').schoolId;
-          //Get list of fees details by school ID
-          this.getFeesDetails = function () {
-              feesService.getFeesDetailsBySchoolId(FeesCtrl.schoolId).then(function (response) {
-                  if (response) {
-                      FeesCtrl.feesList = response;
+        function init() {
+            FeesCtrl.schoolId = $cookies.getObject('uds').schoolId;
+            //Get list of fees details by school ID
+            this.getFeesDetails = function () {
+                feesService.getFeesDetailsBySchoolId(FeesCtrl.schoolId).then(function (response) {
+                    if (response) {
+                        FeesCtrl.feesList = response;
 
-                      $timeout(function () {
-                          var columnsDefs = [null, null, null, null, null, {
-                              "orderable": false,
-                              "width": "10%",
-                              "targets": 0
-                          }, {
-                              "orderable": false,
-                              "width": "10%",
-                              "targets": 0
-                          }, {
-                              "orderable": false,
-                              "width": "10%",
-                              "targets": 0
-                          }];
-                          TableEditable.init("#fees_datatable", columnsDefs);
-                      });
-                  }
-              }, function (error) {
-                  console.log('Error while fetching Fees details records. Error Stack : ' + error);
-              });
-          }
-      }
-      (new init()).getFeesDetails();
-      //Close or Open modal
+                        $timeout(function () {
+                            var columnsDefs = [null, null, null, null, null, {
+                                "orderable": false,
+                                "width": "10%",
+                                "targets": 0
+                            }, {
+                                    "orderable": false,
+                                    "width": "10%",
+                                    "targets": 0
+                                }, {
+                                    "orderable": false,
+                                    "width": "10%",
+                                    "targets": 0
+                                }];
+                            TableEditable.init("#fees_datatable", columnsDefs);
+                        });
+                    }
+                }, function (error) {
+                    console.log('Error while fetching Fees details records. Error Stack : ' + error);
+                });
+            }
+        }
+        (new init()).getFeesDetails();
+        //Close or Open modal
         FeesCtrl.closeModal = function () {
             var modal = $('#edit-fees');
             modal.modal('hide');
@@ -58,6 +58,14 @@ angular.module('studymonitorApp')
         function clearformfields() {
             FeesCtrl.formFields = {};
         }
+         //Delete confirmation box
+      FeesCtrl.confirmCallbackMethod = function (index) {
+          deleteFee(index);
+      }
+      //Delete cancel box
+      FeesCtrl.confirmCallbackCancel = function (index) {
+          return false;
+      }
         // Add Action
         FeesCtrl.expenseAction = function (invalid) {
             if (invalid) {
@@ -89,5 +97,22 @@ angular.module('studymonitorApp')
                 });
             }
         }
+        //*********************************DELETE FEE******************************** */
+        //Delete Action
+        var deleteFee = function (index) {
+            if (FeesCtrl.feesList) {
+                feesService.deleteFee(FeesCtrl.feesList[index].id).then(function (result) {
+                    if (result) {
+                        //On Successfull refill the data list
+                        (new init()).getFeesDetails();
+                        FeesCtrl.closeModal();
+                    }
+                }, function (error) {
+                    console.log('Error while deleting class. Error Stack' + error);
+                });
+            }
+        }
+        //*********************************DELETE FEE******************************** */
+        
 
-  });
+    });

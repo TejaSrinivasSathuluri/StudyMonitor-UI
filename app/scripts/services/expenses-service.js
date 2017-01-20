@@ -42,4 +42,8 @@ angular.module('studymonitorApp')
           return _activepromise.promise;
 
       } 
+      this.deleteExpense = function (expenseId) {
+          var _activepromise = $q.defer();
+          ExpensePayment.deleteById({ id: expenseId }, function (response) { _activepromise.resolve(response) }, function (error) { _activepromise.reject(error) }); return _activepromise.promise;
+      }
   });

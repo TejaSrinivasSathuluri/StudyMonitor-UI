@@ -62,6 +62,14 @@ angular.module('studymonitorApp')
         function clearformfields() {
             ExpensesCtrl.formFields = {};
         }
+        //Delete confirmation box
+      ExpensesCtrl.confirmCallbackMethod = function (index) {
+          deleteExpense(index);
+      }
+      //Delete cancel box
+      ExpensesCtrl.confirmCallbackCancel = function (index) {
+          return false;
+      }
         // Add Action
         ExpensesCtrl.expenseAction = function (invalid) {
             if (invalid) {
@@ -93,5 +101,19 @@ angular.module('studymonitorApp')
                 });
             }
         }
+        //Delete Action
+      var deleteExpense = function (index) {
+          if (ExpensesCtrl.expensesList) {
+              expensesService.deleteExpense(ExpensesCtrl.expensesList[index].id).then(function (result) {
+                  if (result) {
+                      //On Successfull refill the data list
+                      (new init()).getExpenseRecords();
+                      ExpensesCtrl.closeModal();
+                  }
+              }, function (error) {
+                  console.log('Error while deleting expense. Error Stack' + error);
+              });
+          }
+      }
 
     });

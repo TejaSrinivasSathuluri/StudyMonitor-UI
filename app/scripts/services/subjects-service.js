@@ -49,4 +49,9 @@ angular.module('studymonitorApp')
           });
           return _activepromise.promise;
       }
+      //Delete Subject
+      this.deleteSubject = function (subjectId) {
+          var _activepromise = $q.defer();
+          Subject.deleteById({ id: subjectId }, function (response) { _activepromise.resolve(response) }, function (error) { _activepromise.reject(error) }); return _activepromise.promise;
+      }
   });

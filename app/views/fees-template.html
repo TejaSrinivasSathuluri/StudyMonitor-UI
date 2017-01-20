@@ -107,7 +107,8 @@
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a class="delete" href="javascript:void(0);">
+                                                <a class="delete" href="javascript:void(0);" ng-bootbox-confirm="Are you sure you want to delete this record ?" ng-bootbox-confirm-action="FeesCtrl.confirmCallbackMethod($index)"
+                                                    ng-bootbox-confirm-action-cancel="FeesCtrl.confirmCallbackCancel($index)">
                                                     <i class="fa fa-remove"></i>
                                                 </a>
                                             </td>
@@ -138,7 +139,7 @@
                 <div class="form-container">
                     <form name="feesform" novalidate role="form" data-ng-submit=" FeesCtrl.feeAction(feesform.$invalid)">
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <select data-ng-model="FeesCtrl.formFields.occurance" name="occurance" class="form-control input-sm" required >
+                            <select data-ng-model="FeesCtrl.formFields.occurance" name="occurance" class="form-control input-sm" required>
                                 <option value="">Fee Occurance</option>
                                 <option>Monthly</option>
                                 <option>Quarterly</option>
@@ -148,7 +149,7 @@
                             </select>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <select data-ng-model="FeesCtrl.formFields.classId" name="classId" class="form-control input-sm" required >
+                            <select data-ng-model="FeesCtrl.formFields.classId" name="classId" class="form-control input-sm" required>
                                 <option value="">Class</option>
                                 <option ng-repeat="class in ClassCtrl.classList" value="{{class.id}}">{{class.firstName}} {{class.lastName}}</option>
                             </select>
@@ -163,7 +164,7 @@
                                 required />
                             <label for="form_control_1">Fee Amount</label>
                         </div>
-                        
+
                         <div class="form-group">
                             <button type="reset" class="btn default">Cancel</button>
                             <button type="submit" class="btn green" data-ng-disabled="feesform.$invalid"><i class="fa fa-check"></i> Submit</button>

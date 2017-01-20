@@ -73,6 +73,14 @@ angular.module('studymonitorApp')
       function clearformfields() {
           SubjectsCtrl.formFields = {};
       }
+      //Delete confirmation box
+      SubjectsCtrl.confirmCallbackMethod = function (index) {
+          deleteSubject(index);
+      }
+      //Delete cancel box
+      SubjectsCtrl.confirmCallbackCancel = function (index) {
+          return false;
+      }
 
       //********************************* Settings to float labels
       SubjectsCtrl.setFloatLabel = function () {
@@ -118,6 +126,23 @@ angular.module('studymonitorApp')
           }
       }
       //********************************** Create or Update New Record End
+      //********************************** Delete Record
+      
+      //Delete Action
+      var deleteSubject = function (index) {
+          if (SubjectsCtrl.subjectList) {
+              subjectsService.deleteSubject(SubjectsCtrl.subjectList[index].id).then(function (result) {
+                  if (result) {
+                      //On Successfull refill the data list
+                      (new init()).fnSubjectList();
+                      SubjectsCtrl.closeModal();
+                  }
+              }, function (error) {
+                  console.log('Error while deleting class. Error Stack' + error);
+              });
+          }
+      }
+       //********************************** Delete Record Ends
 
       /* =============================== Modal Functionality End ========================= */
   });

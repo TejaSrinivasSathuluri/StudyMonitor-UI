@@ -41,4 +41,8 @@ angular.module('studymonitorApp')
           return _activepromise.promise;
 
       } 
+      this.deleteExam = function (examId) {
+          var _activepromise = $q.defer();
+          Exam.deleteById({ id: examId }, function (response) { _activepromise.resolve(response) }, function (error) { _activepromise.reject(error) }); return _activepromise.promise;
+      }
   });

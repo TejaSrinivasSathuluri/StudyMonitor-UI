@@ -62,6 +62,14 @@ angular.module('studymonitorApp')
         function clearformfields() {
             AssignmentsCtrl.formFields = {};
         }
+        //Delete confirmation box
+      AssignmentsCtrl.confirmCallbackMethod = function (index) {
+          deleteAssignment(index);
+      }
+      //Delete cancel box
+      AssignmentsCtrl.confirmCallbackCancel = function (index) {
+          return false;
+      }
         // Add Action
         AssignmentsCtrl.assignmentAction = function (invalid) {
             if (invalid) {
@@ -94,4 +102,18 @@ angular.module('studymonitorApp')
                 });
             }
         }
+         //Delete Action
+      var deleteAssignment = function (index) {
+          if (AssignmentsCtrl.assignmentList) {
+              assignmentsService.deleteAssignment(AssignmentsCtrl.assignmentList[index].id).then(function (result) {
+                  if (result) {
+                      //On Successfull refill the data list
+                      (new init()).getAssignmentDetails();
+                      AssignmentsCtrl.closeModal();
+                  }
+              }, function (error) {
+                  console.log('Error while deleting class. Error Stack' + error);
+              });
+          }
+      }
     });

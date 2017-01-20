@@ -59,6 +59,14 @@
         function clearformfields() {
             TransportCtrl.formFields = {};
         }
+         //Delete confirmation box
+      TransportCtrl.confirmCallbackMethod = function (index) {
+          deleteBus(index);
+      }
+      //Delete cancel box
+      TransportCtrl.confirmCallbackCancel = function (index) {
+          return false;
+      }
         // Add Action
         TransportCtrl.transportAction = function (invalid) {
             if (invalid) {
@@ -89,5 +97,19 @@
                 });
             }
         }
+        //Delete Action
+      var deleteBus = function (index) {
+          if (TransportCtrl.transportList) {
+              transportService.deleteBus(TransportCtrl.transportList[index].id).then(function (result) {
+                  if (result) {
+                      //On Successfull refill the data list
+                      (new init()).getTransportDetailsForSchool();
+                      TransportCtrl.closeModal();
+                  }
+              }, function (error) {
+                  console.log('Error while deleting class. Error Stack' + error);
+              });
+          }
+      }
       });
 })();

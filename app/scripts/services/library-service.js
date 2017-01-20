@@ -40,5 +40,9 @@ angular.module('studymonitorApp')
               });
           return _activepromise.promise;
 
+      }
+      this.deleteLibrary = function (bookId) {
+          var _activepromise = $q.defer();
+          Library.deleteById({ id: bookId }, function (response) { _activepromise.resolve(response) }, function (error) { _activepromise.reject(error) }); return _activepromise.promise;
       } 
   });
