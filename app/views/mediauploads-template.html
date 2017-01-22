@@ -6,7 +6,7 @@
             <!-- BEGIN PAGE BREADCRUMB -->
             <ul class="page-breadcrumb breadcrumb">
                 <li>
-                    <a ui-sref="console">Home</a><i class="fa fa-circle"></i>
+                    <a ui-sref="home.console">Home</a><i class="fa fa-circle"></i>
                 </li>
                 <li class="active">
                     Media Uploads
@@ -25,12 +25,13 @@
                                     <span class="caption-subject font-green bold uppercase">MEDIA UPLOADS</span>
                                 </div>
                             </div>
-                            <div class="portlet-body">
-                                <div class="table-toolbar">
+                            <!--<div class="portlet-body">-->
+                            <!--<div class="table-toolbar">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="btn-group">
-                                                <button data-toggle="modal" data-target="#edit-class" data-ng-click="ClassCtrl.editmode = false;ClassCtrl.setFloatLabel()" class="btn green">
+                                                <button data-toggle="modal" data-target="#edit-class" data-ng-click="ClassCtrl.editmode = false;ClassCtrl.setFloatLabel()"
+                                                    class="btn green">
                                                     Add New
                                                     <i class="fa fa-plus"></i>
                                                 </button>
@@ -56,8 +57,63 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>-->
+                            <!-- TABULAR CONTENT GOES HERE-->
+                            <!--</div>-->
+                            <div class="portlet-body form">
+                                <div class="panel panel-info">
+                                    <form class="form-bordered form-horizontal" name="mediauploadform" data-ng-submit="MediaUploadCtrl.uploadFiles()" novalidate>
+                                        <div class="form-group">
+                                            <div class="col-md-3">
+                                                <select ng-model="MediaUploadCtrl.media" name="image" class="form-control" required>
+                                                <option value="">Media </option>
+                                                <option>Image</option>
+                                                <option>Video</option>
+                                            </select>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input type="text" class="form-control" name="mediaupload" placeholder="Upload Image or Video" data-ng-model="MediaUploadCtrl.formFields.mediaUpload"
+                                                    maxlength="50" required />
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="btn-group">
+                                                    <button class="btn green" type="submit" data-ng-disabled="mediauploadform.$invalid">
+                                                    Submit
+                                                    <i class="fa fa-upload"></i>
+                                                </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                                <!-- TABULAR CONTENT GOES HERE-->
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- BEGIN PORTLET-->
+                                <div class="portlet light">
+                                    <div class="portlet-title tabbable-line">
+                                        <div class="caption caption-md">
+                                            <i class="icon-globe theme-font hide"></i>
+                                            <span class="caption-subject theme-font bold uppercase">GALLERY</span>
+                                        </div>
+                                        <ul class="nav nav-tabs">
+                                            <li class="active">
+                                                <a href="#tab_1_1" data-toggle="tab">
+                                                    Images
+                                                     </a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab_1_2" data-toggle="tab">
+                                                    Videos
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <!-- END PORTLET-->
                             </div>
                         </div>
                         <!-- END EXAMPLE TABLE PORTLET-->

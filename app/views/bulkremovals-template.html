@@ -6,7 +6,7 @@
             <!-- BEGIN PAGE BREADCRUMB -->
             <ul class="page-breadcrumb breadcrumb">
                 <li>
-                    <a ui-sref="console">Home</a><i class="fa fa-circle"></i>
+                    <a ui-sref="home.console">Home</a><i class="fa fa-circle"></i>
                 </li>
                 <li class="active">
                     Bulk Removals
@@ -25,39 +25,32 @@
                                     <span class="caption-subject font-green bold uppercase">BULK REMOVALS</span>
                                 </div>
                             </div>
-                            <div class="portlet-body">
-                                <div class="table-toolbar">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="btn-group">
-                                                <button data-toggle="modal" data-target="#edit-class" data-ng-click="ClassCtrl.editmode = false;ClassCtrl.setFloatLabel()" class="btn green">
-                                                    Add New
-                                                    <i class="fa fa-plus"></i>
+                            <div class="portlet-body form">
+                                <div class="panel panel-info">
+
+
+                                    <form class="form-bordered form-horizontal" name="fileuploadform" data-ng-submit="BulkuploadCtrl.uploadFiles()" novalidate>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                               
+                                            </div>
+                                            <div class="col-md-5">
+                                                <select ng-model="BulkuploadCtrl.classId" name="classid" class="form-control" required>
+                                                <option value="">Class </option>
+                                                <option ng-repeat="y in BulkuploadCtrl.classList" value="{{y.id}}">{{y.className}}-{{y.sectionName}}</option>
+                                            </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="btn-group">
+                                                    <button class="btn green" type="submit" data-ng-disabled="fileuploadform.$invalid">
+                                                    Submit
+                                                    <i class="fa fa-upload"></i>
                                                 </button>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="btn-group pull-right">
-                                                <button class="btn green btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                    Tools
-                                                    <i class="fa fa-angle-down"></i>
-                                                </button>
-                                                <ul class="dropdown-menu pull-right">
-                                                    <li>
-                                                        <a href="javascript:;"> Print </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;"> Save as PDF </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;"> Export to Excel </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
-                                <!-- TABULAR CONTENT GOES HERE-->
                             </div>
                         </div>
                         <!-- END EXAMPLE TABLE PORTLET-->
