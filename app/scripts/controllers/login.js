@@ -35,7 +35,7 @@ angular.module('studymonitorApp')
                 //Make an API Call to authentical
                 //Params @email,@password and @role
                 loginService.authenticateUser(data, LoginCtrl.loginfields.role).then(function (response) {
-                    if (response && response.status === 200) {
+                    if (response) {
                         $cookies.putObject('uts', {
                             accessToken: response.id,
                             userId: response.userId
