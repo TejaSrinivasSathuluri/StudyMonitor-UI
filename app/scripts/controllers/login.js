@@ -37,10 +37,10 @@ angular.module('studymonitorApp')
                 loginService.authenticateUser(data, LoginCtrl.loginfields.role).then(function (response) {
                     if (response && response.status === 200) {
                         $cookies.putObject('uts', {
-                            accessToken: response.data.id,
-                            userId: response.data.userId
+                            accessToken: response.id,
+                            userId: response.userId
                         });
-                        loginService.getAuthenticateUserDetails(response.data.userId, response.data.id).then(function (result) {
+                        loginService.getAuthenticateUserDetails(response.userId, response.id).then(function (result) {
                             if (result && result.status === 200) {
                                 $cookies.putObject('uds', result.data);
                                 loginService.getSchoolDetailsById(result.data.schoolId).then(function (res) {

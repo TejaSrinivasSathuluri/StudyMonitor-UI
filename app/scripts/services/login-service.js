@@ -9,7 +9,7 @@
      * Service in the studymonitorApp.
      */
     angular.module('studymonitorApp')
-    .service('loginService', function ($http, $q, API_SERVER, School) {
+    .service('loginService', function ($http, $q, API_SERVER, School, Admin) {
         // AngularJS will instantiate a singleton by calling "new" on this function
         this.authenticateUser = function (data, role) {
             /*
@@ -19,13 +19,7 @@
                 * For Parent - authenticateParent
                 * For Staff - authenticateStaff
                 */
-            if (role === 'Admin') {
-                return $http.post(API_SERVER + '/Admins/login', data);
-            }
-            else if (role === 'Staff') {
-
-            }
-            //@@TODO - Remaining things are pending
+            return Admin.login(data).$promise;
         };
 
         this.getAuthenticateUserDetails = function (userID, accessToken) {
