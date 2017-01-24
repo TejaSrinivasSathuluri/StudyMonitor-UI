@@ -8,7 +8,7 @@
  * Controller of the studymonitorApp
  */
 angular.module('studymonitorApp')
-  .controller('BulkuploadController', function ($timeout, classService, $cookies, $rootScope, Student, toastr) {
+  .controller('BulkuploadController', function ($timeout, classService, $cookies, $rootScope, Student) {
       var BulkuploadCtrl = this;
 
       BulkuploadCtrl.schoolId = $cookies.getObject('uds').schoolId;
@@ -21,16 +21,16 @@ angular.module('studymonitorApp')
       $rootScope.image = BulkuploadCtrl.school.image;
       BulkuploadCtrl.schoolCode = BulkuploadCtrl.school.code;
 
-      function init() {
+      function Init() {
           this.getClassList = function () {
               classService.getClassDetails(BulkuploadCtrl.schoolId).then(function (result) {
                   if (result && result.status === 200) {
                       BulkuploadCtrl.classList = result.data;
                   }
               });
-          }
+          };
       }
-      (new init()).getClassList();
+      (new Init()).getClassList();
       BulkuploadCtrl.uploadFiles = function () {
           var fileData = $('.fileinput:first').fileinput().find('input[type=file]')[0].files[0];
           if (fileData) {
@@ -52,9 +52,8 @@ angular.module('studymonitorApp')
 
               });
           }
-      }
+      };
       // -----------------------------------------------------
-      var data;
       var count = 0;
       var chkStudent = function (student) {
           //  Student Check For Roll No
@@ -67,7 +66,7 @@ angular.module('studymonitorApp')
                           firstName: student.firstName,
                           lastName: student.lastName,
                           email: student.email,
-                          password: "123456",
+                          password: '123456',
                           gender: student.gender,
                           dateofBirth: student.dateofBirth,
                           rollNo: student.rollNo,
@@ -94,7 +93,7 @@ angular.module('studymonitorApp')
                           nationalIdType: student.nationalIdType,
                           subCaste: student.subCaste,
                           contact: student.contact,
-                          type: "Student",
+                          type: 'Student',
                           created: new Date(),
                           image: student.image,
                           fatherName: student.fatherName,
@@ -109,5 +108,5 @@ angular.module('studymonitorApp')
                       });
                   }
               });
-      }
+      };
   });

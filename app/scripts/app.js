@@ -40,17 +40,17 @@ angular
     .state('home.console', {
         url: 'dashboard',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/console.html',
                 controller: 'ConsoleController',
                 controllerAs: 'ConsoleCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -58,17 +58,17 @@ angular
     .state('home.class', {
         url: 'class',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/class-template.html',
                 controller: 'ClassController',
                 controllerAs: 'ClassCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -76,17 +76,17 @@ angular
     .state('home.subjects', {
         url: 'subjects',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/subjects-template.html',
                 controller: 'SubjectsController',
                 controllerAs: 'SubjectsCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -94,17 +94,17 @@ angular
     .state('home.expenses', {
         url: 'expenses',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/expenses-template.html',
                 controller: 'ExpensesController',
                 controllerAs: 'ExpensesCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -112,17 +112,17 @@ angular
     .state('home.fees', {
         url: 'fees',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/fees-template.html',
                 controller: 'FeesController',
                 controllerAs: 'FeesCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -130,17 +130,17 @@ angular
     .state('home.transport', {
         url: 'transport',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/transport-template.html',
                 controller: 'TransportController',
                 controllerAs: 'TransportCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -148,17 +148,17 @@ angular
     .state('home.assignments', {
         url: 'assignments',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/assignments-template.html',
                 controller: 'AssignmentsController',
                 controllerAs: 'AssignmentsCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -166,17 +166,17 @@ angular
     .state('home.exams', {
         url: 'exams',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/examlist-template.html',
                 controller: 'ExamlistController',
                 controllerAs: 'ExamlistCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -184,17 +184,17 @@ angular
     .state('home.grade', {
         url: 'grades',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/grade-template.html',
                 controller: 'GradeController',
                 controllerAs: 'GradeCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -202,17 +202,17 @@ angular
     .state('home.library', {
         url: 'library',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/library-template.html',
                 controller: 'LibraryController',
                 controllerAs: 'LibraryCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -220,17 +220,17 @@ angular
     .state('home.noticeboard', {
         url: 'noticeboard',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/noticeboard-template.html',
                 controller: 'NoticeboardController',
                 controllerAs: 'NoticeboardCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -238,17 +238,17 @@ angular
     .state('home.schooltimetable', {
         url: 'schoool/timetable',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/schooltimetable-template.html',
                 controller: 'SchooltimetableController',
                 controllerAs: 'SchooltimetableCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -256,17 +256,17 @@ angular
     .state('home.bulkupload', {
         url: 'settings/bulkupload',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/bulkupload-template.html',
                 controller: 'BulkuploadController',
                 controllerAs: 'BulkuploadCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -274,17 +274,17 @@ angular
     .state('home.timetable', {
         url: 'collaborate/timetable',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/classtimetable-template.html',
                 controller: 'ClasstimetableController',
                 controllerAs: 'ClasstimetableCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -292,17 +292,17 @@ angular
     .state('home.schooldirectory', {
         url: 'communicate/directory',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/schooldirectory-template.html',
                 controller: 'SchooldirectoryController',
                 controllerAs: 'SchooldirectoryCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -310,17 +310,17 @@ angular
     .state('home.messages', {
         url: 'communicate/messages',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/messages-template.html',
                 controller: 'MessagesController',
                 controllerAs: 'MessagesCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -328,17 +328,17 @@ angular
     .state('home.marks', {
         url: 'compete/marks',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/marks-template.html',
                 controller: 'MarksController',
                 controllerAs: 'MarksCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -346,17 +346,17 @@ angular
     .state('home.profile', {
         url: 'myprofile',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/profile-template.html',
                 controller: 'ProfileController',
                 controllerAs: 'ProfileCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -364,17 +364,17 @@ angular
     .state('home.workingdays', {
         url: 'settings/workingdays',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/workingdays-template.html',
                 controller: 'WorkingdaysController',
                 controllerAs: 'WorkingDays'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -382,17 +382,17 @@ angular
     .state('home.schoolcalendar', {
         url: 'settings/schoolcalendar',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/schoolcalendar-template.html',
                 controller: 'SchoolcalendarController',
                 controllerAs: 'SchoolCalendarCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -400,17 +400,17 @@ angular
     .state('home.bulkremovals', {
         url: 'settings/bulkremovals',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/bulkremovals-template.html',
                 controller: 'BulkremovalsController',
                 controllerAs: 'BulkRemovalsCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -418,17 +418,17 @@ angular
     .state('home.mediauploads', {
         url: 'settings/mediauploads',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/mediauploads-template.html',
                 controller: 'MediauploadsController',
                 controllerAs: 'MediaUploadCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -436,17 +436,17 @@ angular
     .state('home.classupgrade', {
         url: 'settings/classupgrade',
         views: {
-            "content": {
+            'content': {
                 templateUrl: 'views/classupgrade-template.html',
                 controller: 'ClassupgradeController',
                 controllerAs: 'ClassUpgradeCtrl'
             },
-            "header": {
+            'header': {
                 templateUrl: 'views/header-template.html',
                 controller: 'HeaderController',
                 controllerAs: 'HeaderCtrl'
             },
-            "footer": {
+            'footer': {
                 templateUrl: 'views/footer-template.html'
             }
         }
@@ -458,7 +458,7 @@ angular
     $urlRouterProvider.otherwise('/login');
 }).run(function ($rootScope, $state, $cookies) {
     //Capture an event whenever the route changes
-    $rootScope.$on('$stateChangeStart', function (event, nextState, nextParams, currentState, currentParams, options) {
+    $rootScope.$on('$stateChangeStart', function (event, nextState) {
         /*
         * If user Logged in and try to reload or change route then user should be successfully navigates
         * Not logged in but trying to navigate page directly then user should be sent to login screen
