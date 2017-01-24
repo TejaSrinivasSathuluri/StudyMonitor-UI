@@ -7,9 +7,9 @@
  * # SchooldirectoryControllerCtrl
  * Controller of the studymonitorApp
  */
-angular.module('studymonitorApp')
-  .controller('SchooldirectoryController', function($cookies, schooldirectoryService, $scope) {
-    var SchooldirectoryCtrl = this;
+ angular.module('studymonitorApp')
+ .controller('SchooldirectoryController', function($cookies, schooldirectoryService, $scope, $timeout) {
+  var SchooldirectoryCtrl = this;
     //Defaults
     SchooldirectoryCtrl.directorList = [];
     SchooldirectoryCtrl.studentsList = [];
@@ -56,25 +56,50 @@ angular.module('studymonitorApp')
     (new init()).getStaffList();
     (new init()).getParentsList();
 
-
+    $timeout(function(){
+     var columnsDefs = [{
+      "width":"10%"
+    }, {
+      "width":"10%"
+    }, {
+      "width":"10%"
+    }, {
+      "width":"10%",
+    }, {
+      "width":"10%"
+    }, {
+      "width":"10%"
+    }, {
+      "width":"10%"
+    }, {
+      'orderable': false,
+      'width': '10%',
+      'targets': 0
+    }, {
+      'orderable': false,
+      'width': '10%',
+      'targets': 0
+    }];
+    TableEditable.init('#schooldirectory_datatable', columnsDefs);
+  });
     /*
      * Watch an expression and load the data respectively
      * If Student radio button is selected then bind directoryList to StudentList and
      * Same things goes for the other two options
      */
-    $scope.$watch('SchooldirectoryCtrl.searchSelection', function(newValue, oldValue) {
+     $scope.$watch('SchooldirectoryCtrl.searchSelection', function(newValue, oldValue) {
       if (newValue && newValue != oldValue) {
         switch (newValue) {
           case 'Students':
-            SchooldirectoryCtrl.directorList = SchooldirectoryCtrl.studentsList;
-            break;
+          SchooldirectoryCtrl.directorList = SchooldirectoryCtrl.studentsList;
+          break;
           case 'Parents':
-            SchooldirectoryCtrl.directorList = SchooldirectoryCtrl.parentList;
-            break;
+          SchooldirectoryCtrl.directorList = SchooldirectoryCtrl.parentList;
+          break;
           case 'Staff':
-            SchooldirectoryCtrl.directorList = SchooldirectoryCtrl.staffList;
-            break;
+          SchooldirectoryCtrl.directorList = SchooldirectoryCtrl.staffList;
+          break;
         }
       }
     });
-  });
+   });
