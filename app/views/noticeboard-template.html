@@ -140,12 +140,12 @@
                             <label for="form_control_1">DESCRIPTION</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="date" class="form-control input-sm" name="date1" data-ng-model="NoticeboardCtrl.formFields.date1" maxlength="50"
+                            <input type="text" class="form-control input-sm calendarctrl" name="date1" data-ng-model="NoticeboardCtrl.formFields.date1" maxlength="50"
                                 required />
                             <label for="form_control_1">FROM DATE</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="date" class="form-control input-sm" name="date2" data-ng-model="NoticeboardCtrl.formFields.date2" maxlength="50"
+                            <input type="text" class="form-control input-sm calendarctrl" name="date2" data-ng-model="NoticeboardCtrl.formFields.date2" maxlength="50"
                                 required />
                             <label for="form_control_1">TO DATE</label>
                         </div>
@@ -160,3 +160,11 @@
     </div>
 </div>
 <!-- EDIT MODAL END-->
+<script>
+    (function () {
+        $('.calendarctrl').datetimepicker({
+            format: 'DD-MM-YYYY',
+            minDate:new Date()
+        });
+    })();
+</script>

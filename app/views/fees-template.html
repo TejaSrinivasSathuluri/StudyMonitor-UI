@@ -151,7 +151,7 @@
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
                             <select data-ng-model="FeesCtrl.formFields.classId" name="classId" class="form-control input-sm" required>
                                 <option value="">Class</option>
-                                <option ng-repeat="class in ClassCtrl.classList" value="{{class.id}}">{{class.firstName}} {{class.lastName}}</option>
+                                <option ng-repeat="class in FeesCtrl.classList" value="{{class.id}}">{{class.className}} {{class.sectionName}}</option>
                             </select>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">

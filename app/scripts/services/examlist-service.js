@@ -8,7 +8,7 @@
  * Service in the studymonitorApp.
  */
 angular.module('studymonitorApp')
-  .service('examlistService', function ($q, Exam) {
+  .service('examlistService', function ($q, Exam,Class) {
       // AngularJS will instantiate a singleton by calling "new" on this function
       this.getExamListBySchoolId = function (schoolId) {
           var _activepromise = $q.defer();
@@ -30,6 +30,15 @@ angular.module('studymonitorApp')
           return _activepromise.promise;
 
       } 
+      this.getClassDetailsBySchoolId = function (schoolId) {
+            var _activepromise = $q.defer();
+            Class.find({ filter: { where: { schoolId: schoolId } } }, function (response) {
+                _activepromise.resolve(response);
+            }, function (error) {
+                _activepromise.reject(error);
+            });
+            return _activepromise.promise;
+        }
       this.CreateOrUpdateExam= function (data){
           var _activepromise = $q.defer();
           Exam.create({examName:data.examName,classId:data.classId,fromDate:data.fromDate,toDate:data.toDate,schoolId:data.schoolId},

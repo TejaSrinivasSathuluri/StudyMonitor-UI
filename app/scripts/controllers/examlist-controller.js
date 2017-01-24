@@ -41,9 +41,19 @@ angular.module('studymonitorApp')
                 }, function (error) {
                     console.log('Error while fetching records for Exams List. Error stack : ' + error);
                 });
+            };
+            this.getClassDetails = function(){
+                examlistService.getClassDetailsBySchoolId(ExamlistCtrl.schoolId).then(function (result) {
+                    if (result) {
+                        ExamlistCtrl.classList = result;
+                    }
+                }, function (error) {
+                    console.log('Error while fetching the assignment records. Error stack : ' + error);
+                });
             }
         }
         (new init()).getExamList();
+        (new init()).getClassDetails();
         //Close or Open modal
         ExamlistCtrl.closeModal = function () {
             var modal = $('#edit-examlist');

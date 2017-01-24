@@ -64,7 +64,7 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                Name
+                                                Exam Name
                                             </th>
                                             <th>
                                                 Class
@@ -147,13 +147,13 @@
                             <label for="form_control_1">Exam Name</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="date" class="form-control input-sm" name="fromdate" data-ng-model=" ExamlistCtrl.formFields.fromDate" maxlength="50"
-                                required />
+                            <input type="text" class="form-control input-sm calendarctrl" name="fromdate" data-ng-model=" ExamlistCtrl.formFields.fromDate"
+                                maxlength="50" required />
                             <label for="form_control_1">From Date</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="date" class="form-control input-sm" name="todate" data-ng-model=" ExamlistCtrl.formFields.toDate" maxlength="50"
-                                required />
+                            <input type="text" class="form-control input-sm calendarctrl" name="todate" data-ng-model=" ExamlistCtrl.formFields.toDate"
+                                maxlength="50" required />
                             <label for="form_control_1">To DATE</label>
                         </div>
                         <div class="form-group">
@@ -167,3 +167,11 @@
     </div>
 </div>
 <!-- EDIT MODAL END-->
+<script>
+    (function () {
+        $('.calendarctrl').datetimepicker({
+            format: 'DD-MM-YYYY',
+            minDate:new Date()
+        });
+    })();
+</script>

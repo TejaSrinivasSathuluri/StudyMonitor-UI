@@ -67,6 +67,9 @@
                                                 Class
                                             </th>
                                             <th>
+                                                Subject
+                                            </th>
+                                            <th>
                                                 Description
                                             </th>
                                             <th>
@@ -90,6 +93,7 @@
                                         <tr data-ng-repeat="assignment in AssignmentsCtrl.assignmentList">
                                             <td>{{assignment.title}}</td>
                                             <td>{{assignment.class.className}} - {{assignment.class.sectionName}}</td>
+                                            <td>{{assignment.subject.subjectName}}</td>
                                             <td>{{assignment.description}}</td>
                                             <td>{{assignment.fromDate | date:'dd-MM-yyyy'}}</td>
                                             <td>{{assignment.toDate | date:'dd-MM-yyyy'}}</td>
@@ -139,9 +143,15 @@
                             <label for="form_control_1">TITLE</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <select data-ng-model="AssignmentsCtrl.formFields.classId" name="classId" class="form-control input-sm" required name="teachername">
+                            <select data-ng-model="AssignmentsCtrl.formFields.classId" name="classId" class="form-control input-sm" required >
                                 <option value="">CLASS</option>
                                 <option ng-repeat="class in AssignmentsCtrl.classList" value="{{class.id}}">{{class.className}} {{class.sectionName}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <select data-ng-model="AssignmentsCtrl.formFields.subjectId" name="subjectId" class="form-control input-sm" required >
+                                <option value="">Subject</option>
+                                <option ng-repeat="subject in AssignmentsCtrl.subjectList" value="{{subject.id}}">{{subject.subjectName}}</option>
                             </select>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
@@ -150,13 +160,13 @@
                             <label for="form_control_1">DESCRIPTION</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="date" class="form-control input-sm" name="fromDate" data-ng-model="AssignmentsCtrl.formFields.fromDate" maxlength="50"
-                                required />
+                            <input type="text" class="form-control input-sm calendarctrl" name="fromDate" data-ng-model="AssignmentsCtrl.formFields.fromDate"
+                                maxlength="50" required />
                             <label for="form_control_1">FROM DATE</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="date" class="form-control input-sm" name="toDate" data-ng-model="AssignmentsCtrl.formFields.toDate" maxlength="50"
-                                required />
+                            <input type="text" class="form-control input-sm calendarctrl" name="toDate" data-ng-model="AssignmentsCtrl.formFields.toDate"
+                                maxlength="50" required />
                             <label for="form_control_1">TO DATE</label>
                         </div>
                         <div class="form-group">
@@ -170,3 +180,11 @@
     </div>
 </div>
 <!-- EDIT MODAL END-->
+<script>
+    (function () {
+        $('.calendarctrl').datetimepicker({
+            format: 'DD-MM-YYYY',
+            minDate: new Date()
+        });
+    })();
+</script>

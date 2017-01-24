@@ -24,11 +24,31 @@ angular.module('studymonitorApp')
                     console.log('Error while fetching the assignment records. Error stack : ' + error);
                 });
             };
+            this.getClassDetails = function(){
+                assignmentsService.getClassDetailsBySchoolId(AssignmentsCtrl.schoolId).then(function (result) {
+                    if (result) {
+                        AssignmentsCtrl.classList = result;
+                    }
+                }, function (error) {
+                    console.log('Error while fetching the assignment records. Error stack : ' + error);
+                });
+            };
+            this.getSubjectDetails = function(){
+                assignmentsService.getSubjectDetailsBySchoolId(AssignmentsCtrl.schoolId).then(function (result) {
+                    if (result) {
+                        AssignmentsCtrl.subjectList = result;
+                    }
+                }, function (error) {
+                    console.log('Error while fetching the assignment records. Error stack : ' + error);
+                });
+            }
         }
         (new Init()).getAssignmentDetails();
+        (new Init()).getClassDetails();
+        (new Init()).getSubjectDetails();
         //Initialize the Table Component
         $timeout(function () {
-            var columnsDefs = [null, null, {
+            var columnsDefs = [null, null,null, {
                 'width': '30%'
             }, null, null, {
                 'orderable': false,

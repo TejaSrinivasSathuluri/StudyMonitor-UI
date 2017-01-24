@@ -39,9 +39,19 @@ angular.module('studymonitorApp')
                 }, function (error) {
                     console.log('Error while fetching Fees details records. Error Stack : ' + error);
                 });
+            };
+            this.getClassDetails = function(){
+                feesService.getClassDetailsBySchoolId(FeesCtrl.schoolId).then(function (result) {
+                    if (result) {
+                        FeesCtrl.classList = result;
+                    }
+                }, function (error) {
+                    console.log('Error while fetching the assignment records. Error stack : ' + error);
+                });
             }
         }
         (new init()).getFeesDetails();
+        (new init()).getClassDetails();
         //Close or Open modal
         FeesCtrl.closeModal = function () {
             var modal = $('#edit-fees');

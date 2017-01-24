@@ -59,9 +59,9 @@
                                             </div>
                                         </div>
                                         <div class="col-md-5">
-                                            <select ng-model="BulkuploadCtrl.classId" name="classid" class="form-control" required>
+                                            <select ng-model="BulkuploadCtrl.classId" name="classId" class="form-control" required>
                                                 <option value="">Class </option>
-                                                <option ng-repeat="y in BulkuploadCtrl.classList" value="{{y.id}}">{{y.className}}-{{y.sectionName}}</option>
+                                                <option ng-repeat="class in BulkuploadCtrl.classList" value="{{class.id}}">{{y.className}}-{{y.sectionName}}</option>
                                             </select>
                                         </div>
                                         <div class="col-md-2">
