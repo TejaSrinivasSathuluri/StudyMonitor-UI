@@ -99,6 +99,7 @@ angular.module('studymonitorApp')
                 schoolId: AssignmentsCtrl.schoolId,
                 title: AssignmentsCtrl.formFields.title,
                 classId: AssignmentsCtrl.formFields.classId,
+                subjectId: AssignmentsCtrl.formFields.subjectId,
                 description: AssignmentsCtrl.formFields.description,
                 fromDate: AssignmentsCtrl.formFields.fromDate,
                 toDate: AssignmentsCtrl.formFields.toDate
