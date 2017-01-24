@@ -22,7 +22,7 @@
                             <div class="portlet-title">
                                 <div class="caption">
                                     <i class="fa fa-list-alt font-green"></i>
-                                    <span class="caption-subject font-green bold uppercase">MARKS</span>
+                                    <span class="caption-subject font-green bold uppercase">Marks</span>
                                 </div>
                             </div>
                             <div class="portlet-body">
@@ -30,8 +30,9 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="btn-group">
-                                                <button data-toggle="modal" data-target="#edit-class" data-ng-click="ClassCtrl.editmode = false;ClassCtrl.setFloatLabel()" class="btn green">
-                                                    Add New
+                                                <button data-toggle="modal" data-target="#edit-marks" data-ng-click="MarksCtrl.editmode = false;MarksCtrl.setFloatLabel()"
+                                                    class="btn green">
+                                                    Set MaxMarks
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </div>
@@ -57,7 +58,84 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- TABULAR CONTENT GOES HERE-->
+                                <!-- INNER CONTENT GOES HERE-->
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-12">
+                                        <form name="marksform" novalidate role="form" data-ng-submit="MarksCtrl.marksAction(marksform.$invalid)">
+                                            <div class="form-group form-md-line-input form-md-floating-label has-info">
+                                                <select data-ng-model="MarksCtrl.formFields.classId" name="classId" class="form-control input-sm" required>
+                                                    <option value="">Class-Section</option>
+                                                    <option ng-repeat="class in MarksCtrl.classList" value="{{class.id}}">{{class.className}}-{{class.sectionName}}</option>
+                                                    </select>
+                                            </div>
+                                            <div class="form-group form-md-line-input form-md-floating-label has-info">
+                                                <select data-ng-model="MarksCtrl.formFields.subjectId" name="subjectId" class="form-control input-sm" required>
+                                                    <option value="">Subject</option>
+                                                    <option ng-repeat="subject in MarksCtrl.subjectList" value="{{subject.id}}">{{subject.subjectName}}</option>
+                                                    </select>
+                                            </div>
+                                            <div class="form-group form-md-line-input form-md-floating-label has-info">
+                                                <select data-ng-model="MarksCtrl.formFields.examId" name="examId" class="form-control input-sm" required>
+                                                    <option value="">Exam</option>
+                                                    <option ng-repeat="exam in MarksCtrl.examList" value="{{exam.id}}">{{exam.examName}}</option>
+                                                    </select>
+                                            </div>
+                                            <div class="form-group form-md-line-input form-md-floating-label has-info">
+                                                <input type="text" class="form-control input-sm" name="title" data-ng-model="MarksCtrl.formFields.marks" maxlength="50" required
+                                                />
+                                                <label for="form_control_1">Enter Marks</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="reset" class="btn default">Reset</button>
+                                                <button type="submit" class="btn green" data-ng-disabled="marksform.$invalid"><i class="fa fa-check"></i> Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-9 col-sm-12">
+                                        <table class="table table-striped table-hover table-bordered sm_editable_grid" id="marks_datatable">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        Student Name
+                                                    </th>
+                                                    <th>
+                                                        Roll No
+                                                    </th>
+                                                    <th>
+                                                        Marks
+                                                    </th>
+                                                    <th>
+                                                        Percentage (%)
+                                                    </th>
+                                                    <th class="text-center">
+                                                        Edit
+                                                    </th>
+                                                    <th class="text-center">
+                                                        Delete
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr data-ng-repeat="mark in MarksCtrl.marksList">
+                                                    <td>{{data.firstName}} {{data.lastName}}</td>
+                                                    <td>{{data.rollNo}}</td>
+                                                    <td>{{mark.marks}}</td>
+                                                    <td>{{mark.percentage}}</td>
+                                                    <td class="text-center">
+                                                        <a class="edit" href="javascript:void(0);">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a class="delete" href="javascript:void(0);">
+                                                            <i class="fa fa-remove"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!-- END EXAMPLE TABLE PORTLET-->
@@ -70,3 +148,48 @@
     <!-- END PAGE CONTENT -->
 </div>
 <!-- END PAGE CONTAINER -->
+<!-- EDIT MODAL -->
+<div id="edit-marks" class="modal right fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="javascript:void(0)" title="Close" class="modal-close pull-right" aria-hidden="true" data-ng-click="MarksCtrl.closeModal()"><span class="icon-close"></span></a>
+                <h4 class="modal-title font-green">Maximum Marks</h4>
+            </div>
+            <div class="modal-body form">
+                <div class="form-container">
+                    <form name="maxmarkform" novalidate role="form" data-ng-submit="MarksCtrl.maxmarkAction(maxmarkform.$invalid)">
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <select data-ng-model="MarksCtrl.formFields.classId" name="classId" class="form-control input-sm" required>
+                                <option value="">Class-Section</option>
+                                <option ng-repeat="class in MarksCtrl.classList" value="{{class.id}}">{{class.className}} {{class.sectionName}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <select data-ng-model="MarksCtrl.formFields.subjectId" name="subjectId" class="form-control input-sm" required>
+                                <option value="">Subject</option>
+                                <option ng-repeat="subject in MarksCtrl.subjectList" value="{{subject.id}}">{{subject.subjectName}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <select data-ng-model="MarksCtrl.formFields.examId" name="examId" class="form-control input-sm" required>
+                                <option value="">Exam</option>
+                                <option ng-repeat="exam in MarksCtrl.examList" value="{{exam.id}}">{{exam.examName}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <input type="text" class="form-control input-sm" name="maxMarks" data-ng-model="MarksCtrl.formFields.maxMarks" maxlength="50"
+                                required />
+                            <label for="form_control_1">Maximum Marks</label>
+                        </div>
+                        <div class="form-group">
+                            <button type="reset" class="btn default">Reset</button>
+                            <button type="submit" class="btn green" data-ng-disabled="maxmarkform.$invalid"><i class="fa fa-check"></i> Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- EDIT MODAL END-->

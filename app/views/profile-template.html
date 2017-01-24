@@ -1,1 +1,86 @@
-<p>This is the profile-template view.</p>
+<!-- BEGIN PAGE CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN PAGE CONTENT -->
+    <div class="page-content">
+        <div class="container">
+            <!-- BEGIN PAGE BREADCRUMB -->
+            <ul class="page-breadcrumb breadcrumb">
+                <li>
+                    <a ui-sref="home.console">Home</a><i class="fa fa-circle"></i>
+                </li>
+                <li class="active">
+                    Profile
+                </li>
+            </ul>
+            <!-- END PAGE BREADCRUMB -->
+            <!-- BEGIN PAGE CONTENT INNER -->
+            <div class="page-content-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                        <div class="portlet light portlet-fit ">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-user font-green"></i>
+                                    <span class="caption-subject font-green bold uppercase">User Profile</span>
+                                </div>
+                            </div>
+
+                            <div class="form-container">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="images/company.png" alt="Smiley face" width="100%" height="100%" border="20px">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="input-group input-large">
+                                                <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                                                    <i class="fa fa-user fileinput-exists"></i>&nbsp;
+                                                    <span class="fileinput-filename"></span>
+                                                </div>
+                                                <span class="input-group-addon btn default btn-file">
+                                                        <span class="fileinput-new"> Select file </span>
+                                                <span class="fileinput-exists"> Change </span>
+                                                <input type="hidden" value="" name="..."><input type="file" name="file" required>
+                                                </span>
+                                                <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                            </div>
+                                        </div>
+                                        <button class="btn green" type="submit" data-ng-disabled="fileuploadform.$invalid">
+                                                    Submit<i class="fa fa-upload"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <form name="profileform" novalidate role="form" data-ng-submit=" ProfileCtrl.profileAction(profileform.$invalid)">
+                                            <div class="form-group form-md-line-input form-md-floating-label has-info">
+                                                <input type="text" class="form-control input-sm" name="firstName" data-ng-model="ProfileCtrl.formFields.firstName" maxlength="50"
+                                                    required />
+                                                <label for="form_control_1">First Name</label>
+                                            </div>
+                                            <div class="form-group form-md-line-input form-md-floating-label has-info">
+                                                <input type="text" class="form-control input-sm" name="lastName" data-ng-model="ProfileCtrl.formFields.lastName" maxlength="50"
+                                                    required />
+                                                <label for="form_control_1">Last Name</label>
+                                            </div>
+                                            <div class="form-group form-md-line-input form-md-floating-label has-info">
+                                                <input type="text" class="form-control input-sm" name="email" data-ng-model="ProfileCtrl.formFields.email" maxlength="50"
+                                                    required />
+                                                <label for="form_control_1">Email</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="reset" class="btn default">Reset</button>
+                                                <button type="submit" class="btn green" data-ng-disabled="profileform.$invalid"><i class="fa fa-check"></i> Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END EXAMPLE TABLE PORTLET-->
+                    </div>
+                </div>
+            </div>
+            <!-- END PAGE CONTENT INNER -->
+        </div>
+    </div>
+    <!-- END PAGE CONTENT -->
+</div>
+<!-- END PAGE CONTAINER -->

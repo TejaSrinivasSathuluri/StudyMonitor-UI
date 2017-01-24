@@ -145,6 +145,42 @@ angular
             }
         }
     })
+    .state('home.busservice', {
+        url: 'busservice',
+        views: {
+            'content': {
+                templateUrl: 'views/busservice-template.html',
+                controller: 'BusserviceController',
+                controllerAs: 'BusserviceCtrl'
+            },
+            'header': {
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
+            },
+            'footer': {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
+     .state('home.bussubscription', {
+        url: 'bussubscription',
+        views: {
+            'content': {
+                templateUrl: 'views/bussubscription-template.html',
+                controller: 'BussubscriptionController',
+                controllerAs: 'BussubscriptionCtrl'
+            },
+            'header': {
+                templateUrl: 'views/header-template.html',
+                controller: 'HeaderController',
+                controllerAs: 'HeaderCtrl'
+            },
+            'footer': {
+                templateUrl: 'views/footer-template.html'
+            }
+        }
+    })
     .state('home.assignments', {
         url: 'assignments',
         views: {

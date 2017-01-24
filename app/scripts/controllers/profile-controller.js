@@ -8,6 +8,12 @@
  * Controller of the studymonitorApp
  */
 angular.module('studymonitorApp')
-  .controller('ProfileController', function () {
+  .controller('ProfileController', function ($cookies, $state) {
       var ProfileCtrl = this;
+
+      //Defaults
+      ProfileCtrl.firstName = $cookies.getObject('uds').firstName;
+      ProfileCtrl.lastName = $cookies.getObject('uds').lastName;
+      ProfileCtrl.email = $cookies.getObject('uds').email;
+
   });

@@ -9,7 +9,10 @@
                     <a ui-sref="home.console">Home</a><i class="fa fa-circle"></i>
                 </li>
                 <li class="active">
-                    Assignments
+                    Transport Management <i class="fa fa-circle"></i>
+                </li>
+                <li class="active">
+                    Bus Service
                 </li>
             </ul>
             <!-- END PAGE BREADCRUMB -->
@@ -21,8 +24,8 @@
                         <div class="portlet light portlet-fit ">
                             <div class="portlet-title">
                                 <div class="caption">
-                                    <i class="fa fa-file-text font-green"></i>
-                                    <span class="caption-subject font-green bold uppercase">ASSIGNMENT</span>
+                                    <i class="fa fa-subway font-green"></i>
+                                    <span class="caption-subject font-green bold uppercase">BUS SERVICE</span>
                                 </div>
                             </div>
                             <div class="portlet-body">
@@ -30,8 +33,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="btn-group">
-                                                <button data-toggle="modal" data-target="#edit-assignments" class="btn green">
-                                                    Add New Assignment
+                                                <button data-toggle="modal" data-target="#edit-busservice" class="btn green">
+                                                    Add New Bus Service
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </div>
@@ -57,26 +60,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <table class="table table-striped table-hover table-bordered sm_editable_grid" id="assignments_datatable">
+                                <table class="table table-striped table-hover table-bordered sm_editable_grid" id="busservice_datatable">
                                     <thead>
                                         <tr>
                                             <th>
-                                                Title
+                                                Service Number
                                             </th>
                                             <th>
-                                                Class
+                                                Service Name
                                             </th>
                                             <th>
-                                                Subject
-                                            </th>
-                                            <th>
-                                                Description
-                                            </th>
-                                            <th>
-                                                From
-                                            </th>
-                                            <th>
-                                                To
+                                                Bus No
                                             </th>
                                             <th class="text-center">
                                                 More Details
@@ -90,13 +84,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr data-ng-repeat="assignment in AssignmentsCtrl.assignmentList">
-                                            <td>{{assignment.title}}</td>
-                                            <td>{{assignment.class.className}} - {{assignment.class.sectionName}}</td>
-                                            <td>{{assignment.subject.subjectName}}</td>
-                                            <td>{{assignment.description}}</td>
-                                            <td>{{assignment.fromDate | date:'dd-MM-yyyy'}}</td>
-                                            <td>{{assignment.toDate | date:'dd-MM-yyyy'}}</td>
+                                        <tr data-ng-repeat="busservice in BusserviceCtrl.busserviceList">
+                                            <td>{{busservice.serviceNo}}</td>
+                                            <td>{{busservice.serviceName}}</td>
+                                            <td>{{busservice.bus.busNo}}</td>
                                             <td class="text-center">
                                                 <i class="fa fa-file-text-o font-blue"></i>
                                             </td>
@@ -106,8 +97,8 @@
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a class="delete" href="javascript:void(0);" ng-bootbox-confirm="Are you sure you want to delete this record ?" ng-bootbox-confirm-action="AssignmentsCtrl.confirmCallbackMethod($index)"
-                                                    ng-bootbox-confirm-action-cancel="AssignmentsCtrl.confirmCallbackCancel()">
+                                                <a class="delete" href="javascript:void(0);" ng-bootbox-confirm="Are you sure you want to delete this record ?" ng-bootbox-confirm-action="BusserviceCtrl.confirmCallbackMethod($index)"
+                                                    ng-bootbox-confirm-action-cancel="BusserviceCtrl.confirmCallbackCancel($index)">
                                                     <i class="fa fa-remove"></i>
                                                 </a>
                                             </td>
@@ -127,51 +118,50 @@
 </div>
 <!-- END PAGE CONTAINER -->
 <!-- EDIT MODAL -->
-<div id="edit-assignments" class="modal right fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+<div id="edit-busservice" class="modal right fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <a href="javascript:void(0)" title="Close" class="modal-close pull-right" aria-hidden="true" data-ng-click="AssignmentsCtrl.closeModal()"><span class="icon-close"></span></a>
-                <h4 class="modal-title font-green">Assignments</h4>
+                <a href="javascript:void(0)" title="Close" class="modal-close pull-right" aria-hidden="true" data-ng-click=" BusserviceCtrl.closeModal()"><span class="icon-close"></span></a>
+                <h4 class="modal-title font-green">BUS SERVICE</h4>
             </div>
             <div class="modal-body form">
                 <div class="form-container">
-                    <form name="assignmentform" novalidate role="form" data-ng-submit="AssignmentsCtrl.assignmentAction(assignmentform.$invalid)">
+                    <form name="busserviceform" novalidate role="form" data-ng-submit=" BusserviceCtrl.serviceAction(busserviceform.$invalid)">
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm" name="title" data-ng-model="AssignmentsCtrl.formFields.title" maxlength="50"
-                                required />
-                            <label for="form_control_1">TITLE</label>
-                        </div>
-                        <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <select data-ng-model="AssignmentsCtrl.formFields.classId" name="classId" class="form-control input-sm" required>
-                                <option value="">CLASS</option>
-                                <option ng-repeat="class in AssignmentsCtrl.classList" value="{{class.id}}">{{class.className}} {{class.sectionName}}</option>
+                            <select data-ng-model="BusserviceCtrl.formFields.busId" name="busId" class="form-control input-sm" required>
+                            <option value="">Bus Number</option>
+                            <option ng-repeat="bus in BusserviceCtrl.busList" value="{{bus.id}}">{{bus.busNo}}</option>
                             </select>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <select data-ng-model="AssignmentsCtrl.formFields.subjectId" name="subjectId" class="form-control input-sm" required>
-                                <option value="">Subject</option>
-                                <option ng-repeat="subject in AssignmentsCtrl.subjectList" value="{{subject.id}}">{{subject.subjectName}}</option>
-                            </select>
+                            <input type="text" class="form-control input-sm" name="serviceStartPoint" data-ng-model="BusserviceCtrl.formFields.serviceStartPoint" maxlength="50" required
+                            />
+                            <label for="form_control_1">PickUp Ponit</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm" name="description" data-ng-model="AssignmentsCtrl.formFields.description"
-                                maxlength="50" required />
-                            <label for="form_control_1">DESCRIPTION</label>
+                            <input type="text" class="form-control input-sm" name="serviceDropPoint" data-ng-model="BusserviceCtrl.formFields.serviceDropPoint" maxlength="50" required
+                            />
+                            <label for="form_control_1">Drop Point</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm calendarctrl" name="fromDate" data-ng-model="AssignmentsCtrl.formFields.fromDate"
+                            <input type="text" class="form-control input-sm" name="serviceNo" data-ng-model=" BusserviceCtrl.formFields.serviceNo"
                                 maxlength="50" required />
-                            <label for="form_control_1">FROM DATE</label>
+                            <label for="form_control_1">Service Number</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm calendarctrl" name="toDate" data-ng-model="AssignmentsCtrl.formFields.toDate"
-                                maxlength="50" required />
-                            <label for="form_control_1">TO DATE</label>
+                            <input type="text" class="form-control input-sm calendarctrl" name="serviceStartTime1" data-ng-model="BusserviceCtrl.formFields.serviceStartTime1" maxlength="50" required
+                            />
+                            <label for="form_control_1">PickUp Start Time</label>
+                        </div>
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <input type="text" class="form-control input-sm calendarctrl" name="serviceStartTime2" data-ng-model="BusserviceCtrl.formFields.serviceStartTime2" maxlength="50" required
+                            />
+                            <label for="form_control_1">Drop Start Time</label>
                         </div>
                         <div class="form-group">
                             <button type="reset" class="btn default">Reset</button>
-                            <button type="submit" class="btn green" data-ng-disabled="assignmentform.$invalid"><i class="fa fa-check"></i> Submit</button>
+                            <button type="submit" class="btn green" data-ng-disabled="busserviceform.$invalid"><i class="fa fa-check"></i> Submit</button>
                         </div>
                     </form>
                 </div>
@@ -183,8 +173,8 @@
 <script>
     (function () {
         $('.calendarctrl').datetimepicker({
-            format: 'DD-MM-YYYY',
-            minDate: new Date()
+            format: 'HH:mm'
+            
         });
     })();
 </script>
