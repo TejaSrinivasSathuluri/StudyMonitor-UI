@@ -94,10 +94,10 @@
                                                     <th>
                                                         Email
                                                     </th>
-                                                    <th>
+                                                    <th ng-hide="SchooldirectoryCtrl.searchSelection == 'Staff'">
                                                         Roll No
                                                     </th>
-                                                    <th>
+                                                    <th ng-hide="SchooldirectoryCtrl.searchSelection == 'Staff'">
                                                         Class / Section
                                                     </th>
                                                     <th>
@@ -113,12 +113,12 @@
                                             </thead>
                                             <tbody>
                                                 <tr data-ng-repeat="data in SchooldirectoryCtrl.directorList">
-                                                    <td>{{data.image}}</td>
+                                                    <td><img class="img-thumbnail" ng-src="{{data.file}}" alt="Student" /></td>
                                                     <td>{{data.firstName}} {{data.lastName}}</td>
                                                     <td>{{data.type}}</td>
                                                     <td>{{data.email}}</td>
-                                                    <td>{{data.rollNo}}</td>
-                                                    <td>{{data.className}} - {{data.sectionName}}</td>
+                                                    <td ng-hide="SchooldirectoryCtrl.searchSelection == 'Staff'">{{data.rollNo}}</td>
+                                                    <td ng-hide="SchooldirectoryCtrl.searchSelection == 'Staff'">{{data.class.className}} - {{data.class.sectionName}}</td>
                                                     <td>{{data.contact}}</td>
                                                     <td class="text-center">
                                                         <a class="edit" href="javascript:void(0);">
