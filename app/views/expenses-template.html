@@ -33,7 +33,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="btn-group">
-                                             <button data-toggle="modal" data-target="#edit-expenses" class="btn green">
+                                                <button data-toggle="modal" data-target="#edit-expenses" class="btn green">
                                                     Add New Expense
                                                     <i class="fa fa-plus"></i>
                                                 </button>
@@ -90,7 +90,7 @@
                                         <tr data-ng-repeat="expense in ExpensesCtrl.expensesList">
                                             <td>{{expense.expenseType}}</td>
                                             <td>{{expense.description}}</td>
-                                            <td>{{expense.date | date:'dd-MM-yyyy hh:mm a'}}</td>
+                                            <td>{{expense.date | date:'dd-MM-yyyy'}}</td>
                                             <td>{{expense.amount}}</td>
                                             <td class="text-center">
                                                 <a class="" href="javascript:void(0)">
@@ -98,12 +98,13 @@
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a class="edit" href="javascript:void(0);">
+                                                <a class="" href="javascript:void(0);" data-ng-click="ExpensesCtrl.editExpense($index)">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a class="delete" href="javascript:void(0);" ng-bootbox-confirm="Are you sure you want to delete this record ?" ng-bootbox-confirm-action="ExpensesCtrl.confirmCallbackMethod($index)" ng-bootbox-confirm-action-cancel="ExpensesCtrl.confirmCallbackCancel($index)">
+                                                <a class="delete" href="javascript:void(0);" ng-bootbox-confirm="Are you sure you want to delete this record ?" ng-bootbox-confirm-action="ExpensesCtrl.confirmCallbackMethod($index)"
+                                                    ng-bootbox-confirm-action-cancel="ExpensesCtrl.confirmCallbackCancel($index)">
                                                     <i class="fa fa-remove"></i>
                                                 </a>
                                             </td>
@@ -134,19 +135,23 @@
                 <div class="form-container">
                     <form name="expensesform" novalidate role="form" data-ng-submit=" ExpensesCtrl.expenseAction(expensesform.$invalid)">
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm" name="expensetype" data-ng-model=" ExpensesCtrl.formFields.expenseType" maxlength="50" required />
+                            <input type="text" class="form-control input-sm" name="expensetype" data-ng-model=" ExpensesCtrl.formFields.expenseType"
+                                maxlength="50" required />
                             <label for="form_control_1">Expense Type</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm calendarctrl" name="expensedate" data-ng-model=" ExpensesCtrl.formFields.date" maxlength="50" required />
+                            <input type="text" class="form-control input-sm calendarctrl" name="expensedate" data-ng-model=" ExpensesCtrl.formFields.date"
+                                maxlength="50" required />
                             <label for="form_control_1">Expense Date</label>
                         </div>
-                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm" name="description" data-ng-model=" ExpensesCtrl.formFields.description" maxlength="50" required />
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <input type="text" class="form-control input-sm" name="description" data-ng-model=" ExpensesCtrl.formFields.description"
+                                maxlength="50"  required />
                             <label for="form_control_1">Description</label>
                         </div>
-                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm" name="amount" data-ng-model=" ExpensesCtrl.formFields.amount" maxlength="50" required />
+                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                            <input type="text" class="form-control input-sm" name="amount" data-ng-model=" ExpensesCtrl.formFields.amount" maxlength="50"
+                                required />
                             <label for="form_control_1">Expense Amount</label>
                         </div>
                         <div class="form-group">
@@ -164,7 +169,7 @@
     (function () {
         $('.calendarctrl').datetimepicker({
             format: 'DD-MM-YYYY',
-            minDate:new Date()
+            minDate: new Date()
         });
     })();
 </script>

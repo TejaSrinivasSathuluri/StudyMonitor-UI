@@ -8,7 +8,7 @@
  * Controller of the studymonitorApp
  */
 angular.module('studymonitorApp')
-  .controller('SubjectsController', function (subjectsService, $cookies, $timeout) {
+  .controller('SubjectsController', function (subjectsService, $cookies, $timeout,APP_MESSAGES,toastr) {
       var SubjectsCtrl = this;
       //Defaults
       SubjectsCtrl.schoolId = $cookies.getObject('uds').schoolId;

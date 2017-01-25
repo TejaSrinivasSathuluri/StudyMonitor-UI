@@ -38,14 +38,14 @@ angular.module('studymonitorApp')
                 'width': '10%',
                 'targets': 0
             }, {
-                'orderable': false,
-                'width': '10%',
-                'targets': 0
-            }, {
-                'orderable': false,
-                'width': '10%',
-                'targets': 0
-            }];
+                    'orderable': false,
+                    'width': '10%',
+                    'targets': 0
+                }, {
+                    'orderable': false,
+                    'width': '10%',
+                    'targets': 0
+                }];
             TableEditable.init('#class_datatable', columnsDefs);
             Metronic.init();
         }, 1000);
@@ -106,6 +106,9 @@ angular.module('studymonitorApp')
                         //On Successfull refill the data list
                         init();
                         ClassCtrl.closeModal();
+                        //Show Toast Message Success
+                        toastr.success(APP_MESSAGES.DELETE_SUCCESS);
+                      
                     }
                 }, function (error) {
                     console.log('Error while deleting class. Error Stack' + error);
