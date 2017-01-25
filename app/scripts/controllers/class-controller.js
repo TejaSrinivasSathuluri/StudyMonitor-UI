@@ -8,7 +8,7 @@
  * Controller of the studymonitorApp
  */
 angular.module('studymonitorApp')
-    .controller('ClassController', function ($log, $timeout, classService, APP_MESSAGES, $cookies, $state) {
+    .controller('ClassController', function ($log, $timeout, classService, APP_MESSAGES, $cookies, $state, toastr) {
         var ClassCtrl = this;
         ClassCtrl.formFields = {};
         ClassCtrl.editmode = false;
@@ -20,24 +20,6 @@ angular.module('studymonitorApp')
                 if (result && result.hasOwnProperty('classes')) {
                     ClassCtrl.classList = result.classes;
                     ClassCtrl.staffList = result.staffs;
-                    //Initialize the Table Component
-                    $timeout(function () {
-                        var columnsDefs = [null, null, null, {
-                            'orderable': false,
-                            'width': '10%',
-                            'targets': 0
-                        }, {
-                                'orderable': false,
-                                'width': '10%',
-                                'targets': 0
-                            }, {
-                                'orderable': false,
-                                'width': '10%',
-                                'targets': 0
-                            }];
-                        TableEditable.init('#class_datatable', columnsDefs);
-                        Metronic.init();
-                    });
                 }
             }, function (error) {
                 if (error) {
@@ -47,6 +29,26 @@ angular.module('studymonitorApp')
             //}
         }
         init();
+
+
+        //Initialize the Table Component
+        $timeout(function () {
+            var columnsDefs = [null, null, null, {
+                'orderable': false,
+                'width': '10%',
+                'targets': 0
+            }, {
+                'orderable': false,
+                'width': '10%',
+                'targets': 0
+            }, {
+                'orderable': false,
+                'width': '10%',
+                'targets': 0
+            }];
+            TableEditable.init('#class_datatable', columnsDefs);
+            Metronic.init();
+        }, 1000);
 
         /*
          * Actions - For Create a new Class
@@ -66,14 +68,18 @@ angular.module('studymonitorApp')
 
                 //Check whether editmode or normal mode
                 if (ClassCtrl.editmode) {
-                    classService.classAddOrUpdate({ id: ClassCtrl.editingClassId, staffId: data.staffId }, function (response) {
+                    classService.classAddOrUpdate({ id: ClassCtrl.editingClassId, staffId: data.staffId }).then(function (response) {
                         if (response) {
                             //On successfull refill the data list
                             init();
                             //Close Modal
                             ClassCtrl.closeModal();
+                            //Show Toast Message Success
+                            toastr.success(APP_MESSAGES.UPDATE_SUCCESS);
                         }
-                    }, function (error) { });
+                    }, function (error) {
+                        toastr.error(error, APP_MESSAGES.SERVER_ERROR);
+                    });
                 }
                 else {
                     classService.classAddOrUpdate(data).then(function (result) {
@@ -82,8 +88,11 @@ angular.module('studymonitorApp')
                             init();
                             //Close Modal
                             ClassCtrl.closeModal();
+                            //Show Toast Message Success
+                            toastr.success(APP_MESSAGES.INSERT_SUCCESS);
                         }
                     }, function (error) {
+                        toastr.error(error, APP_MESSAGES.SERVER_ERROR);
                         console.log('Error while creating or updating records. Error stack' + error);
                     });
                 }
