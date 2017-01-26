@@ -53,8 +53,10 @@ angular.module('studymonitorApp')
                                     });
                                 }
                             }, function (error) {
-                                LoginCtrl.showError = true;
-                                LoginCtrl.errorMessage = APP_MESSAGES.LOGIN_INVALID;
+                                if (error) {
+                                    LoginCtrl.showError = true;
+                                    LoginCtrl.errorMessage = APP_MESSAGES.LOGIN_INVALID;
+                                }
                             });
                         }
                     }, function (error) {
@@ -67,6 +69,5 @@ angular.module('studymonitorApp')
                     });
                 }
             }
-
-        }
+        };
     });

@@ -8,7 +8,7 @@
  * Controller of the studymonitorApp
  */
 angular.module('studymonitorApp')
-  .controller('ProfileController', function ($cookies, $state) {
+  .controller('ProfileController', function ($cookies) {
       var ProfileCtrl = this;
 
       //Defaults

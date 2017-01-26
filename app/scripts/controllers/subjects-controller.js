@@ -15,7 +15,7 @@ angular.module('studymonitorApp')
       SubjectsCtrl.formFields = {};
       SubjectsCtrl.editmode = false;
       //Initialize code
-      function init() {
+      function Init() {
           this.fnSubjectList = function () {
               subjectsService.getSubjectListBySchoolId(SubjectsCtrl.schoolId).then(function (response) {
                   if (response) {
@@ -34,10 +34,10 @@ angular.module('studymonitorApp')
               }, function (error) {
                   console.log('Error while fetching class and staff. Error stack ' + error);
               });
-          }
+          };
       }
-      (new init()).fnSubjectList();
-      (new init()).getClassAndStaffList();
+      (new Init()).fnSubjectList();
+      (new Init()).getClassAndStaffList();
 
       $timeout(function () {
           var columnsDefs = [null, null, null, {
@@ -65,29 +65,32 @@ angular.module('studymonitorApp')
 
           //ClearFields
           clearformfields();
-      }
+      };
       SubjectsCtrl.openModal = function () {
           var modal = $('#edit-subject');
           modal.modal('show');
-      }
+      };
       function clearformfields() {
           SubjectsCtrl.formFields = {};
       }
       //Delete confirmation box
       SubjectsCtrl.confirmCallbackMethod = function (index) {
           deleteSubject(index);
-      }
+      };
       //Delete cancel box
       SubjectsCtrl.confirmCallbackCancel = function (index) {
-          return false;
-      }
+          if (index) {
+              return false;
+          }
+          return;
+      };
 
       //********************************* Settings to float labels
       SubjectsCtrl.setFloatLabel = function () {
           Metronic.setFlotLabel($('input[name=subjectname]'));
           Metronic.setFlotLabel($('input[name=classname]'));
           Metronic.setFlotLabel($('input[name=staffname]'));
-      }
+      };
       //********************************* Setting to float labels end
 
       //********************************** Create or Update New Record
@@ -101,7 +104,7 @@ angular.module('studymonitorApp')
               subjectName: SubjectsCtrl.formFields.subjectName,
               staffId: SubjectsCtrl.formFields.staffName,
               examFlag: SubjectsCtrl.formFields.examFlag
-          }
+          };
 
           if (data) {
 
@@ -109,7 +112,7 @@ angular.module('studymonitorApp')
                   subjectsService.updateSubject(data).then(function (result) {
                       if (result) {
                           //Re initialize the data
-                          (new init()).fnSubjectList();
+                          (new Init()).fnSubjectList();
                           //Close Modal Window
                           SubjectsCtrl.closeModal();
                           //Clear Fields
@@ -118,12 +121,14 @@ angular.module('studymonitorApp')
                           toastr.success(APP_MESSAGES.UPDATE_SUCCESS);
                       }
                   }, function (error) {
-                      //Close Modal Window
-                      SubjectsCtrl.closeModal();
-                      //Clear Fields
-                      clearformfields();
-                      //Show Toast
-                      toastr.error(APP_MESSAGES.SERVER_ERROR);
+                      if (error) {
+                          //Close Modal Window
+                          SubjectsCtrl.closeModal();
+                          //Clear Fields
+                          clearformfields();
+                          //Show Toast
+                          toastr.error(APP_MESSAGES.SERVER_ERROR);
+                      }
                   });
               }
               else {
@@ -136,7 +141,7 @@ angular.module('studymonitorApp')
                           subjectsService.CreateSubject(data).then(function (result) {
                               if (result) {
                                   //Re initialize the data
-                                  (new init()).fnSubjectList();
+                                  (new Init()).fnSubjectList();
                                   //Close Modal Window
                                   SubjectsCtrl.closeModal();
                                   //Clear Fields
@@ -151,7 +156,7 @@ angular.module('studymonitorApp')
                   });
               }
           }
-      }
+      };
       //********************************** Create or Update New Record End
       //********************************** Delete Record
 
@@ -161,14 +166,14 @@ angular.module('studymonitorApp')
               subjectsService.deleteSubject(SubjectsCtrl.subjectList[index].id).then(function (result) {
                   if (result) {
                       //On Successfull refill the data list
-                      (new init()).fnSubjectList();
+                      (new Init()).fnSubjectList();
                       SubjectsCtrl.closeModal();
                   }
               }, function (error) {
                   console.log('Error while deleting class. Error Stack' + error);
               });
           }
-      }
+      };
       //********************************** Delete Record Ends
 
       //Edit Subject
@@ -185,7 +190,7 @@ angular.module('studymonitorApp')
               SubjectsCtrl.setFloatLabel();
               SubjectsCtrl.editmode = true;
           });
-      }
+      };
 
       /* =============================== Modal Functionality End ========================= */
   });

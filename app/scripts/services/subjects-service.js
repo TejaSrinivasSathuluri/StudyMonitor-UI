@@ -18,7 +18,7 @@ angular.module('studymonitorApp')
               _activepromise.reject(error);
           });
           return _activepromise.promise;
-      }
+      };
       //Verify data exists or not
       this.verifyDataExistsOrNot = function (data) {
           var _activepromise = $q.defer();
@@ -28,7 +28,7 @@ angular.module('studymonitorApp')
               _activepromise.reject(error);
           });
           return _activepromise.promise;
-      }
+      };
       //get Staff or class List
       this.getClassAndStaffList = function (schoolId) {
           var _activepromise = $q.defer();
@@ -38,7 +38,7 @@ angular.module('studymonitorApp')
               _activepromise.reject(error);
           });
           return _activepromise.promise;
-      }
+      };
       //Create New Subject
       this.CreateSubject = function (data) {
           var _activepromise = $q.defer();
@@ -48,12 +48,12 @@ angular.module('studymonitorApp')
               _activepromise.reject(error);
           });
           return _activepromise.promise;
-      }
+      };
       //Delete Subject
       this.deleteSubject = function (subjectId) {
           var _activepromise = $q.defer();
-          Subject.deleteById({ id: subjectId }, function (response) { _activepromise.resolve(response) }, function (error) { _activepromise.reject(error) }); return _activepromise.promise;
-      }
+          Subject.deleteById({ id: subjectId }, function (response) { _activepromise.resolve(response); }, function (error) { _activepromise.reject(error); }); return _activepromise.promise;
+      };
       //Update Subject
       this.updateSubject = function (data) {
           var _activepromise = $q.defer();
@@ -63,5 +63,5 @@ angular.module('studymonitorApp')
               _activepromise.reject(response);
           });
           return _activepromise.promise;
-      }
+      };
   });

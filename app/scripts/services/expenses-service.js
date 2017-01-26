@@ -19,7 +19,7 @@ angular.module('studymonitorApp')
                     _activepromise.reject(error);
                 });
             return _activepromise.promise;
-        }
+        };
         this.getExistingExpenseRecords = function (data) {
             var _activepromise = $q.defer();
             ExpensePayment.findOne({ filter: { where: { expenseType: data.expenseType, description: data.description, schoolId: data.schoolId } } },
@@ -29,31 +29,29 @@ angular.module('studymonitorApp')
                     _activepromise.reject(error);
                 });
             return _activepromise.promise;
-
-        }
+        };
         this.CreateOrUpdateExpense = function (data) {
             var _activepromise = $q.defer();
             ExpensePayment.create({ expenseType: data.expenseType, date: data.date, amount: data.amount, description: data.description, schoolId: data.schoolId },
                 function (response) {
                     _activepromise.resolve(response);
                 }, function (error) {
-                    _activepromise.reject(response);
+                    _activepromise.reject(error);
                 });
             return _activepromise.promise;
-
-        }
+        };
         this.deleteExpense = function (expenseId) {
             var _activepromise = $q.defer();
-            ExpensePayment.deleteById({ id: expenseId }, function (response) { _activepromise.resolve(response) }, function (error) { _activepromise.reject(error) }); return _activepromise.promise;
-        }
+            ExpensePayment.deleteById({ id: expenseId }, function (response) { _activepromise.resolve(response); }, function (error) { _activepromise.reject(error); }); return _activepromise.promise;
+        };
         this.editExpense = function (data) {
             var _activepromise = $q.defer();
             ExpensePayment.upsert({ id: data.id, title: data.expenseType, description: data.description, date: data.date, amount: data.amount },
                 function (response) {
-                    _activepromise.resolve(response)
+                    _activepromise.resolve(response);
                 }, function (error) {
-                    _activepromise.reject(error)
+                    _activepromise.reject(error);
                 });
             return _activepromise.promise;
-        }
+        };
     });

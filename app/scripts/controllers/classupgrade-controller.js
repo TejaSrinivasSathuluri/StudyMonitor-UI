@@ -14,15 +14,15 @@ angular.module('studymonitorApp')
         ClassUpgradeCtrl.schoolId = $cookies.getObject('uds').schoolId;
       function Init() {
 
-            this.getClassDetails = function(){
-                classupgradeService.getClassDetailsBySchoolId(ClassUpgradeCtrl.schoolId).then(function (result) {
-                    if (result) {
-                        ClassUpgradeCtrl.classList = result;
-                    }
-                }, function (error) {
-                    console.log('Error while fetching the assignment records. Error stack : ' + error);
-                });
-            }
+          this.getClassDetails = function () {
+              classupgradeService.getClassDetailsBySchoolId(ClassUpgradeCtrl.schoolId).then(function (result) {
+                  if (result) {
+                      ClassUpgradeCtrl.classList = result;
+                  }
+              }, function (error) {
+                  console.log('Error while fetching the assignment records. Error stack : ' + error);
+              });
+          };
         }
         
         (new Init()).getClassDetails();

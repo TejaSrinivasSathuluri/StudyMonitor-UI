@@ -18,31 +18,29 @@ angular.module('studymonitorApp')
               _activepromise.reject(error);
           });
           return _activepromise.promise;
-      }
-      this.getExistingLibraryRecords= function (data){
+      };
+      this.getExistingLibraryRecords = function (data) {
           var _activepromise = $q.defer();
-          Library.findOne({filter:{where:{schoolId: data.schoolId, name:  data.name, author:  data.author}}},
+          Library.findOne({ filter: { where: { schoolId: data.schoolId, name: data.name, author: data.author } } },
           function (response) {
-                  _activepromise.resolve(response);
-              }, function (error) {
-                  _activepromise.reject(error);
-              });
+              _activepromise.resolve(response);
+          }, function (error) {
+              _activepromise.reject(error);
+          });
           return _activepromise.promise;
-
-      } 
-      this.CreateOrUpdateLibrary= function (data){
+      };
+      this.CreateOrUpdateLibrary = function (data) {
           var _activepromise = $q.defer();
-          Library.create({schoolId: data.schoolId,name:data.name,author:data.author,description:data.description,price:data.price,available:data.available},
+          Library.create({ schoolId: data.schoolId, name: data.name, author: data.author, description: data.description, price: data.price, available: data.available },
           function (response) {
-                  _activepromise.resolve(response);
-              }, function (error) {
-                  _activepromise.reject(error);
-              });
+              _activepromise.resolve(response);
+          }, function (error) {
+              _activepromise.reject(error);
+          });
           return _activepromise.promise;
-
-      }
+      };
       this.deleteLibrary = function (bookId) {
           var _activepromise = $q.defer();
-          Library.deleteById({ id: bookId }, function (response) { _activepromise.resolve(response) }, function (error) { _activepromise.reject(error) }); return _activepromise.promise;
-      } 
+          Library.deleteById({ id: bookId }, function (response) { _activepromise.resolve(response); }, function (error) { _activepromise.reject(error); }); return _activepromise.promise;
+      };
   });

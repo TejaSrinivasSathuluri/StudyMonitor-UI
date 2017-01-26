@@ -10,4 +10,6 @@
 angular.module('studymonitorApp')
   .controller('BussubscriptionController', function () {
       var BussubscriptionCtrl = this;
+      //defaults
+      BussubscriptionCtrl.value = null;
   });

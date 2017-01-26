@@ -12,6 +12,9 @@
     .service('loginService', function ($http, $q, API_SERVER, School, Admin) {
         // AngularJS will instantiate a singleton by calling "new" on this function
         this.authenticateUser = function (data, role) {
+            if (role) {
+                console.log(role);
+            }
             /*
                 * Make an API call depends on user selected role
                 * For Admin - authenticateAdmin
@@ -23,7 +26,7 @@
         };
 
         this.getAuthenticateUserDetails = function (userID, accessToken) {
-            return $http.get(API_SERVER + '/Admins/' + userID + '?access_token=' + accessToken)
+            return $http.get(API_SERVER + '/Admins/' + userID + '?access_token=' + accessToken);
         };
 
         this.getSchoolDetailsById = function (schoolId) {
@@ -35,6 +38,6 @@
                 _activepromise.reject(error);
             });
             return _activepromise.promise;
-        }
+        };
     });
 })();

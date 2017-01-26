@@ -35,7 +35,7 @@ angular.module('studymonitorApp')
               _activepromise.reject(error);
           });
           return _activepromise.promise;
-      }
+      };
       this.classUpdate = function (data) {
           var _activepromise = $q.defer();
           Class.upsert({ id: data.classId, staffId: data.staffId }, function (response) {
@@ -47,7 +47,7 @@ angular.module('studymonitorApp')
       };
       this.deleteClass = function (classId) {
           var _activepromise = $q.defer();
-          Class.deleteById({ id: classId }, function (response) { _activepromise.resolve(response) }, function (error) { _activepromise.reject(error) }); return _activepromise.promise;
+          Class.deleteById({ id: classId }, function (response) { _activepromise.resolve(response); }, function (error) { _activepromise.reject(error); }); return _activepromise.promise;
       };
       this.findClassRecord = function (data) {
           var _activepromise = $q.defer();
@@ -57,5 +57,5 @@ angular.module('studymonitorApp')
               _activepromise.reject(error);
           });
           return _activepromise.promise;
-      }
+      };
   });

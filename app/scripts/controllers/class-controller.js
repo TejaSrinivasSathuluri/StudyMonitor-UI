@@ -63,7 +63,7 @@ angular.module('studymonitorApp')
                 className: ClassCtrl.formFields.className,
                 sectionName: ClassCtrl.formFields.sectionName,
                 staffId: ClassCtrl.formFields.staffName
-            }
+            };
             if (data) {
 
                 //Check whether editmode or normal mode
@@ -106,7 +106,7 @@ angular.module('studymonitorApp')
                     });
                 }
             }
-        }
+        };
         //Delete Action
         var deleteClass = function (index) {
             if (ClassCtrl.classList) {
@@ -123,7 +123,7 @@ angular.module('studymonitorApp')
                     console.log('Error while deleting class. Error Stack' + error);
                 });
             }
-        }
+        };
         //Edit Action
         ClassCtrl.editClass = function (index) {
             ClassCtrl.formFields.className = ClassCtrl.classList[index].className;
@@ -142,14 +142,14 @@ angular.module('studymonitorApp')
                 ClassCtrl.editmode = true;
             });
 
-        }
+        };
 
         //Setting up float label
         ClassCtrl.setFloatLabel = function () {
             Metronic.setFlotLabel($('input[name=sectionname]'));
             Metronic.setFlotLabel($('input[name=classname]'));
             Metronic.setFlotLabel($('input[name=staffname]'));
-        }
+        };
 
         //Close or Open modal
         ClassCtrl.closeModal = function () {
@@ -158,11 +158,11 @@ angular.module('studymonitorApp')
 
             //ClearFields
             clearformfields();
-        }
+        };
         ClassCtrl.openModal = function () {
             var modal = $('#edit-class');
             modal.modal('show');
-        }
+        };
         //Clear Fields
         function clearformfields() {
             ClassCtrl.formFields = {};
@@ -171,16 +171,19 @@ angular.module('studymonitorApp')
         //Delete confirmation box
         ClassCtrl.confirmCallbackMethod = function (index) {
             deleteClass(index);
-        }
+        };
         //Delete cancel box
         ClassCtrl.confirmCallbackCancel = function (index) {
-            return false;
-        }
+            if (index) {
+                return false;
+            }
+            return;
+        };
         //More Details
         ClassCtrl.moreDetails = function (index) {
             ClassCtrl.detailsMode = true;
             ClassCtrl.openModal();
             ClassCtrl.viewValue = ClassCtrl.classList[index];
 
-        }
+        };
     });

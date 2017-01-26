@@ -22,14 +22,14 @@ angular.module('studymonitorApp')
         });
       };
       this.getClassDetails = function () {
-        classtimetableService.getClassDetailsBySchoolId(ClasstimetableCtrl.schoolId).then(function (result) {
-          if (result) {
-            ClasstimetableCtrl.classList = result;
-          }
-        }, function (error) {
-          console.log('Error while fetching the Classtimetable records. Error stack : ' + error);
-        });
-      }
+          classtimetableService.getClassDetailsBySchoolId(ClasstimetableCtrl.schoolId).then(function (result) {
+              if (result) {
+                  ClasstimetableCtrl.classList = result;
+              }
+          }, function (error) {
+              console.log('Error while fetching the Classtimetable records. Error stack : ' + error);
+          });
+      };
 
     }
     (new Init()).getClasstimetableDetails();
@@ -59,16 +59,16 @@ angular.module('studymonitorApp')
 
     //Close or Open modal
     ClasstimetableCtrl.closeModal = function () {
-      var modal = $('#edit-timetable');
-      modal.modal('hide');
+        var modal = $('#edit-timetable');
+        modal.modal('hide');
 
-      //ClearFields
-      clearformfields();
-    }
+        //ClearFields
+        clearformfields();
+    };
     ClasstimetableCtrl.openModal = function () {
-      var modal = $('#edit-timetable');
-      modal.modal('show');
-    }
+        var modal = $('#edit-timetable');
+        modal.modal('show');
+    };
     //Clear Fields
     function clearformfields() {
       ClasstimetableCtrl.formFields = {};

@@ -18,7 +18,7 @@ angular.module('studymonitorApp')
                 _activepromise.reject(error);
             });
             return _activepromise.promise;
-        }
+        };
         this.getExistingGrades = function (data) {
             var _activepromise = $q.defer();
             Grade.findOne({ filter: { where: { schoolId: data.schoolId, gradeName: data.gradeName } } },
@@ -28,8 +28,7 @@ angular.module('studymonitorApp')
                     _activepromise.reject(error);
                 });
             return _activepromise.promise;
-
-        }
+        };
         this.CreateOrUpdateGrade = function (data) {
             var _activepromise = $q.defer();
             Grade.create({ schoolId: data.schoolId, gradeName: data.gradeName, gradePoint: data.gradePoint, percentageRangeFrom: data.percentageRangeFrom, percentageRangeTo: data.percentageRangeTo },
@@ -39,10 +38,9 @@ angular.module('studymonitorApp')
                     _activepromise.reject(error);
                 });
             return _activepromise.promise;
-
-        }
+        };
         this.deleteGrade = function (gradeId) {
             var _activepromise = $q.defer();
-            Grade.deleteById({ id: gradeId }, function (response) { _activepromise.resolve(response) }, function (error) { _activepromise.reject(error) }); return _activepromise.promise;
-        }
+            Grade.deleteById({ id: gradeId }, function (response) { _activepromise.resolve(response); }, function (error) { _activepromise.reject(error); }); return _activepromise.promise;
+        };
     });

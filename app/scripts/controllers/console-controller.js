@@ -8,17 +8,17 @@
  * Controller of the studymonitorApp
  */
 angular.module('studymonitorApp')
-  .controller('ConsoleController', function (consoleService,$cookies, $state) {
+  .controller('ConsoleController', function (consoleService, $cookies, $state) {
       var ConsoleCtrl = this;
 
       ConsoleCtrl.logout = function () {
           //Clear the cookies and navigate to login
           $cookies.remove('uds');
           $state.go('login');
-      }
+      };
       ConsoleCtrl.schoolId = $cookies.getObject('uds').schoolId;
-      
-      function init() {
+
+      function Init() {
           this.getNoticeDetails = function () {
               consoleService.getNoticeDetailsBySchoolId(ConsoleCtrl.schoolId).then(function (result) {
                   if (result) {
@@ -36,9 +36,9 @@ angular.module('studymonitorApp')
               }, function (error) {
                   console.log('Error while fetching notice details. Error stack : ' + error);
               });
-          }
+          };
       }
-      (new init()).getNoticeDetails();
+      (new Init()).getNoticeDetails();
 
 
   });
