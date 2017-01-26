@@ -8,7 +8,7 @@
  * Controller of the studymonitorApp
  */
 angular.module('studymonitorApp')
-  .controller('SubjectsController', function (subjectsService, $cookies, $timeout,APP_MESSAGES,toastr) {
+  .controller('SubjectsController', function (subjectsService, $cookies, $timeout, APP_MESSAGES, toastr) {
       var SubjectsCtrl = this;
       //Defaults
       SubjectsCtrl.schoolId = $cookies.getObject('uds').schoolId;
@@ -20,25 +20,6 @@ angular.module('studymonitorApp')
               subjectsService.getSubjectListBySchoolId(SubjectsCtrl.schoolId).then(function (response) {
                   if (response) {
                       SubjectsCtrl.subjectList = response;
-
-                      $timeout(function () {
-                          var columnsDefs = [null, null, null, {
-                              "orderable": false,
-                              "width": "10%",
-                              "targets": 0
-                          }, {
-                              "orderable": false,
-                              "width": "10%",
-                              "targets": 0
-                          }, {
-                              "orderable": false,
-                              "width": "10%",
-                              "targets": 0
-                          }];
-                          TableEditable.init("#subjects_datatable", columnsDefs);
-                          //Initialize metronic
-                          Metronic.init();
-                      });
                   }
               }, function (error) {
                   console.log('Error while fetching subject list . Error stack : ' + error);
@@ -57,6 +38,25 @@ angular.module('studymonitorApp')
       }
       (new init()).fnSubjectList();
       (new init()).getClassAndStaffList();
+
+      $timeout(function () {
+          var columnsDefs = [null, null, null, {
+              "orderable": false,
+              "width": "10%",
+              "targets": 0
+          }, {
+              "orderable": false,
+              "width": "10%",
+              "targets": 0
+          }, {
+              "orderable": false,
+              "width": "10%",
+              "targets": 0
+          }];
+          TableEditable.init("#subjects_datatable", columnsDefs);
+          //Initialize metronic
+          Metronic.init();
+      }, 1000);
 
       /* =============================== Modal Functionality ============================= */
       SubjectsCtrl.closeModal = function () {
@@ -99,35 +99,62 @@ angular.module('studymonitorApp')
               schoolId: SubjectsCtrl.schoolId,
               classId: SubjectsCtrl.formFields.classId,
               subjectName: SubjectsCtrl.formFields.subjectName,
-              staffId: SubjectsCtrl.formFields.staffName
+              staffId: SubjectsCtrl.formFields.staffName,
+              examFlag: SubjectsCtrl.formFields.examFlag
           }
 
           if (data) {
-              subjectsService.verifyDataExistsOrNot(data).then(function (result) {
-                  if (result) {
-                      console.log('Data already exists');
-                  }
-              }, function (result1) {
-                  if (result1.status === 404) {
-                      subjectsService.CreateSubject(data).then(function (result) {
-                          if (result) {
-                              //Re initialize the data
-                              (new init()).fnSubjectList();
-                              //Close Modal Window
-                              SubjectsCtrl.closeModal();
-                              //Clear Fields
-                              clearformfields();
-                          }
-                      }, function (error) {
-                          console.log('Error while fetching records. Error stack : ' + error);
-                      });
-                  }
-              });
+
+              if (SubjectsCtrl.editmode) {
+                  subjectsService.updateSubject(data).then(function (result) {
+                      if (result) {
+                          //Re initialize the data
+                          (new init()).fnSubjectList();
+                          //Close Modal Window
+                          SubjectsCtrl.closeModal();
+                          //Clear Fields
+                          clearformfields();
+                          //Show Toast
+                          toastr.success(APP_MESSAGES.UPDATE_SUCCESS);
+                      }
+                  }, function (error) {
+                      //Close Modal Window
+                      SubjectsCtrl.closeModal();
+                      //Clear Fields
+                      clearformfields();
+                      //Show Toast
+                      toastr.error(APP_MESSAGES.SERVER_ERROR);
+                  });
+              }
+              else {
+                  subjectsService.verifyDataExistsOrNot(data).then(function (result) {
+                      if (result) {
+                          console.log('Data already exists');
+                      }
+                  }, function (result1) {
+                      if (result1.status === 404) {
+                          subjectsService.CreateSubject(data).then(function (result) {
+                              if (result) {
+                                  //Re initialize the data
+                                  (new init()).fnSubjectList();
+                                  //Close Modal Window
+                                  SubjectsCtrl.closeModal();
+                                  //Clear Fields
+                                  clearformfields();
+                                  //Show Toast
+                                  toastr.success(APP_MESSAGES.INSERT_SUCCESS);
+                              }
+                          }, function (error) {
+                              console.log('Error while fetching records. Error stack : ' + error);
+                          });
+                      }
+                  });
+              }
           }
       }
       //********************************** Create or Update New Record End
       //********************************** Delete Record
-      
+
       //Delete Action
       var deleteSubject = function (index) {
           if (SubjectsCtrl.subjectList) {
@@ -142,7 +169,23 @@ angular.module('studymonitorApp')
               });
           }
       }
-       //********************************** Delete Record Ends
+      //********************************** Delete Record Ends
+
+      //Edit Subject
+      SubjectsCtrl.editSubject = function (index) {
+          SubjectsCtrl.formFields.subjectName = SubjectsCtrl.subjectList[index].subjectName;
+          SubjectsCtrl.formFields.classId = SubjectsCtrl.subjectList[index].classId;
+          SubjectsCtrl.formFields.staffName = SubjectsCtrl.subjectList[index].staffId;
+          SubjectsCtrl.formFields.examFlag = SubjectsCtrl.subjectList[index].examFlag;
+
+          //Open Modal
+          SubjectsCtrl.openModal();
+
+          $timeout(function () {
+              SubjectsCtrl.setFloatLabel();
+              SubjectsCtrl.editmode = true;
+          });
+      }
 
       /* =============================== Modal Functionality End ========================= */
   });

@@ -42,7 +42,7 @@ angular.module('studymonitorApp')
       //Create New Subject
       this.CreateSubject = function (data) {
           var _activepromise = $q.defer();
-          Subject.create({ schoolId: data.schoolId, classId: data.classId, subjectName: data.subjectName, staffId: data.staffId }, function (response) {
+          Subject.create({ schoolId: data.schoolId, classId: data.classId, subjectName: data.subjectName, staffId: data.staffId, examFlag: data.examFlag }, function (response) {
               _activepromise.resolve(response);
           }, function (error) {
               _activepromise.reject(error);
@@ -53,5 +53,15 @@ angular.module('studymonitorApp')
       this.deleteSubject = function (subjectId) {
           var _activepromise = $q.defer();
           Subject.deleteById({ id: subjectId }, function (response) { _activepromise.resolve(response) }, function (error) { _activepromise.reject(error) }); return _activepromise.promise;
+      }
+      //Update Subject
+      this.updateSubject = function (data) {
+          var _activepromise = $q.defer();
+          Subject.upsert({ id: data.id, staffId: data.id, examFlag: data.examFlag }, function (response) {
+              _activepromise.resolve(response);
+          }, function (response) {
+              _activepromise.reject(response);
+          });
+          return _activepromise.promise;
       }
   });

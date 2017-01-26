@@ -86,17 +86,16 @@
                                             <td>{{subject.class.className}} {{subject.class.sectionName}}</td>
                                             <td>{{subject.staff.firstName}} {{subject.staff.lastName}}</td>
                                             <td class="text-center">
-                                                <input bs-switch ng-model="subject.examFlag" type="checkbox" switch-size="mini" switch-on-text="Yes" switch-off-text="No"
-                                                />
+                                                <input bs-switch ng-model="subject.examFlag" type="checkbox" switch-size="mini" switch-on-text="Yes" switch-off-text="No" />
                                             </td>
                                             <td class="text-center">
-                                                <a class="edit" href="javascript:void(0);">
+                                                <a class="" href="javascript:void(0);" data-ng-click="SubjectsCtrl.editSubject($index)">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a class="delete" href="javascript:void(0);" ng-bootbox-confirm="Are you sure you want to delete this record ?" ng-bootbox-confirm-action="SubjectsCtrl.confirmCallbackMethod($index)"
-                                                    ng-bootbox-confirm-action-cancel="SubjectsCtrl.confirmCallbackCancel($index)">
+                                                <a class="" href="javascript:void(0);" ng-bootbox-confirm="Are you sure you want to delete this record ?" ng-bootbox-confirm-action="SubjectsCtrl.confirmCallbackMethod($index)"
+                                                   ng-bootbox-confirm-action-cancel="SubjectsCtrl.confirmCallbackCancel($index)">
                                                     <i class="fa fa-remove"></i>
                                                 </a>
                                             </td>
@@ -115,7 +114,6 @@
     <!-- END PAGE CONTENT -->
 </div>
 <!-- END PAGE CONTAINER -->
-
 <!-- EDIT MODAL -->
 <div id="edit-subject" class="modal right fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
@@ -129,15 +127,16 @@
                     <form name="subjectform" novalidate role="form" data-ng-submit="SubjectsCtrl.CreateOrUpdate(subjectform.$invalid)">
                         <div class="form-group form-md-floating-label has-info" data-ng-class="{'form-md-line-input': !SubjectsCtrl.editmode}">
                             <input type="text" class="form-control input-sm" name="subjectname" data-ng-model="SubjectsCtrl.formFields.subjectName" maxlength="50"
-                                data-ng-hide="SubjectsCtrl.editmode" required />
+                                   data-ng-hide="SubjectsCtrl.editmode" required />
                             <label for="form_control_1">Subject Name</label><span data-ng-show="SubjectsCtrl.editmode"> : {{SubjectsCtrl.formFields.subjectName}}</span>
                         </div>
                         <div class="form-group form-md-floating-label has-info" data-ng-class="{'form-md-line-input': !SubjectsCtrl.editmode}">
                             <select class="form-control input-sm" name="classname" data-ng-model="SubjectsCtrl.formFields.classId" maxlength="50" ng-hide="SubjectsCtrl.editmode"
-                                required>
+                                    required>
                                 <option value="">Select Class</option>
                                 <option data-ng-repeat="subject in SubjectsCtrl.classList" value="{{subject.id}}">{{subject.className}} - {{subject.sectionName}}</option>
                             </select>
+                            <label for="form_control_1">Class Name</label><span data-ng-show="SubjectsCtrl.editmode"> : {{subject.className}} - {{subject.sectionName}}</span>
                             <!--<label for="form_control_1">Class Name</label><span data-ng-show="SubjectsCtrl.editmode">: {{SubjectsCtrl.formFields.sectionName}}</span>-->
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
@@ -145,6 +144,10 @@
                                 <option value="">Select Teacher</option>
                                 <option ng-repeat="staff in SubjectsCtrl.staffList" value="{{staff.id}}">{{staff.firstName}} {{staff.lastName}}</option>
                             </select>
+                        </div>
+                        <div class="form-group form-md-line-input form-md-floating-label has-info static-info">
+                            <label>Exam enable/disable: </label>
+                            <input bs-switch data-ng-init="SubjectsCtrl.formFields.examFlag = false" ng-model="SubjectsCtrl.formFields.examFlag" type="checkbox" switch-size="mini" switch-on-text="Yes" switch-off-text="No" />
                         </div>
                         <div class="form-group">
                             <button type="reset" class="btn default">Reset</button>

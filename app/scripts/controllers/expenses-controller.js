@@ -165,4 +165,9 @@ angular.module('studymonitorApp')
             Metronic.setFlotLabel($('input[name=amount]'));
         }
 
+        //Calendar Fix @@TODO Move this to directive
+        $(".calendarctrl").on("dp.change", function () {
+            ExpensesCtrl.formFields.date = $(this).val();
+        });
+
     });
