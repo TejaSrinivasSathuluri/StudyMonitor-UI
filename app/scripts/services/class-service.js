@@ -27,9 +27,18 @@ angular.module('studymonitorApp')
       this.getStaffBySchoolID = function (schoolId) {
           return $http.get(API_SERVER + '/Schools/' + schoolId + '/staffs?access_token=' + $cookies.getObject('uts').accessToken);
       };
-      this.classAddOrUpdate = function (data) {
+      this.classAdd = function (data) {
           var _activepromise = $q.defer();
-          Class.upsert(data, function (response) {
+          Class.upsert({ schoolId: data.schoolId, className: data.className, sectionName: data.sectionName, staffId: data.staffId }, function (response) {
+              _activepromise.resolve(response);
+          }, function (error) {
+              _activepromise.reject(error);
+          });
+          return _activepromise.promise;
+      }
+      this.classUpdate = function (data) {
+          var _activepromise = $q.defer();
+          Class.upsert({ id: data.classId, staffId: data.staffId }, function (response) {
               _activepromise.resolve(response);
           }, function (error) {
               _activepromise.reject(error);
@@ -39,5 +48,14 @@ angular.module('studymonitorApp')
       this.deleteClass = function (classId) {
           var _activepromise = $q.defer();
           Class.deleteById({ id: classId }, function (response) { _activepromise.resolve(response) }, function (error) { _activepromise.reject(error) }); return _activepromise.promise;
+      };
+      this.findClassRecord = function (data) {
+          var _activepromise = $q.defer();
+          Class.findOne({ filter: { where: { schoolId: data.schoolId, className: data.className, sectionName: data.sectionName } } }, function (response) {
+              _activepromise.resolve(response);
+          }, function (error) {
+              _activepromise.reject(error);
+          });
+          return _activepromise.promise;
       }
   });

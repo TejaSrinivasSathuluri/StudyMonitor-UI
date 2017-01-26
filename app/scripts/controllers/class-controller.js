@@ -12,6 +12,8 @@ angular.module('studymonitorApp')
         var ClassCtrl = this;
         ClassCtrl.formFields = {};
         ClassCtrl.editmode = false;
+        ClassCtrl.detailsMode = false;
+        ClassCtrl.viewValue = {};
 
         function init() {
             //var GetClassDetails = function () {
@@ -29,8 +31,6 @@ angular.module('studymonitorApp')
             //}
         }
         init();
-
-
         //Initialize the Table Component
         $timeout(function () {
             var columnsDefs = [null, null, null, {
@@ -38,14 +38,14 @@ angular.module('studymonitorApp')
                 'width': '10%',
                 'targets': 0
             }, {
-                    'orderable': false,
-                    'width': '10%',
-                    'targets': 0
-                }, {
-                    'orderable': false,
-                    'width': '10%',
-                    'targets': 0
-                }];
+                'orderable': false,
+                'width': '10%',
+                'targets': 0
+            }, {
+                'orderable': false,
+                'width': '10%',
+                'targets': 0
+            }];
             TableEditable.init('#class_datatable', columnsDefs);
             Metronic.init();
         }, 1000);
@@ -68,7 +68,8 @@ angular.module('studymonitorApp')
 
                 //Check whether editmode or normal mode
                 if (ClassCtrl.editmode) {
-                    classService.classAddOrUpdate({ id: ClassCtrl.editingClassId, staffId: data.staffId }).then(function (response) {
+                    data.classId = ClassCtrl.classId;
+                    classService.classUpdate(data).then(function (response) {
                         if (response) {
                             //On successfull refill the data list
                             init();
@@ -82,18 +83,26 @@ angular.module('studymonitorApp')
                     });
                 }
                 else {
-                    classService.classAddOrUpdate(data).then(function (result) {
-                        if (result) {
-                            //On Successfull refill the data list
-                            init();
-                            //Close Modal
-                            ClassCtrl.closeModal();
-                            //Show Toast Message Success
-                            toastr.success(APP_MESSAGES.INSERT_SUCCESS);
+                    classService.findClassRecord(data).then(function (res) {
+                        if (res) {
+                            toastr.error(APP_MESSAGES.DATA_EXISTS_DESC, APP_MESSAGES.DATA_EXISTS);
                         }
-                    }, function (error) {
-                        toastr.error(error, APP_MESSAGES.SERVER_ERROR);
-                        console.log('Error while creating or updating records. Error stack' + error);
+                    }, function (res1) {
+                        if (res1) {
+                            classService.classAdd(data).then(function (result) {
+                                if (result) {
+                                    //On Successfull refill the data list
+                                    init();
+                                    //Close Modal
+                                    ClassCtrl.closeModal();
+                                    //Show Toast Message Success
+                                    toastr.success(APP_MESSAGES.INSERT_SUCCESS);
+                                }
+                            }, function (error) {
+                                toastr.error(error, APP_MESSAGES.SERVER_ERROR);
+                                console.log('Error while creating or updating records. Error stack' + error);
+                            });
+                        }
                     });
                 }
             }
@@ -108,7 +117,7 @@ angular.module('studymonitorApp')
                         ClassCtrl.closeModal();
                         //Show Toast Message Success
                         toastr.success(APP_MESSAGES.DELETE_SUCCESS);
-                      
+
                     }
                 }, function (error) {
                     console.log('Error while deleting class. Error Stack' + error);
@@ -120,7 +129,9 @@ angular.module('studymonitorApp')
             ClassCtrl.formFields.className = ClassCtrl.classList[index].className;
             ClassCtrl.formFields.sectionName = ClassCtrl.classList[index].sectionName;
             ClassCtrl.formFields.staffName = ClassCtrl.classList[index].staffId;
-            ClassCtrl.editingClassId = ClassCtrl.classList[index].id;
+            ClassCtrl.classId = ClassCtrl.classList[index].id;
+            //Set View Mode false
+            ClassCtrl.detailsMode = false;
             //Open Modal
             ClassCtrl.openModal();
 
@@ -164,5 +175,12 @@ angular.module('studymonitorApp')
         //Delete cancel box
         ClassCtrl.confirmCallbackCancel = function (index) {
             return false;
+        }
+        //More Details
+        ClassCtrl.moreDetails = function (index) {
+            ClassCtrl.detailsMode = true;
+            ClassCtrl.openModal();
+            ClassCtrl.viewValue = ClassCtrl.classList[index];
+
         }
     });
