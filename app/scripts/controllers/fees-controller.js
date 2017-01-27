@@ -21,19 +21,19 @@ angular.module('studymonitorApp')
 
                         $timeout(function () {
                             var columnsDefs = [null, null, null, null, null, {
-                                "orderable": false,
-                                "width": "10%",
-                                "targets": 0
+                                'orderable': false,
+                                'width': '10%',
+                                'targets': 0
                             }, {
-                                "orderable": false,
-                                "width": "10%",
-                                "targets": 0
+                                'orderable': false,
+                                'width': '10%',
+                                'targets': 0
                             }, {
-                                "orderable": false,
-                                "width": "10%",
-                                "targets": 0
+                                'orderable': false,
+                                'width': '10%',
+                                'targets': 0
                             }];
-                            TableEditable.init("#fees_datatable", columnsDefs);
+                            TableEditable.init('#fees_datatable', columnsDefs);
                         });
                     }
                 }, function (error) {
@@ -106,7 +106,7 @@ angular.module('studymonitorApp')
                             }
 
                         }, function (error) {
-                            console.log("Error while Fetching the Records" + error);
+                            console.log('Error while Fetching the Records' + error);
                         });
                     }
                 });

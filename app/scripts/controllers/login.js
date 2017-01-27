@@ -15,9 +15,9 @@ angular.module('studymonitorApp')
         //@@TODO - Clear the below lines while production
         $timeout(function () {
             LoginCtrl.loginfields = {};
-            LoginCtrl.loginfields.username = 'mkshetty@sm.in';
-            LoginCtrl.loginfields.password = 'admin';
-            LoginCtrl.loginfields.role = 'Admin';
+            //LoginCtrl.loginfields.username = 'mkshetty@sm.in';
+            //LoginCtrl.loginfields.password = 'admin';
+            //LoginCtrl.loginfields.role = 'Admin';
         });
         //@@TODO - Clear the above lines in prod
 
@@ -26,8 +26,8 @@ angular.module('studymonitorApp')
                 return;
             }
             var data = {
-                "email": LoginCtrl.loginfields.username,
-                "password": LoginCtrl.loginfields.password
+                'email': LoginCtrl.loginfields.username,
+                'password': LoginCtrl.loginfields.password
             };
 
             if (data) {

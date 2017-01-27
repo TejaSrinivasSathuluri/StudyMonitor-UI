@@ -58,19 +58,19 @@ angular.module('studymonitorApp')
 
     $timeout(function () {
         var columnsDefs = [{
-            "width": "10%"
+            'width': '10%'
         }, {
-            "width": "10%"
+            'width': '10%'
         }, {
-            "width": "10%"
+            'width': '10%'
         }, {
-            "width": "10%",
+            'width': '10%',
         }, {
-            "width": "10%"
+            'width': '10%'
         }, {
-            "width": "10%"
+            'width': '10%'
         }, {
-            "width": "10%"
+            'width': '10%'
         }, {
             'orderable': false,
             'width': '10%',

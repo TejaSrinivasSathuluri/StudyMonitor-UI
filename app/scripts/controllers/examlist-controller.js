@@ -22,19 +22,19 @@ angular.module('studymonitorApp')
                         //Trigger the editable datatable
                         $timeout(function () {
                             var columnsDefs = [null, null, null, null, {
-                                "orderable": false,
-                                "width": "10%",
-                                "targets": 0
+                                'orderable': false,
+                                'width': '10%',
+                                'targets': 0
                             }, {
-                                "orderable": false,
-                                "width": "10%",
-                                "targets": 0
+                                'orderable': false,
+                                'width': '10%',
+                                'targets': 0
                             }, {
-                                "orderable": false,
-                                "width": "10%",
-                                "targets": 0
+                                'orderable': false,
+                                'width': '10%',
+                                'targets': 0
                             }];
-                            TableEditable.init("#examlist_datatable", columnsDefs);
+                            TableEditable.init('#examlist_datatable', columnsDefs);
                             Metronic.init();
                         });
                     }
@@ -108,7 +108,7 @@ angular.module('studymonitorApp')
                             }
 
                         }, function (error) {
-                            console.log("Error while Fetching the Records" + error);
+                            console.log('Error while Fetching the Records' + error);
                         });
                     }
                 });

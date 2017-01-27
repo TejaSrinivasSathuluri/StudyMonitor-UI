@@ -25,19 +25,19 @@ angular.module('studymonitorApp')
                         //Trigger the editable datatable
                         $timeout(function () {
                             var columnsDefs = [null, null, null, null, {
-                                "orderable": false,
-                                "width": "10%",
-                                "targets": 0
+                                'orderable': false,
+                                'width': '10%',
+                                'targets': 0
                             }, {
-                                "orderable": false,
-                                "width": "10%",
-                                "targets": 0
+                                'orderable': false,
+                                'width': '10%',
+                                'targets': 0
                             }, {
-                                "orderable": false,
-                                "width": "10%",
-                                "targets": 0
+                                'orderable': false,
+                                'width': '10%',
+                                'targets': 0
                             }];
-                            TableEditable.init("#expenses_datatable", columnsDefs);
+                            TableEditable.init('#expenses_datatable', columnsDefs);
                             Metronic.init();
                         }, 1000);
                     }
@@ -106,7 +106,7 @@ angular.module('studymonitorApp')
                                 }
 
                             }, function (error) {
-                                console.log("Error while Fetching the Records" + error);
+                                console.log('Error while Fetching the Records' + error);
                             });
                         }
                     });
@@ -171,7 +171,7 @@ angular.module('studymonitorApp')
         };
 
         //Calendar Fix @@TODO Move this to directive
-        $(".calendarctrl").on("dp.change", function () {
+        $('.calendarctrl').on('dp.change', function () {
             ExpensesCtrl.formFields.date = $(this).val();
         });
 

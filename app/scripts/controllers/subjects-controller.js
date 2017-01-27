@@ -41,19 +41,19 @@ angular.module('studymonitorApp')
 
       $timeout(function () {
           var columnsDefs = [null, null, null, {
-              "orderable": false,
-              "width": "10%",
-              "targets": 0
+              'orderable': false,
+              'width': '10%',
+              'targets': 0
           }, {
-              "orderable": false,
-              "width": "10%",
-              "targets": 0
+              'orderable': false,
+              'width': '10%',
+              'targets': 0
           }, {
-              "orderable": false,
-              "width": "10%",
-              "targets": 0
+              'orderable': false,
+              'width': '10%',
+              'targets': 0
           }];
-          TableEditable.init("#subjects_datatable", columnsDefs);
+          TableEditable.init('#subjects_datatable', columnsDefs);
           //Initialize metronic
           Metronic.init();
       }, 1000);

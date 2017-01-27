@@ -25,7 +25,7 @@ angular.module('studymonitorApp')
                 }
             }, function (error) {
                 if (error) {
-                    console.log("Error while fecthing class records. Error stack: " + error);
+                    console.log('Error while fecthing class records. Error stack: ' + error);
                 }
             });
             //}
