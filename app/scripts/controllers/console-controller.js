@@ -75,6 +75,6 @@ angular.module('studymonitorApp')
             };
         }
         (new Init()).getNoticeDetails();
-        (new init()).getExamDetails();
-        (new init()).getAssignmentDetails();
+        (new Init()).getExamDetails();
+        (new Init()).getAssignmentDetails();
     });

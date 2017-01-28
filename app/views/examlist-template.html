@@ -98,12 +98,12 @@
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a class="edit" href="javascript:void(0);">
+                                                <a class="edit" href="javascript:void(0);" data-ng-click="ExamlistCtrl.editExamlist($index)">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a class="delete" href="javascript:void(0);" ng-bootbox-confirm="Are you sure you want to delete this record ?" ng-bootbox-confirm-action="ExamlistCtrl.confirmCallbackMethod($index)"
+                                                <a href="javascript:void(0);" ng-bootbox-confirm="Are you sure you want to delete this record ?" ng-bootbox-confirm-action="ExamlistCtrl.confirmCallbackMethod($index)"
                                                     ng-bootbox-confirm-action-cancel="ExamlistCtrl.confirmCallbackCancel($index)">
                                                     <i class="fa fa-remove"></i>
                                                 </a>
@@ -147,12 +147,12 @@
                             <label for="form_control_1">Exam Name</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm calendarctrl" name="fromdate" data-ng-model=" ExamlistCtrl.formFields.fromDate"
+                            <input type="text" class="form-control input-sm calendarctrl" id="Exam_date1" name="fromdate" data-ng-model=" ExamlistCtrl.formFields.fromDate"
                                 maxlength="50" required />
                             <label for="form_control_1">From Date</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm calendarctrl" name="todate" data-ng-model=" ExamlistCtrl.formFields.toDate"
+                            <input type="text" class="form-control input-sm calendarctrl" id="Exam_date2" name="todate" data-ng-model=" ExamlistCtrl.formFields.toDate"
                                 maxlength="50" required />
                             <label for="form_control_1">To DATE</label>
                         </div>

@@ -43,4 +43,14 @@ angular.module('studymonitorApp')
           var _activepromise = $q.defer();
           Library.deleteById({ id: bookId }, function (response) { _activepromise.resolve(response); }, function (error) { _activepromise.reject(error); }); return _activepromise.promise;
       };
+      this.editLibrary = function (data) {
+            var _activepromise = $q.defer();
+            Library.upsert({ id: data.id, name: data.name, author: data.author, description: data.description, price: data.price, available:data.available },
+                function (response) {
+                    _activepromise.resolve(response);
+                }, function (error) {
+                    _activepromise.reject(error);
+                });
+            return _activepromise.promise;
+        };
   });

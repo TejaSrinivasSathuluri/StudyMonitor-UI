@@ -52,4 +52,15 @@ angular.module('studymonitorApp')
           var _activepromise = $q.defer();
           Exam.deleteById({ id: examId }, function (response) { _activepromise.resolve(response); }, function (error) { _activepromise.reject(error); }); return _activepromise.promise;
       };
+
+      this.editExamlist = function (data) {
+            var _activepromise = $q.defer();
+            Exam.upsert({  id:data.id,examName: data.examName, classId: data.classId, fromDate: data.fromDate, toDate: data.toDate},
+                function (response) {
+                    _activepromise.resolve(response);
+                }, function (error) {
+                    _activepromise.reject(error);
+                });
+            return _activepromise.promise;
+        };
   });
