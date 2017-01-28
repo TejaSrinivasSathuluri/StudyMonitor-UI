@@ -30,11 +30,18 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="btn-group">
-                                                <button data-toggle="modal" data-target="#edit-class" data-ng-click="ClassCtrl.editmode = false;ClassCtrl.setFloatLabel()"
-                                                    class="btn green">
-                                                    Add New
+                                                <button class="btn green btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    ADD NEW USER
                                                     <i class="fa fa-plus"></i>
                                                 </button>
+                                                <ul class="dropdown-menu pull-right">
+                                                    <li>
+                                                        <a ui-sref="home.addStudent"> Student </a>
+                                                    </li>
+                                                    <li>
+                                                        <a ui-sref="home.addStaff"> Staff </a>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
                                         <div class="col-md-6">

@@ -1,0 +1,149 @@
+<!-- BEGIN PAGE CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN PAGE CONTENT -->
+    <div class="page-content">
+        <div class="container">
+            <!-- BEGIN PAGE BREADCRUMB -->
+            <ul class="page-breadcrumb breadcrumb">
+                <li>
+                    <a ui-sref="home.console">Home</a><i class="fa fa-circle"></i>
+                </li>
+                <li class="active">
+                    Transport Management<i class="fa fa-circle"></i>
+                </li>
+                <li class="active">
+                    Bus Service<i class="fa fa-circle"></i>
+                </li>
+                <li class="active">
+                    Add Routes
+                </li>
+            </ul>
+            <!-- END PAGE BREADCRUMB -->
+            <!-- BEGIN PAGE CONTENT INNER -->
+            <div class="page-content-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                        <div class="portlet light portlet-fit ">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-truck font-green"></i>
+                                    <span class="caption-subject font-green bold uppercase">ADD ROUTE</span>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <!-- INNER CONTENT GOES HERE-->
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-12">
+                                        <form name="busserviceform" novalidate role="form" data-ng-submit=" BusserviceCtrl.serviceAction(busserviceform.$invalid)">
+                                            <div class="form-group form-md-line-input form-md-floating-label has-info">
+                                                <select data-ng-model="BusserviceCtrl.formFields.busId" name="busId" class="form-control input-sm" required>
+                                                <option value="">Bus Number</option>
+                                                <option ng-repeat="bus in BusserviceCtrl.busList" value="{{bus.id}}">{{bus.busNo}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group form-md-line-input form-md-floating-label has-info">
+                                                <input type="text" class="form-control input-sm" name="serviceStartPoint" data-ng-model="BusserviceCtrl.formFields.serviceStartPoint"
+                                                    maxlength="50" required />
+                                                <label for="form_control_1">PickUp Ponit</label>
+                                            </div>
+                                            <div class="form-group form-md-line-input form-md-floating-label has-info">
+                                                <input type="text" class="form-control input-sm" name="serviceDropPoint" data-ng-model="BusserviceCtrl.formFields.serviceDropPoint"
+                                                    maxlength="50" required />
+                                                <label for="form_control_1">Drop Point</label>
+                                            </div>
+                                            <div class="form-group form-md-line-input form-md-floating-label has-info">
+                                                <input type="text" class="form-control input-sm" name="serviceNo" data-ng-model=" BusserviceCtrl.formFields.serviceNo" maxlength="50"
+                                                    required />
+                                                <label for="form_control_1">Service Number</label>
+                                            </div>
+                                            <div class="form-group form-md-line-input form-md-floating-label has-info">
+                                                <input type="text" class="form-control input-sm calendarctrl" name="serviceStartTime1" data-ng-model="BusserviceCtrl.formFields.serviceStartTime1"
+                                                    maxlength="50" required />
+                                                <label for="form_control_1">PickUp Start Time</label>
+                                            </div>
+                                            <div class="form-group form-md-line-input form-md-floating-label has-info">
+                                                <input type="text" class="form-control input-sm calendarctrl" name="serviceStartTime2" data-ng-model="BusserviceCtrl.formFields.serviceStartTime2"
+                                                    maxlength="50" required />
+                                                <label for="form_control_1">Drop Start Time</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="reset" class="btn default" ui-sref="home.busservice">Reset</button>
+                                                <button type="submit" class="btn green" data-ng-disabled="busserviceform.$invalid"><i class="fa fa-check"></i> Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-9 col-sm-12">
+                                        <table class="table table-striped table-hover table-bordered sm_editable_grid" id="marks_datatable">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        Location
+                                                    </th>
+                                                    <th>
+                                                        Duration
+                                                    </th>
+                                                    <th>
+                                                        Time
+                                                    </th>
+                                                    <th>
+                                                        Fee
+                                                    </th>
+                                                    <th class="text-center">
+                                                        Add More
+                                                    </th>
+                                                    <th class="text-center">
+                                                        Edit
+                                                    </th>
+                                                    <th class="text-center">
+                                                        Delete
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr data-ng-repeat="mark in MarksCtrl.marksList">
+                                                    <td>{{data.firstName}} {{data.lastName}}</td>
+                                                    <td>{{data.rollNo}}</td>
+                                                    <td>{{mark.marks}}</td>
+                                                    <td>{{mark.maxMarks}}</td>
+                                                    <td>{{mark.percentage}}</td>
+                                                    <td class="text-center">
+                                                        <a class="edit" href="javascript:void(0);">
+                                                            <i class="fa fa-plus"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a class="edit" href="javascript:void(0);">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a class="delete" href="javascript:void(0);">
+                                                            <i class="fa fa-remove"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END EXAMPLE TABLE PORTLET-->
+                    </div>
+                </div>
+            </div>
+            <!-- END PAGE CONTENT INNER -->
+        </div>
+    </div>
+    <!-- END PAGE CONTENT -->
+</div>
+<!-- END PAGE CONTAINER -->
+<script>
+    (function () {
+        $('.calendarctrl').datetimepicker({
+            format: 'HH:mm'
+
+        });
+    })();
+</script>

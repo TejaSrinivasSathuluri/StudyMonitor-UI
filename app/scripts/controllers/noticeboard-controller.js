@@ -36,11 +36,7 @@ angular.module('studymonitorApp')
                 "width": "10%"
             }, {
                 "width":"10%"
-            }, {
-                "orderable": false,
-                "width": "10%",
-                "targets": 0
-            }, {
+            },{
                 "orderable": false,
                 "width": "10%",
                 "targets": 0
@@ -51,7 +47,7 @@ angular.module('studymonitorApp')
             }];
             TableEditable.init("#notice_datatable", columnsDefs);
             Metronic.init();
-        });
+        },1000);
         //Close or Open modal
         NoticeboardCtrl.closeModal = function() {
             var modal = $('#edit-notice');

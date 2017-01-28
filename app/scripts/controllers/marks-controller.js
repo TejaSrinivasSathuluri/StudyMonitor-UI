@@ -14,7 +14,6 @@ angular.module('studymonitorApp')
       MarksCtrl.schoolId = $cookies.getObject('uds').schoolId;
 
       function Init() {
-
           this.getMarksDetails = function () {
               marksService.getMarksDetailsBySchoolId(MarksCtrl.schoolId).then(function (result) {
                   if (result) {
@@ -74,7 +73,6 @@ angular.module('studymonitorApp')
       MarksCtrl.closeModal = function () {
           var modal = $('#edit-marks');
           modal.modal('hide');
-
           //ClearFields
           clearformfields();
       };
@@ -144,4 +142,3 @@ angular.module('studymonitorApp')
           }
       };
   });
-

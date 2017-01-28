@@ -11,7 +11,7 @@ angular.module('studymonitorApp')
     .controller('LibraryController', function (libraryService, $cookies, $timeout) {
         var LibraryCtrl = this;
         LibraryCtrl.schoolId = $cookies.getObject('uds').schoolId;
-        function init() {
+        function Init() {
             this.getLibraryList = function () {
                 libraryService.getLibraryBySchoolId(LibraryCtrl.schoolId).then(function (result) {
                     if (result) {
@@ -22,6 +22,23 @@ angular.module('studymonitorApp')
                 });
             }
         }
+        (new Init()).getLibraryList();
+        //Initialize the Table Component
+        $timeout(function () {
+            var columnsDefs = [{
+                'width': '30%'
+            },null,null,null,null,{
+                'orderable': false,
+                'width': '10%',
+                'targets': 0
+            }, {
+                'orderable': false,
+                'width': '10%',
+                'targets': 0
+            }];
+            TableEditable.init('#libraries_datatable', columnsDefs);
+            Metronic.init();
+        },1000);
         //Close or Open modal
         LibraryCtrl.closeModal = function () {
             var modal = $('#edit-library');
