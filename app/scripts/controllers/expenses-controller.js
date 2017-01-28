@@ -21,25 +21,6 @@ angular.module('studymonitorApp')
                 expensesService.getExpensesBySchoolId(ExpensesCtrl.schoolId).then(function (response) {
                     if (response && response.hasOwnProperty('expensePayments')) {
                         ExpensesCtrl.expensesList = response.expensePayments;
-
-                        //Trigger the editable datatable
-                        $timeout(function () {
-                            var columnsDefs = [null, null, null, null, {
-                                'orderable': false,
-                                'width': '10%',
-                                'targets': 0
-                            }, {
-                                'orderable': false,
-                                'width': '10%',
-                                'targets': 0
-                            }, {
-                                'orderable': false,
-                                'width': '10%',
-                                'targets': 0
-                            }];
-                            TableEditable.init('#expenses_datatable', columnsDefs);
-                            Metronic.init();
-                        }, 1000);
                     }
                 }, function (error) {
                     console.log('Error while fetching expense records. Error stack : ' + error);
@@ -47,6 +28,20 @@ angular.module('studymonitorApp')
             };
         }
         (new Init()).getExpenseRecords();
+        //Trigger the editable datatable
+        $timeout(function () {
+            var columnsDefs = [null, null, null, null, {
+                'orderable': false,
+                'width': '10%',
+                'targets': 0
+            }, {
+                    'orderable': false,
+                    'width': '10%',
+                    'targets': 0
+                }];
+            TableEditable.init('#expenses_datatable', columnsDefs);
+            Metronic.init();
+        }, 1000);
         //Close or Open modal
         ExpensesCtrl.closeModal = function () {
             var modal = $('#edit-expenses');

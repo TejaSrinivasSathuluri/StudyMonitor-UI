@@ -63,4 +63,23 @@ angular.module('studymonitorApp')
             var _activepromise = $q.defer();
             Assignment.deleteById({ id: assignmentId }, function (response) { _activepromise.resolve(response); }, function (error) { _activepromise.reject(error); }); return _activepromise.promise;
         };
+        this.editAssignment = function (data) {
+            var _activepromise = $q.defer();
+            Assignment.upsert({ id: data.id, title: data.title, classId: data.classId, subjectId: data.subjectId, description: data.description, fromDate: data.fromDate, toDate: data.toDate },
+                function (response) {
+                    _activepromise.resolve(response);
+                }, function (error) {
+                    _activepromise.reject(error);
+                });
+            return _activepromise.promise;
+        };
+        this.getSubjectsByClassId = function(classId){
+            var _activepromise = $q.defer();
+            Subject.find({filter: {where: {classId: classId,examFlag:true}}},function(response){
+                _activepromise.resolve(response);
+            },function(error){
+                _activepromise.reject(response);
+            });
+            return _activepromise.promise;
+        }
     });

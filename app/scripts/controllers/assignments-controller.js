@@ -10,11 +10,12 @@
 angular.module('studymonitorApp')
     .controller('AssignmentsController', function (assignmentsService, $cookies, $timeout) {
         var AssignmentsCtrl = this;
+        AssignmentsCtrl.formFields = {};
+        AssignmentsCtrl.editmode = false;
         //Get Assignment details by School ID
         AssignmentsCtrl.schoolId = $cookies.getObject('uds').schoolId;
 
         function Init() {
-
             this.getAssignmentDetails = function () {
                 assignmentsService.getAssignmentDetailsBySchoolId(AssignmentsCtrl.schoolId).then(function (result) {
                     if (result) {
@@ -45,27 +46,23 @@ angular.module('studymonitorApp')
         }
         (new Init()).getAssignmentDetails();
         (new Init()).getClassDetails();
-        (new Init()).getSubjectDetails();
+        //(new Init()).getSubjectDetails();
         //Initialize the Table Component
         $timeout(function () {
             var columnsDefs = [null, null, null, {
                 'width': '30%'
-            }, null, null, {
-                'orderable': false,
-                'width': '10%',
-                'targets': 0
-            }, {
-                'orderable': false,
-                'width': '10%',
-                'targets': 0
-            }, {
-                'orderable': false,
-                'width': '10%',
-                'targets': 0
-            }];
+            }, null, null,{
+                    'orderable': false,
+                    'width': '10%',
+                    'targets': 0
+                }, {
+                    'orderable': false,
+                    'width': '10%',
+                    'targets': 0
+                }];
             TableEditable.init('#assignments_datatable', columnsDefs);
             Metronic.init();
-        });
+        },1000);
         //Close or Open modal
         AssignmentsCtrl.closeModal = function () {
             var modal = $('#edit-assignments');
@@ -105,24 +102,48 @@ angular.module('studymonitorApp')
                 toDate: AssignmentsCtrl.formFields.toDate
             };
             if (data) {
-                assignmentsService.getExistingAssignmentRecords(data).then(function (result) {
-                    if (result) {
-                        console.log('data already exists');
-                        return;
-                    }
-                }, function (result1) {
-                    if (result1) {
-                        assignmentsService.CreateOrUpdateAssignment(data).then(function (res) {
-                            if (res) {
-                                (new Init()).getAssignmentDetails();
-                                AssignmentsCtrl.closeModal();
-                            }
 
-                        }, function (error) {
-                            console.log('Error while Fetching the Records' + error);
-                        });
-                    }
-                });
+                //Check whether editmode or normal mode
+                if (!AssignmentsCtrl.editmode) {
+                    assignmentsService.getExistingAssignmentRecords(data).then(function (result) {
+                        if (result) {
+                            toastr.error(APP_MESSAGES.DATA_EXISTS_DESC, APP_MESSAGES.DATA_EXISTS);
+                            console.log('data already exists');
+                            return;
+                        }
+                    }, function (result1) {
+                        if (result1) {
+                            assignmentsService.CreateOrUpdateAssignment(data).then(function (res) {
+                                if (res) {
+                                    (new Init()).getAssignmentDetails();
+                                    AssignmentsCtrl.closeModal();
+                                    //Show Toast Message Success
+                                    toastr.success(APP_MESSAGES.INSERT_SUCCESS);
+                                }
+
+                            }, function (error) {
+                                toastr.error(error, APP_MESSAGES.SERVER_ERROR);
+                                console.log('Error while Fetching the Records' + error);
+                            });
+                        }
+                    });
+                }
+                else {
+                    data.id = AssignmentsCtrl.editingAssignmentId;
+                    assignmentsService.editAssignment(data).then(function (result) {
+                        if (result) {
+                            //On Successfull refill the data list
+                            (new Init()).getAssignmentDetails();
+                            //Close Modal
+                            AssignmentsCtrl.closeModal();
+                            //Show Toast Message Success
+                            toastr.success(APP_MESSAGES.UPDATE_SUCCESS);
+                        }
+                    }, function (error) {
+                        toastr.error(error, APP_MESSAGES.SERVER_ERROR);
+                        console.log('Error while creating or updating records. Error stack' + error);
+                    });
+                }
             }
         };
         //Delete Action
@@ -139,4 +160,51 @@ angular.module('studymonitorApp')
                 });
             }
         };
+        //Edit Action
+        AssignmentsCtrl.editAssignment = function (index) {
+            AssignmentsCtrl.formFields.title = AssignmentsCtrl.assignmentList[index].title;
+            AssignmentsCtrl.formFields.classId = AssignmentsCtrl.assignmentList[index].classId;
+            AssignmentsCtrl.formFields.subjectId = AssignmentsCtrl.assignmentList[index].subjectId;
+            AssignmentsCtrl.formFields.description = AssignmentsCtrl.assignmentList[index].description;
+            AssignmentsCtrl.formFields.fromDate = AssignmentsCtrl.assignmentList[index].fromDate;
+            AssignmentsCtrl.formFields.toDate = AssignmentsCtrl.assignmentList[index].toDate;
+            AssignmentsCtrl.editingAssignmentId = AssignmentsCtrl.assignmentList[index].id;
+            //Open Modal
+            AssignmentsCtrl.openModal();
+
+            $timeout(function () {
+
+                AssignmentsCtrl.setFloatLabel();
+                //Enable Edit Mode
+                AssignmentsCtrl.editmode = true;
+            });
+
+        };
+        //Setting up float label
+        AssignmentsCtrl.setFloatLabel = function () {
+            Metronic.setFlotLabel($('input[name=title]'));
+            Metronic.setFlotLabel($('input[name=classId]'));
+            Metronic.setFlotLabel($('input[name=subjectId]'));
+            Metronic.setFlotLabel($('input[name=description]'));
+            Metronic.setFlotLabel($('input[name=fromDate]'));
+            Metronic.setFlotLabel($('input[name=toDate]'));
+        };
+        //Calendar Fix @@TODO Move this to directive
+        $('#assignmentdate1').on('dp.change', function () {
+            AssignmentsCtrl.formFields.fromDate = $(this).val();
+        });
+        //Calendar Fix @@TODO Move this to directive
+        $('#assignmentdate2').on('dp.change', function () {
+            AssignmentsCtrl.formFields.toDate = $(this).val();
+        });
+        //Get Subjects based on Selected Classes
+        AssignmentsCtrl.selectedClass = function(){
+            if(AssignmentsCtrl.formFields.classId){
+                assignmentsService.getSubjectsByClassId(AssignmentsCtrl.formFields.classId).then(function(result){
+                    if(result){
+                        AssignmentsCtrl.subjectList = result;
+                    }
+                })
+            }
+        }
     });

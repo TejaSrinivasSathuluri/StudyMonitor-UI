@@ -46,7 +46,7 @@ angular.module('studymonitorApp')
         };
         this.editExpense = function (data) {
             var _activepromise = $q.defer();
-            ExpensePayment.upsert({ id: data.id, title: data.expenseType, description: data.description, date: data.date, amount: data.amount },
+            ExpensePayment.upsert({ id: data.id, expenseType: data.expenseType, description: data.description, date: data.date, amount: data.amount },
                 function (response) {
                     _activepromise.resolve(response);
                 }, function (error) {

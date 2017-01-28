@@ -87,12 +87,12 @@
                                             <td>{{notice.date1 | date:'dd-MM-yyyy'}}</td>
                                             <td>{{notice.date2| date:'dd-MM-yyyy'}}</td>
                                             <td class="text-center">
-                                                <a class="edit" href="javascript:void(0);">
+                                                <a href="javascript:void(0);" data-ng-click="NoticeboardCtrl.editNotice($index)">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a class="delete" href="javascript:void(0);" ng-bootbox-confirm="Are you sure you want to delete this record ?" ng-bootbox-confirm-action="NoticeboardCtrl.confirmCallbackMethod($index)"
+                                                <a href="javascript:void(0);" ng-bootbox-confirm="Are you sure you want to delete this record ?" ng-bootbox-confirm-action="NoticeboardCtrl.confirmCallbackMethod($index)"
                                                     ng-bootbox-confirm-action-cancel="NoticeboardCtrl.confirmCallbackCancel($index)">
                                                     <i class="fa fa-remove"></i>
                                                 </a>
@@ -134,13 +134,13 @@
                             <label for="form_control_1">DESCRIPTION</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm calendarctrl" name="date1" data-ng-model="NoticeboardCtrl.formFields.date1" maxlength="50"
-                                required />
+                            <input type="text" class="form-control input-sm calendarctrl" id="noticedate1" name="date1" data-ng-model="NoticeboardCtrl.formFields.date1"
+                                maxlength="50" required />
                             <label for="form_control_1">FROM DATE</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm calendarctrl" name="date2" data-ng-model="NoticeboardCtrl.formFields.date2" maxlength="50"
-                                required />
+                            <input type="text" class="form-control input-sm calendarctrl" id="noticedate2" name="date2" data-ng-model="NoticeboardCtrl.formFields.date2"
+                                maxlength="50" required />
                             <label for="form_control_1">TO DATE</label>
                         </div>
                         <div class="form-group">
@@ -158,7 +158,7 @@
     (function () {
         $('.calendarctrl').datetimepicker({
             format: 'DD-MM-YYYY',
-            minDate:new Date()
+            minDate: new Date()
         });
     })();
 </script>
