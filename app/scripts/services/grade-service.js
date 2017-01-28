@@ -10,9 +10,9 @@
 angular.module('studymonitorApp')
     .service('gradeService', function ($q, Grade) {
         // AngularJS will instantiate a singleton by calling "new" on this function
-        this.getGradesListBySchoolId = function (schoolId) {
+        this.getGradeDetailsBySchoolId = function (schoolId) {
             var _activepromise = $q.defer();
-            Grade.find({ filter: { where: { schoolId: schoolId } } }, function (response) {
+            Grade.find({filter:{where:{schoolId : schoolId}}}, function (response) {
                 _activepromise.resolve(response);
             }, function (error) {
                 _activepromise.reject(error);
@@ -21,7 +21,7 @@ angular.module('studymonitorApp')
         }
         this.getExistingGrades = function (data) {
             var _activepromise = $q.defer();
-            Grade.findOne({ filter: { where: { schoolId: data.schoolId, gradeName: data.gradeName } } },
+            Grade.findOne({ filter: { where: { schoolId: data.schoolId, gradeName: data.gradeName, gradePoint: data.gradePoint, percentageRangeFrom: data.percentageRangeFrom, percentageRangeTo: data.percentageRangeTo } } },
                 function (response) {
                     _activepromise.resolve(response);
                 }, function (error) {

@@ -83,7 +83,7 @@
                                     <tbody>
                                         <tr data-ng-repeat="subject in SubjectsCtrl.subjectList">
                                             <td>{{subject.subjectName}}</td>
-                                            <td>{{subject.class.className}} {{subject.class.sectionName}}</td>
+                                            <td>{{subject.class.className}}-{{subject.class.sectionName}}</td>
                                             <td>{{subject.staff.firstName}} {{subject.staff.lastName}}</td>
                                             <td class="text-center">
                                                 <input bs-switch ng-model="subject.examFlag" type="checkbox" switch-size="mini" switch-on-text="Yes" switch-off-text="No"
@@ -147,7 +147,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <button type="reset" class="btn default">Reset</button>
+                            <button type="reset" class="btn default" ng-hide="SubjectsCtrl.editmode">Reset</button>
                             <button type="submit" class="btn green" data-ng-disabled="subjectform.$invalid"><i class="fa fa-check"></i> Submit</button>
                         </div>
                     </form>

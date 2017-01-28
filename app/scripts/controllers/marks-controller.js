@@ -58,7 +58,7 @@ angular.module('studymonitorApp')
         (new Init()).getExamDetails();
         //Initialize the Table Component
         $timeout(function () {
-            var columnsDefs = [null, null,null,null, {
+            var columnsDefs = [null, null,null,null, null, {
                 'orderable': false,
                 'width': '10%',
                 'targets': 0

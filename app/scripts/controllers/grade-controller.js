@@ -8,24 +8,40 @@
  * Controller of the studymonitorApp
  */
 angular.module('studymonitorApp')
-    .controller('GradeController', function (gradeService, $timeout, $cookies) {
+    .controller('GradeController', function (gradeService, $cookies, $timeout) {
         var GradeCtrl = this;
-        //Defaults
+        //Get Grade details by School ID
         GradeCtrl.schoolId = $cookies.getObject('uds').schoolId;
 
-        function init() {
-            this.getGradeList = function () {
-                gradeService.getGradesListBySchoolId(GradeCtrl.schoolId).then(function (result) {
+        function Init() {
 
+            this.getGradeDetails = function () {
+                gradeService.getGradeDetailsBySchoolId(GradeCtrl.schoolId).then(function (result) {
                     if (result) {
-                        GradeCtrl.gradelist = result;
+                        GradeCtrl.gradeList = result;
                     }
                 }, function (error) {
-                    console.log('Error while fecthing records for Grade. Error stack : ' + error);
+                    console.log('Error while fetching the assignment records. Error stack : ' + error);
                 });
             }
         }
-        (new init()).getGradeList();
+        (new Init()).getGradeDetails();
+        //Initialize the Table Component
+        $timeout(function () {
+            var columnsDefs = [null, null,null, {
+                'width': '30%'
+            }, {
+                'orderable': false,
+                'width': '10%',
+                'targets': 0
+            }, {
+                'orderable': false,
+                'width': '10%',
+                'targets': 0
+            }];
+            TableEditable.init('#grade_datatable', columnsDefs);
+            Metronic.init();
+        },1000);
         //Close or Open modal
         GradeCtrl.closeModal = function () {
             var modal = $('#edit-grades');
@@ -33,11 +49,11 @@ angular.module('studymonitorApp')
 
             //ClearFields
             clearformfields();
-        }
+        };
         GradeCtrl.openModal = function () {
             var modal = $('#edit-grades');
             modal.modal('show');
-        }
+        };
         //Clear Fields
         function clearformfields() {
             GradeCtrl.formFields = {};
@@ -45,11 +61,11 @@ angular.module('studymonitorApp')
         //Delete confirmation box
         GradeCtrl.confirmCallbackMethod = function (index) {
             deleteGrade(index);
-        }
+        };
         //Delete cancel box
-        GradeCtrl.confirmCallbackCancel = function (index) {
+        GradeCtrl.confirmCallbackCancel = function () {
             return false;
-        }
+        };
         // Add Action
         GradeCtrl.gradeAction = function (invalid) {
             if (invalid) {
@@ -61,7 +77,7 @@ angular.module('studymonitorApp')
                 gradePoint: GradeCtrl.formFields.gradePoint,
                 percentageRangeFrom: GradeCtrl.formFields.percentageRangeFrom,
                 percentageRangeTo: GradeCtrl.formFields.percentageRangeTo
-            }
+            };
             if (data) {
                 gradeService.getExistingGrades(data).then(function (result) {
                     if (result) {
@@ -69,31 +85,32 @@ angular.module('studymonitorApp')
                         return;
                     }
                 }, function (result1) {
-                    gradeService.CreateOrUpdateGrade(data).then(function (res) {
-                        if (res) {
-                            (new init()).getGradeList();
-                            GradeCtrl.closeModal();
-                        }
+                    if (result1) {
+                        gradeService.CreateOrUpdateGrade(data).then(function (res) {
+                            if (res) {
+                                (new Init()).getGradeDetails();
+                                GradeCtrl.closeModal();
+                            }
 
-                    }, function (error) {
-                        console.log("Error while Fetching the Records" + error);
-                    });
+                        }, function (error) {
+                            console.log('Error while Fetching the Records' + error);
+                        });
+                    }
                 });
             }
-        }
+        };
         //Delete Action
         var deleteGrade = function (index) {
-            if (GradeCtrl.gradelist) {
-                gradeService.deleteGrade(GradeCtrl.gradelist[index].id).then(function (result) {
+            if (GradeCtrl.gradeList) {
+                gradeService.deleteGrade(GradeCtrl.gradeList[index].id).then(function (result) {
                     if (result) {
                         //On Successfull refill the data list
-                        (new init()).getGradeList();
+                        (new Init()).getGradeDetails();
                         GradeCtrl.closeModal();
                     }
                 }, function (error) {
-                    console.log('Error while deleting class. Error Stack' + error);
+                    console.log('Error while deleting grade. Error Stack' + error);
                 });
             }
-        }
-
+        };
     });

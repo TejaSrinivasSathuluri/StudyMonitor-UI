@@ -76,9 +76,6 @@
                                                 Max Percentage(%)
                                             </th>
                                             <th class="text-center">
-                                                More Details
-                                            </th>
-                                            <th class="text-center">
                                                 Edit
                                             </th>
                                             <th class="text-center">
@@ -87,16 +84,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr data-ng-repeat="grade in GradeCtrl.gradelist">
+                                        <tr data-ng-repeat="grade in GradeCtrl.gradeList">
                                             <td>{{grade.gradeName}}</td>
                                             <td>{{grade.gradePoint}}</td>
                                             <td>{{grade.percentageRangeFrom}}</td>
                                             <td>{{grade.percentageRangeTo}}</td>
-                                            <td class="text-center">
-                                                <a class="" href="javascript:void(0)">
-                                                    <i class="fa fa-file-text-o"></i>
-                                                </a>
-                                            </td>
                                             <td class="text-center">
                                                 <a class="edit" href="javascript:void(0);">
                                                     <i class="fa fa-edit"></i>
@@ -135,23 +127,23 @@
                 <div class="form-container">
                     <form name="gradesform" novalidate role="form" data-ng-submit="GradeCtrl.gradeAction(gradesform.$invalid)">
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm" name="expensetype" data-ng-model="GradeCtrl.formFields.gradeName" maxlength="50"
+                            <input type="text" class="form-control input-sm" name="gradeName" data-ng-model="GradeCtrl.formFields.gradeName" maxlength="50"
                                 required />
                             <label for="form_control_1">Grade Name</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm" name="expensedate" data-ng-model="GradeCtrl.formFields.gradePoint" maxlength="50"
-                                required />
+                            <input type="text" class="form-control input-sm" name="gradeName" data-ng-model="GradeCtrl.formFields.gradeNamegradeName"
+                                maxlength="50" required />
                             <label for="form_control_1">Grade Point</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm" name="description" data-ng-model="GradeCtrl.formFields.percentageRangeFrom"
+                            <input type="text" class="form-control input-sm" name="percentageRangeFrom" data-ng-model="GradeCtrl.formFields.percentageRangeFrom"
                                 maxlength="50" required />
                             <label for="form_control_1">Min Percentage (%)</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm" name="amount" data-ng-model="GradeCtrl.formFields.percentageRangeTo" maxlength="50"
-                                required />
+                            <input type="text" class="form-control input-sm" name="percentageRangeTo" data-ng-model="GradeCtrl.formFields.percentageRangeTo"
+                                maxlength="50" required />
                             <label for="form_control_1">Max Percentage (%)</label>
                         </div>
                         <div class="form-group">
