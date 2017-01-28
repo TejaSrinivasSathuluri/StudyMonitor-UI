@@ -64,10 +64,10 @@ angular.module('studymonitorApp')
             var columnsDefs = [null, null, null, {
                 'width': '30%'
             }, null, {
-                    'orderable': false,
-                    'width': '10%',
-                    'targets': 0
-                }];
+                'orderable': false,
+                'width': '10%',
+                'targets': 0
+            }];
             TableEditable.init('#bussubscription_datatable', columnsDefs);
             Metronic.init();
         }, 1000);
@@ -107,38 +107,48 @@ angular.module('studymonitorApp')
                 pickupLocation: BussubscriptionCtrl.formFields.pickupLocation
             };
             if (data) {
-                BussubscriptionService.getExistingBussubscriptionRecords(data).then(function (result) {
-                    if (result) {
-                        console.log('data already exists');
-                        return;
+                BussubscriptionService.CreateBussubscription(data).then(function (res) {
+                    if (res) {
+                        (new Init()).getBussubscriptionDetails();
+                        BussubscriptionCtrl.closeModal();
                     }
-                }, function (result1) {
-                    if (result1) {
-                        BussubscriptionService.CreateOrUpdateBussubscription(data).then(function (res) {
-                            if (res) {
-                                (new Init()).getBussubscriptionDetails();
-                                BussubscriptionCtrl.closeModal();
-                            }
 
-                        }, function (error) {
-                            console.log('Error while Fetching the Records' + error);
-                        });
-                    }
+                }, function (error) {
+                    console.log('Error while Fetching the Records' + error);
                 });
             }
         };
         //Delete Action
-        var deleteBussubscription = function (index) {
-            if (BussubscriptionCtrl.bussubscriptionList) {
-                BussubscriptionService.deleteBussubscription(BussubscriptionCtrl.bussubscriptionList[index].id).then(function (result) {
+        var deleteBussubscription = function (id) {
+            BussubscriptionService.deleteBussubscription(id).then(function (result) {
+                if (result) {
+                    //On Successfull refill the data list
+                    (new Init()).getBussubscriptionDetails();
+                    BussubscriptionCtrl.closeModal();
+                }
+            }, function (error) {
+                console.log('Error while deleting Bussubscription. Error Stack' + error);
+            });
+        };
+        //Bind Value to Routes
+        BussubscriptionCtrl.selectedService = function () {
+            if (BussubscriptionCtrl.formFields.busServiceId) {
+                BussubscriptionService.getRoutesByServiceId(BussubscriptionCtrl.formFields.busServiceId).then(function (result) {
                     if (result) {
-                        //On Successfull refill the data list
-                        (new Init()).getBussubscriptionDetails();
-                        BussubscriptionCtrl.closeModal();
+                        BussubscriptionCtrl.routesList = result.serviceRoutes;
                     }
                 }, function (error) {
-                    console.log('Error while deleting Bussubscription. Error Stack' + error);
+                    if (error) {
+                        console.log('Error while fecthing the routes. Error stack ' + error);
+                    }
                 });
             }
-        };
+        }
+        //Delete Route
+        BussubscriptionCtrl.confirmCallbackMethod = function (index) {
+            if (BussubscriptionCtrl.bussubscriptionList) {
+                deleteBussubscription(BussubscriptionCtrl.bussubscriptionList[index].id);
+            }
+        }
+        
     });
