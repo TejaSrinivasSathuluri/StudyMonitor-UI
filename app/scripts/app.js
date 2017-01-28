@@ -361,42 +361,6 @@ angular
             }
         }
     })
-    .state('home.addStudent', {
-        url: 'directory/addStudent',
-        views: {
-            'content': {
-                templateUrl: 'views/addstudent-template.html',
-                controller: 'AddstudentController',
-                controllerAs: 'AddstudentCtrl'
-            },
-            'header': {
-                templateUrl: 'views/header-template.html',
-                controller: 'HeaderController',
-                controllerAs: 'HeaderCtrl'
-            },
-            'footer': {
-                templateUrl: 'views/footer-template.html'
-            }
-        }
-    })
-    .state('home.addStaff', {
-        url: 'directory/addStaff',
-        views: {
-            'content': {
-                templateUrl: 'views/addstaff-template.html',
-                controller: 'AddstaffController',
-                controllerAs: 'AddstaffCtrl'
-            },
-            'header': {
-                templateUrl: 'views/header-template.html',
-                controller: 'HeaderController',
-                controllerAs: 'HeaderCtrl'
-            },
-            'footer': {
-                templateUrl: 'views/footer-template.html'
-            }
-        }
-    })
     .state('home.messages', {
         url: 'communicate/messages',
         views: {
