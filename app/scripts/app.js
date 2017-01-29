@@ -23,7 +23,8 @@ angular
  'frapontillo.bootstrap-switch',
  'ui.calendar',
  'toastr',
- 'ngBootbox'
+ 'ngBootbox',
+ 'vsGoogleAutocomplete'
 ])
 .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -182,23 +183,23 @@ angular
         }
     })
      .state('home.bussubscription', {
-        url: 'bussubscription',
-        views: {
-            'content': {
-                templateUrl: 'views/bussubscription-template.html',
-                controller: 'BussubscriptionController',
-                controllerAs: 'BussubscriptionCtrl'
-            },
-            'header': {
-                templateUrl: 'views/header-template.html',
-                controller: 'HeaderController',
-                controllerAs: 'HeaderCtrl'
-            },
-            'footer': {
-                templateUrl: 'views/footer-template.html'
-            }
-        }
-    })
+         url: 'bussubscription',
+         views: {
+             'content': {
+                 templateUrl: 'views/bussubscription-template.html',
+                 controller: 'BussubscriptionController',
+                 controllerAs: 'BussubscriptionCtrl'
+             },
+             'header': {
+                 templateUrl: 'views/header-template.html',
+                 controller: 'HeaderController',
+                 controllerAs: 'HeaderCtrl'
+             },
+             'footer': {
+                 templateUrl: 'views/footer-template.html'
+             }
+         }
+     })
     .state('home.assignments', {
         url: 'assignments',
         views: {

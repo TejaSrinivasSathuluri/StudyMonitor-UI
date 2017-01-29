@@ -33,7 +33,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="btn-group">
-                                                <button class="btn green" ui-sref="home.addRoutes">
+                                                <button class="btn green" data-toggle="modal" data-target="#edit-busservice">
                                                     Add New Bus Service
                                                     <i class="fa fa-plus"></i>
                                                 </button>
@@ -76,9 +76,6 @@
                                                 More Details
                                             </th>
                                             <th class="text-center">
-                                                Edit
-                                            </th>
-                                            <th class="text-center">
                                                 Delete
                                             </th>
                                         </tr>
@@ -92,12 +89,7 @@
                                                 <i class="fa fa-file-text-o font-blue"></i>
                                             </td>
                                             <td class="text-center">
-                                                <a class="edit" href="javascript:void(0);">
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                            </td>
-                                            <td class="text-center">
-                                                <a class="delete" href="javascript:void(0);" ng-bootbox-confirm="Are you sure you want to delete this record ?" ng-bootbox-confirm-action="BusserviceCtrl.confirmCallbackMethod($index)"
+                                                <a class="" href="javascript:void(0);" ng-bootbox-confirm="Are you sure you want to delete this record ?" ng-bootbox-confirm-action="BusserviceCtrl.confirmCallbackMethod($index)"
                                                     ng-bootbox-confirm-action-cancel="BusserviceCtrl.confirmCallbackCancel($index)">
                                                     <i class="fa fa-remove"></i>
                                                 </a>
@@ -127,21 +119,21 @@
             </div>
             <div class="modal-body form">
                 <div class="form-container">
-                    <form name="busserviceform" novalidate role="form" data-ng-submit=" BusserviceCtrl.serviceAction(busserviceform.$invalid)">
+                    <form name="busserviceform" novalidate role="form" data-ng-submit="BusserviceCtrl.serviceAction(busserviceform.$invalid)">
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
                             <select data-ng-model="BusserviceCtrl.formFields.busId" name="busId" class="form-control input-sm" required>
-                                <option value="">Bus Number</option>
-                                <option ng-repeat="bus in BusserviceCtrl.busList" value="{{bus.id}}">{{bus.busNo}}</option>
-                            </select>
+                                                <option value="">Bus Number</option>
+                                                <option ng-repeat="bus in BusserviceCtrl.busList" value="{{bus.id}}">{{bus.busNo}}</option>
+                                                </select>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
                             <input type="text" class="form-control input-sm" name="serviceStartPoint" data-ng-model="BusserviceCtrl.formFields.serviceStartPoint"
-                                maxlength="50" required />
+                                maxlength="200" vs-google-autocomplete placeholder="" required />
                             <label for="form_control_1">PickUp Ponit</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
                             <input type="text" class="form-control input-sm" name="serviceDropPoint" data-ng-model="BusserviceCtrl.formFields.serviceDropPoint"
-                                maxlength="50" required />
+                                maxlength="200" vs-google-autocomplete placeholder="" required />
                             <label for="form_control_1">Drop Point</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
@@ -150,18 +142,18 @@
                             <label for="form_control_1">Service Number</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm calendarctrl" name="serviceStartTime1" data-ng-model="BusserviceCtrl.formFields.serviceStartTime1"
+                            <input type="text" class="form-control input-sm calendarctrl" id="servicepickup" name="servicePickupPointTime" data-ng-model="BusserviceCtrl.formFields.servicePickupPointTime"
                                 maxlength="50" required />
                             <label for="form_control_1">PickUp Start Time</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-sm calendarctrl" name="serviceStartTime2" data-ng-model="BusserviceCtrl.formFields.serviceStartTime2"
+                            <input type="text" class="form-control input-sm calendarctrl" id="servicedrop" name="serviceDropPointTime" data-ng-model="BusserviceCtrl.formFields.serviceDropPointTime"
                                 maxlength="50" required />
                             <label for="form_control_1">Drop Start Time</label>
                         </div>
                         <div class="form-group">
                             <button type="reset" class="btn default">Reset</button>
-                            <button type="submit" class="btn green" data-ng-disabled="busserviceform.$invalid"><i class="fa fa-check"></i> Submit</button>
+                            <button type="submit" class="btn green" data-ng-disabled="busserviceform.$invalid"><i class="fa fa-check"></i> Add Routes</button>
                         </div>
                     </form>
                 </div>

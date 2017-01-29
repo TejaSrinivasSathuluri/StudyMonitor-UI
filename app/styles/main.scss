@@ -227,6 +227,9 @@ body {
         font-size: 2em;
     }
 }
+.modal-open .modal{
+    z-index: 9999999999;
+}
 
 .form-group.form-md-line-input .form-control[readonly], .form-group.form-md-line-input .form-control[disabled], fieldset[disabled] .form-group.form-md-line-input .form-control {
     background: none;

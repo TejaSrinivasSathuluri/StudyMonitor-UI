@@ -49,6 +49,8 @@ module.exports = function(config) {
       'bower_components/angular-toastr/dist/angular-toastr.tpls.js',
       'bower_components/bootbox/bootbox.js',
       'bower_components/ngBootbox/dist/ngBootbox.js',
+      'bower_components/vsGoogleAutocomplete/dist/vs-google-autocomplete.js',
+      'bower_components/vsGoogleAutocomplete/dist/vs-autocomplete-validator.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
