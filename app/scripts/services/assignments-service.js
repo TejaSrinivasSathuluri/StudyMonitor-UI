@@ -73,13 +73,15 @@ angular.module('studymonitorApp')
                 });
             return _activepromise.promise;
         };
-        this.getSubjectsByClassId = function(classId){
+        this.getSubjectsByClassId = function (classId) {
             var _activepromise = $q.defer();
-            Subject.find({filter: {where: {classId: classId,examFlag:true}}},function(response){
+            Subject.find({
+                filter: { where: { classId: classId, examFlag: true } }
+            }, function (response) {
                 _activepromise.resolve(response);
-            },function(error){
-                _activepromise.reject(response);
+            }, function (error) {
+                _activepromise.reject(error);
             });
             return _activepromise.promise;
-        }
+        };
     });

@@ -30,7 +30,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="btn-group">
-                                                <button data-toggle="modal" data-target="#edit-assignments" class="btn green">
+                                                <button data-toggle="modal" data-target="#edit-assignments" data-ng-click="AssignmentsCtrl.editmode = false;AssignmentsCtrl.setFloatLabel();NoticeboardCtrl.detailsMode = false;"
+                                                    class="btn green">
                                                     Add New Assignment
                                                     <i class="fa fa-plus"></i>
                                                 </button>
@@ -79,6 +80,9 @@
                                                 To
                                             </th>
                                             <th class="text-center">
+                                                More Details
+                                            </th>
+                                            <th class="text-center">
                                                 Edit
                                             </th>
                                             <th class="text-center">
@@ -95,12 +99,17 @@
                                             <td>{{assignment.fromDate | date:'dd-MM-yyyy'}}</td>
                                             <td>{{assignment.toDate | date:'dd-MM-yyyy'}}</td>
                                             <td class="text-center">
+                                                <a href="javascript:void(0)" data-ng-click="AssignmentsCtrl.moreDetails($index);">
+                                                    <i class="fa fa-file-text-o"></i>
+                                                </a>
+                                            </td>
+                                            <td class="text-center">
                                                 <a href="javascript:void(0);" data-ng-click="AssignmentsCtrl.editAssignment($index)">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a class="delete" href="javascript:void(0);" ng-bootbox-confirm="Are you sure you want to delete this record ?" ng-bootbox-confirm-action="AssignmentsCtrl.confirmCallbackMethod($index)"
+                                                <a href="javascript:void(0);" ng-bootbox-confirm="Are you sure you want to delete this record ?" ng-bootbox-confirm-action="AssignmentsCtrl.confirmCallbackMethod($index)"
                                                     ng-bootbox-confirm-action-cancel="AssignmentsCtrl.confirmCallbackCancel()">
                                                     <i class="fa fa-remove"></i>
                                                 </a>
@@ -129,7 +138,7 @@
                 <h4 class="modal-title font-green">Assignments</h4>
             </div>
             <div class="modal-body form">
-                <div class="form-container">
+                <div class="form-container" data-ng-if="!AssignmentsCtrl.detailsMode">
                     <form name="assignmentform" novalidate role="form" data-ng-submit="AssignmentsCtrl.assignmentAction(assignmentform.$invalid)">
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
                             <input type="text" class="form-control input-sm" name="title" data-ng-model="AssignmentsCtrl.formFields.title" maxlength="50"
@@ -137,7 +146,8 @@
                             <label for="form_control_1">TITLE</label>
                         </div>
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <select data-ng-model="AssignmentsCtrl.formFields.classId" name="classId" data-ng-change="AssignmentsCtrl.selectedClass()" class="form-control input-sm" required>
+                            <select data-ng-model="AssignmentsCtrl.formFields.classId" name="classId" data-ng-change="AssignmentsCtrl.selectedClass()"
+                                class="form-control input-sm" required>
                                 <option value="">CLASS</option>
                                 <option ng-repeat="class in AssignmentsCtrl.classList" value="{{class.id}}">{{class.className}} {{class.sectionName}}</option>
                             </select>
@@ -168,6 +178,64 @@
                             <button type="submit" class="btn green" data-ng-disabled="assignmentform.$invalid"><i class="fa fa-check"></i> Submit</button>
                         </div>
                     </form>
+                </div>
+                <div class="form-container" data-ng-if="AssignmentsCtrl.detailsMode">
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            From Date:
+                        </div>
+                        <div class="col-md-7 value">
+                            {{AssignmentsCtrl.viewValue.fromDate | date:'dd-MM-yyyy'}}
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            To Date:
+                        </div>
+                        <div class="col-md-7 value">
+                            {{AssignmentsCtrl.viewValue.toDate | date:'dd-MM-yyyy'}}
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            Title:
+                        </div>
+                        <div class="col-md-7 value">
+                            {{AssignmentsCtrl.viewValue.title}}
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            Description:
+                        </div>
+                        <div class="col-md-7 value">
+                            {{AssignmentsCtrl.viewValue.description}}
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            Class Name:
+                        </div>
+                        <div class="col-md-7 value">
+                            {{AssignmentsCtrl.viewValue.class.className}}
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            Section Name:
+                        </div>
+                        <div class="col-md-7 value">
+                            {{AssignmentsCtrl.viewValue.class.sectionName}}
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            Subject Name:
+                        </div>
+                        <div class="col-md-7 value">
+                            {{AssignmentsCtrl.viewValue.subject.subjectName}}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

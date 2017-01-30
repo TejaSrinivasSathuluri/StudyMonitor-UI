@@ -18,7 +18,7 @@ angular.module('studymonitorApp')
                 _activepromise.reject(error);
             });
             return _activepromise.promise;
-        }
+        };
         this.getExistingNoticeRecords = function (data) {
             var _activepromise = $q.defer();
             Noticeboard.findOne({ filter: { where: { schoolId: data.schoolId, title: data.title, date1: data.date1, date2: data.date2 } } },
@@ -29,7 +29,7 @@ angular.module('studymonitorApp')
                 });
             return _activepromise.promise;
 
-        }
+        };
         this.CreateOrUpdateNoticeboard = function (data) {
             var _activepromise = $q.defer();
             Noticeboard.create({ schoolId: data.schoolId, title: data.title, description: data.description, date1: data.date1, date2: data.date2 },
@@ -40,10 +40,10 @@ angular.module('studymonitorApp')
                 });
             return _activepromise.promise;
 
-        }
+        };
         this.deleteNotice = function (noticeId) {
             var _activepromise = $q.defer();
-            Noticeboard.deleteById({ id: noticeId }, function (response) { _activepromise.resolve(response) }, function (error) { _activepromise.reject(error) }); return _activepromise.promise;
+            Noticeboard.deleteById({ id: noticeId }, function (response) { _activepromise.resolve(response); }, function (error) { _activepromise.reject(error); }); return _activepromise.promise;
         };
         this.editNotice = function (data) {
             var _activepromise = $q.defer();

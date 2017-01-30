@@ -23,7 +23,7 @@ angular.module('studymonitorApp')
                 }, function (error) {
                     console.log('Error while fetching the assignment records. Error stack : ' + error);
                 });
-            }
+            };
         }
         (new Init()).getGradeDetails();
         //Initialize the Table Component

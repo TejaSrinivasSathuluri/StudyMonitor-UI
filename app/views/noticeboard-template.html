@@ -30,7 +30,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="btn-group">
-                                                <button data-toggle="modal" data-target="#edit-notice" class="btn green">
+                                                <button data-toggle="modal" data-target="#edit-notice" data-ng-click="NoticeboardCtrl.editmode = false;NoticeboardCtrl.setFloatLabel();NoticeboardCtrl.detailsMode = false;" class="btn green">
                                                     Add New Notice
                                                     <i class="fa fa-plus"></i>
                                                 </button>
@@ -73,6 +73,9 @@
                                                 To
                                             </th>
                                             <th class="text-center">
+                                                More Details
+                                            </th>
+                                            <th class="text-center">
                                                 Edit
                                             </th>
                                             <th class="text-center">
@@ -86,6 +89,11 @@
                                             <td>{{notice.description}}</td>
                                             <td>{{notice.date1 | date:'dd-MM-yyyy'}}</td>
                                             <td>{{notice.date2| date:'dd-MM-yyyy'}}</td>
+                                            <td class="text-center">
+                                                <a href="javascript:void(0)" data-ng-click="NoticeboardCtrl.moreDetails($index);">
+                                                    <i class="fa fa-file-text-o"></i>
+                                                </a>
+                                            </td>
                                             <td class="text-center">
                                                 <a href="javascript:void(0);" data-ng-click="NoticeboardCtrl.editNotice($index)">
                                                     <i class="fa fa-edit"></i>
@@ -121,7 +129,7 @@
                 <h4 class="modal-title font-green">NoticeBoard</h4>
             </div>
             <div class="modal-body form">
-                <div class="form-container">
+                <div class="form-container" data-ng-if="!NoticeboardCtrl.detailsMode">
                     <form name="noticeboardform" novalidate role="form" data-ng-submit="NoticeboardCtrl.noticeboardAction(noticeboardform.$invalid)">
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
                             <input type="text" class="form-control input-sm" name="title" data-ng-model="NoticeboardCtrl.formFields.title" maxlength="50"
@@ -148,6 +156,40 @@
                             <button type="submit" class="btn green" data-ng-disabled="noticeboardform.$invalid"><i class="fa fa-check"></i> Submit</button>
                         </div>
                     </form>
+                </div>
+            </div>
+            <div class="form-container" data-ng-if="NoticeboardCtrl.detailsMode">
+                <div class="row static-info">
+                    <div class="col-md-5 name">
+                        From Date:
+                    </div>
+                    <div class="col-md-7 value">
+                        {{NoticeboardCtrl.viewValue.date1 | date:'dd-MM-yyyy'}}
+                    </div>
+                </div>
+                <div class="row static-info">
+                    <div class="col-md-5 name">
+                       To Date:
+                    </div>
+                    <div class="col-md-7 value">
+                        {{NoticeboardCtrl.viewValue.date2 | date:'dd-MM-yyyy'}}
+                    </div>
+                </div>
+                <div class="row static-info">
+                    <div class="col-md-5 name">
+                        Title:                        
+                    </div>
+                    <div class="col-md-7 value">
+                        {{NoticeboardCtrl.viewValue.title}}
+                    </div>
+                </div>
+                <div class="row static-info">
+                    <div class="col-md-5 name">
+                        Description:
+                    </div>
+                    <div class="col-md-7 value">
+                        {{NoticeboardCtrl.viewValue.description}}
+                    </div>
                 </div>
             </div>
         </div>

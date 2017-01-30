@@ -12,6 +12,9 @@ angular.module('studymonitorApp')
         var ExpensesCtrl = this;
         ExpensesCtrl.formFields = {};
         ExpensesCtrl.editmode = false;
+        ExpensesCtrl.detailsMode = false;
+        ExpensesCtrl.viewValue = {};
+        ExpensesCtrl.innerHTML = {};
         //Defaults
         ExpensesCtrl.schoolId = $cookies.getObject('uds').schoolId;
 
@@ -35,6 +38,10 @@ angular.module('studymonitorApp')
                 'width': '10%',
                 'targets': 0
             }, {
+                    'orderable': false,
+                    'width': '10%',
+                    'targets': 0
+                }, {
                     'orderable': false,
                     'width': '10%',
                     'targets': 0
@@ -87,6 +94,7 @@ angular.module('studymonitorApp')
                 if (!ExpensesCtrl.editmode) {
                     expensesService.getExistingExpenseRecords(data).then(function (result) {
                         if (result) {
+                            toastr.error(APP_MESSAGES.DATA_EXISTS_DESC, APP_MESSAGES.DATA_EXISTS);
                             console.log('data already exists');
                             return;
                         }
@@ -133,8 +141,11 @@ angular.module('studymonitorApp')
                         //On Successfull refill the data list
                         (new Init()).getExpenseRecords();
                         ExpensesCtrl.closeModal();
+                        //Show Toast Message Success
+                        toastr.success(APP_MESSAGES.DELETE_SUCCESS);
                     }
                 }, function (error) {
+                    toastr.error(error, APP_MESSAGES.SERVER_ERROR);
                     console.log('Error while deleting expense. Error Stack' + error);
                 });
             }
@@ -146,6 +157,8 @@ angular.module('studymonitorApp')
             ExpensesCtrl.formFields.date = ExpensesCtrl.expensesList[index].date;
             ExpensesCtrl.formFields.amount = ExpensesCtrl.expensesList[index].amount;
             ExpensesCtrl.editingExpenseId = ExpensesCtrl.expensesList[index].id;
+            //Set View Mode false
+            ExpensesCtrl.detailsMode = false;
             //Open Modal
             ExpensesCtrl.openModal();
 
@@ -169,5 +182,19 @@ angular.module('studymonitorApp')
         $('.calendarctrl').on('dp.change', function () {
             ExpensesCtrl.formFields.date = $(this).val();
         });
+        //More Details
+        ExpensesCtrl.moreDetails = function (index) {
+            ExpensesCtrl.detailsMode = true;
+            ExpensesCtrl.openModal();
+            ExpensesCtrl.viewValue = ExpensesCtrl.expensesList[index];
+
+        };
+        ExpensesCtrl.printToCart = function (printSectionId) {
+            var innerContents = document.getElementById(printSectionId);
+            var popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+            popupWinindow.document.open();
+            popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + innerContents + '</html>');
+            popupWinindow.document.close();
+        };
 
     });

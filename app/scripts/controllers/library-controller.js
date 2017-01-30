@@ -8,10 +8,12 @@
  * Controller of the studymonitorApp
  */
 angular.module('studymonitorApp')
-    .controller('LibraryController', function (libraryService, $cookies, $timeout,APP_MESSAGES,toastr) {
+    .controller('LibraryController', function (libraryService, $cookies, $timeout, APP_MESSAGES, toastr) {
         var LibraryCtrl = this;
-         LibraryCtrl.formFields = {};
+        LibraryCtrl.formFields = {};
         LibraryCtrl.editmode = false;
+        LibraryCtrl.detailsMode = false;
+        LibraryCtrl.viewValue = {};
 
         LibraryCtrl.schoolId = $cookies.getObject('uds').schoolId;
         function Init() {
@@ -23,14 +25,18 @@ angular.module('studymonitorApp')
                 }, function (error) {
                     console.log('Error while fetching library records. Error stack : ' + error);
                 });
-            }
+            };
         }
         (new Init()).getLibraryList();
         //Initialize the Table Component
         $timeout(function () {
             var columnsDefs = [{
                 'width': '30%'
-            },null,null,null,null,{
+            }, null, null, null, null, {
+                'orderable': false,
+                'width': '10%',
+                'targets': 0
+            }, {
                 'orderable': false,
                 'width': '10%',
                 'targets': 0
@@ -41,7 +47,7 @@ angular.module('studymonitorApp')
             }];
             TableEditable.init('#libraries_datatable', columnsDefs);
             Metronic.init();
-        },1000);
+        }, 1000);
         //Close or Open modal
         LibraryCtrl.closeModal = function () {
             var modal = $('#edit-library');
@@ -49,11 +55,11 @@ angular.module('studymonitorApp')
 
             //ClearFields
             clearformfields();
-        }
+        };
         LibraryCtrl.openModal = function () {
             var modal = $('#edit-library');
             modal.modal('show');
-        }
+        };
         //Clear Fields
         function clearformfields() {
             LibraryCtrl.formFields = {};
@@ -61,11 +67,14 @@ angular.module('studymonitorApp')
         //Delete confirmation box
         LibraryCtrl.confirmCallbackMethod = function (index) {
             deleteLibrary(index);
-        }
+        };
         //Delete cancel box
         LibraryCtrl.confirmCallbackCancel = function (index) {
-            return false;
-        }
+            if (index) {
+                return false;
+            }
+            return;
+        };
         // Add Action
         LibraryCtrl.libraryAction = function (invalid) {
             if (invalid) {
@@ -85,25 +94,27 @@ angular.module('studymonitorApp')
                 //Check whether editmode or normal mode
                 if (!LibraryCtrl.editmode) {
                     libraryService.getExistingLibraryRecords(data).then(function (result) {
-                    if (result) {
-                        console.log('data already exists');
-                          toastr.error(APP_MESSAGES.DATA_EXISTS_DESC, APP_MESSAGES.DATA_EXISTS);
-                        return;
-                    }
-                }, function (result1) {
-                    libraryService.CreateOrUpdateLibrary(data).then(function (res) {
-                        if (res) {
-                            (new Init()).getLibraryList();
-                            LibraryCtrl.closeModal();
-                             //Show Toast Message Success
-                            toastr.success(APP_MESSAGES.INSERT_SUCCESS);
+                        if (result) {
+                            console.log('data already exists');
+                            toastr.error(APP_MESSAGES.DATA_EXISTS_DESC, APP_MESSAGES.DATA_EXISTS);
+                            return;
                         }
+                    }, function (result1) {
+                        if (result1) {
+                            libraryService.CreateOrUpdateLibrary(data).then(function (res) {
+                                if (res) {
+                                    (new Init()).getLibraryList();
+                                    LibraryCtrl.closeModal();
+                                    //Show Toast Message Success
+                                    toastr.success(APP_MESSAGES.INSERT_SUCCESS);
+                                }
 
-                    }, function (error) {
-                         toastr.error(error, APP_MESSAGES.SERVER_ERROR);
-                        console.log("Error while Fetching the Records" + error);
+                            }, function (error) {
+                                toastr.error(error, APP_MESSAGES.SERVER_ERROR);
+                                console.log("Error while Fetching the Records" + error);
+                            });
+                        }
                     });
-                });
                 }
                 else {
                     data.id = LibraryCtrl.id;
@@ -122,31 +133,7 @@ angular.module('studymonitorApp')
                     });
                 }
             }
-
-            // if (data) {
-            //     libraryService.getExistingLibraryRecords(data).then(function (result) {
-            //         if (result) {
-            //             console.log('data already exists');
-            //               toastr.error(APP_MESSAGES.DATA_EXISTS_DESC, APP_MESSAGES.DATA_EXISTS);
-            //             return;
-            //         }
-            //     }, function (result1) {
-            //         libraryService.CreateOrUpdateLibrary(data).then(function (res) {
-            //             if (res) {
-            //                 (new Init()).getLibraryList();
-            //                 LibraryCtrl.closeModal();
-            //                  //Show Toast Message Success
-            //                 toastr.success(APP_MESSAGES.INSERT_SUCCESS);
-            //             }
-
-            //         }, function (error) {
-            //              toastr.error(error, APP_MESSAGES.SERVER_ERROR);
-            //             console.log("Error while Fetching the Records" + error);
-            //         });
-            //     });
-            // }
-        }
-
+        };
         //Delete Action
         var deleteLibrary = function (index) {
             if (LibraryCtrl.libraryList) {
@@ -155,14 +142,13 @@ angular.module('studymonitorApp')
                         //On Successfull refill the data list
                         (new Init()).getLibraryList();
                         LibraryCtrl.closeModal();
-                         toastr.success(APP_MESSAGES.DELETE_SUCCESS);
+                        toastr.success(APP_MESSAGES.DELETE_SUCCESS);
                     }
                 }, function (error) {
                     console.log('Error while deleting class. Error Stack' + error);
                 });
             }
         };
-
         //Edit Action
         LibraryCtrl.editLibrary = function (index) {
             LibraryCtrl.formFields.name = LibraryCtrl.libraryList[index].name;
@@ -171,6 +157,8 @@ angular.module('studymonitorApp')
             LibraryCtrl.formFields.price = LibraryCtrl.libraryList[index].price;
             LibraryCtrl.formFields.available = LibraryCtrl.libraryList[index].available;
             LibraryCtrl.id = LibraryCtrl.libraryList[index].id;
+            //Set View Mode false
+            LibraryCtrl.detailsMode = false;
             //Open Modal
             LibraryCtrl.openModal();
 
@@ -189,5 +177,12 @@ angular.module('studymonitorApp')
             Metronic.setFlotLabel($('input[name=description]'));
             Metronic.setFlotLabel($('input[name=price]'));
             Metronic.setFlotLabel($('input[name=available]'));
+        };
+        //More Details
+        LibraryCtrl.moreDetails = function (index) {
+            LibraryCtrl.detailsMode = true;
+            LibraryCtrl.openModal();
+            LibraryCtrl.viewValue = LibraryCtrl.libraryList[index];
+
         };
     });

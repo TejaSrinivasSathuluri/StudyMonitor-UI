@@ -8,10 +8,12 @@
  * Controller of the studymonitorApp
  */
 angular.module('studymonitorApp')
-    .controller('ExamlistController', function (examlistService, $timeout, $cookies,toastr, APP_MESSAGES) {
+    .controller('ExamlistController', function (examlistService, $timeout, $cookies, toastr, APP_MESSAGES) {
         var ExamlistCtrl = this;
         ExamlistCtrl.formFields = {};
         ExamlistCtrl.editmode = false;
+        ExamlistCtrl.detailsMode = false;
+        ExamlistCtrl.viewValue = {};
         //Defaults
         ExamlistCtrl.schoolId = $cookies.getObject('uds').schoolId;
 
@@ -28,14 +30,14 @@ angular.module('studymonitorApp')
                                 'width': '10%',
                                 'targets': 0
                             }, {
-                                'orderable': false,
-                                'width': '10%',
-                                'targets': 0
-                            }, {
-                                'orderable': false,
-                                'width': '10%',
-                                'targets': 0
-                            }];
+                                    'orderable': false,
+                                    'width': '10%',
+                                    'targets': 0
+                                }, {
+                                    'orderable': false,
+                                    'width': '10%',
+                                    'targets': 0
+                                }];
                             TableEditable.init('#examlist_datatable', columnsDefs);
                             Metronic.init();
                         });
@@ -102,25 +104,25 @@ angular.module('studymonitorApp')
                 //Check whether editmode or normal mode
                 if (!ExamlistCtrl.editmode) {
                     examlistService.getExistingExamlists(data).then(function (result) {
-                    if (result) {
-                        console.log('data already exists');
-                        return;
-                    }
-                }, function (result1) {
-                    if (result1) {
-                        examlistService.CreateOrUpdateExam(data).then(function (res) {
-                            if (res) {
-                                (new Init()).getExamList();
-                                ExamlistCtrl.closeModal();
-                                //Show Toast Message Success
+                        if (result) {
+                            console.log('data already exists');
+                            return;
+                        }
+                    }, function (result1) {
+                        if (result1) {
+                            examlistService.CreateOrUpdateExam(data).then(function (res) {
+                                if (res) {
+                                    (new Init()).getExamList();
+                                    ExamlistCtrl.closeModal();
+                                    //Show Toast Message Success
                                     toastr.success(APP_MESSAGES.INSERT_SUCCESS);
-                            }
+                                }
 
-                        }, function (error) {
-                            console.log('Error while Fetching the Records' + error);
-                        });
-                    }
-                });
+                            }, function (error) {
+                                console.log('Error while Fetching the Records' + error);
+                            });
+                        }
+                    });
                 }
                 else {
                     data.id = ExamlistCtrl.editingExamlistId;
@@ -171,7 +173,7 @@ angular.module('studymonitorApp')
                         //On Successfull refill the data list
                         (new Init()).getExamList();
                         ExamlistCtrl.closeModal();
-                         toastr.success(APP_MESSAGES.DELETE_SUCCESS);
+                        toastr.success(APP_MESSAGES.DELETE_SUCCESS);
                     }
                 }, function (error) {
                     console.log('Error while deleting class. Error Stack' + error);
@@ -186,6 +188,8 @@ angular.module('studymonitorApp')
             ExamlistCtrl.formFields.fromDate = ExamlistCtrl.examList[index].fromDate;
             ExamlistCtrl.formFields.toDate = ExamlistCtrl.examList[index].toDate;
             ExamlistCtrl.editingExamlistId = ExamlistCtrl.examList[index].id;
+            //Set View Mode false
+            ExamlistCtrl.detailsMode = false;
             //Open Modal
             ExamlistCtrl.openModal();
 
@@ -205,12 +209,19 @@ angular.module('studymonitorApp')
             Metronic.setFlotLabel($('input[name=toDate]'));
         };
 
-          //Calendar Fix @@TODO Move this to directive
+        //Calendar Fix @@TODO Move this to directive
         $('#Exam_date1').on('dp.change', function () {
             ExamlistCtrl.formFields.fromDate = $(this).val();
         });
 
         $('#Exam_date2').on('dp.change', function () {
-                    ExamlistCtrl.formFields.toDate = $(this).val();
-                });
+            ExamlistCtrl.formFields.toDate = $(this).val();
+        });
+        //More Details
+        ExamlistCtrl.moreDetails = function (index) {
+            ExamlistCtrl.detailsMode = true;
+            ExamlistCtrl.openModal();
+            ExamlistCtrl.viewValue = ExamlistCtrl.examList[index];
+
+        };
     });

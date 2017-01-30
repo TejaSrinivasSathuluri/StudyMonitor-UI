@@ -30,7 +30,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="btn-group">
-                                                <button data-toggle="modal" data-target="#edit-library" class="btn green">
+                                                <button data-toggle="modal" data-target="#edit-library" data-ng-click="LibraryCtrl.editmode = false;LibraryCtrl.setFloatLabel();LibraryCtrl.detailsMode = false;"
+                                                    class="btn green">
                                                     Add New Book
                                                     <i class="fa fa-plus"></i>
                                                 </button>
@@ -44,7 +45,8 @@
                                                 </button>
                                                 <ul class="dropdown-menu pull-right">
                                                     <li>
-                                                        <a href="javascript:;"> Print </a>
+                                                        <a href="javascript:window.print()" class="btn primary large no-print">Print this quote</a>
+                                                        <!--<a href="javascript:;"> Print </a>-->
                                                     </li>
                                                     <li>
                                                         <a href="javascript:;"> Save as PDF </a>
@@ -76,6 +78,9 @@
                                                 Available Copies
                                             </th>
                                             <th class="text-center">
+                                                More Details
+                                            </th>
+                                            <th class="text-center">
                                                 Edit
                                             </th>
                                             <th class="text-center">
@@ -91,12 +96,17 @@
                                             <td>{{lib.price}}</td>
                                             <td>{{lib.available}}</td>
                                             <td class="text-center">
+                                                <a href="javascript:void(0)" data-ng-click="LibraryCtrl.moreDetails($index);">
+                                                    <i class="fa fa-file-text-o"></i>
+                                                </a>
+                                            </td>
+                                            <td class="text-center">
                                                 <a href="javascript:void(0);" data-ng-click="LibraryCtrl.editLibrary($index)">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a  href="javascript:void(0);" ng-bootbox-confirm="Are you sure you want to delete this record ?" ng-bootbox-confirm-action="LibraryCtrl.confirmCallbackMethod($index)"
+                                                <a href="javascript:void(0);" ng-bootbox-confirm="Are you sure you want to delete this record ?" ng-bootbox-confirm-action="LibraryCtrl.confirmCallbackMethod($index)"
                                                     ng-bootbox-confirm-action-cancel="LibraryCtrl.confirmCallbackCancel($index)">
                                                     <i class="fa fa-remove"></i>
                                                 </a>
@@ -125,7 +135,7 @@
                 <h4 class="modal-title font-green">LIBRARY</h4>
             </div>
             <div class="modal-body form">
-                <div class="form-container">
+                <div class="form-container" data-ng-if="!LibraryCtrl.detailsMode">
                     <form name="libraryform" novalidate role="form" data-ng-submit=" LibraryCtrl.libraryAction(libraryform.$invalid)">
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
                             <input type="text" class="form-control input-sm" name="name" data-ng-model=" LibraryCtrl.formFields.name" maxlength="50"
@@ -157,6 +167,32 @@
                             <button type="submit" class="btn green" data-ng-disabled="libraryform.$invalid"><i class="fa fa-check"></i> Submit</button>
                         </div>
                     </form>
+                </div>
+                <div class="form-container" data-ng-if="LibraryCtrl.detailsMode">
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            Book Name:
+                        </div>
+                        <div class="col-md-7 value">
+                            {{LibraryCtrl.viewValue.name}}
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            Author:
+                        </div>
+                        <div class="col-md-7 value">
+                            {{LibraryCtrl.viewValue.author}}
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            Description:
+                        </div>
+                        <div class="col-md-7 value">
+                            {{LibraryCtrl.viewValue.description}} 
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

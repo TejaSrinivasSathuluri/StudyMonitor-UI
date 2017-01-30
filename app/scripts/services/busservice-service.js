@@ -59,8 +59,8 @@ angular.module('studymonitorApp')
         };
         this.setServicesList = function (data) {
             _serviceList = data;
-        }
+        };
         this.getServiceList = function () {
             return _serviceList;
-        }
+        };
     });

@@ -47,7 +47,7 @@
                                                 </button>
                                                 <ul class="dropdown-menu pull-right">
                                                     <li>
-                                                        <a href="javascript:;"> Print </a>
+                                                        <a href="javascript:void(0)" data-ng-click="ExpensesCtrl.printToCart(printSectionId);"> Print </a>
                                                     </li>
                                                     <li>
                                                         <a href="javascript:;"> Save as PDF </a>
@@ -76,6 +76,9 @@
                                                 Amount
                                             </th>
                                             <th class="text-center">
+                                                More Details
+                                            </th>
+                                            <th class="text-center">
                                                 Edit
                                             </th>
                                             <th class="text-center">
@@ -89,6 +92,11 @@
                                             <td>{{expense.description}}</td>
                                             <td>{{expense.date | date:'dd-MM-yyyy'}}</td>
                                             <td>{{expense.amount}}</td>
+                                            <td class="text-center">
+                                                <a href="javascript:void(0)" data-ng-click="ExpensesCtrl.moreDetails($index);">
+                                                    <i class="fa fa-file-text-o"></i>
+                                                </a>
+                                            </td>
                                             <td class="text-center">
                                                 <a href="javascript:void(0);" data-ng-click="ExpensesCtrl.editExpense($index)">
                                                     <i class="fa fa-edit"></i>
@@ -124,7 +132,7 @@
                 <h4 class="modal-title font-green">EXPENSE</h4>
             </div>
             <div class="modal-body form">
-                <div class="form-container">
+                <div class="form-container" data-ng-if="!ExpensesCtrl.detailsMode">
                     <form name="expensesform" novalidate role="form" data-ng-submit=" ExpensesCtrl.expenseAction(expensesform.$invalid)">
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
                             <input type="text" class="form-control input-sm" name="expensetype" data-ng-model="ExpensesCtrl.formFields.expenseType" maxlength="50"
@@ -151,6 +159,32 @@
                             <button type="submit" class="btn green" data-ng-disabled="expensesform.$invalid"><i class="fa fa-check"></i> Submit</button>
                         </div>
                     </form>
+                </div>
+                <div class="form-container" data-ng-if="ExpensesCtrl.detailsMode">
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            Expense Date:
+                        </div>
+                        <div class="col-md-7 value">
+                            {{ExpensesCtrl.viewValue.date | date:'dd-MM-yyyy'}}
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            Description:
+                        </div>
+                        <div class="col-md-7 value">
+                            {{ExpensesCtrl.viewValue.description}}
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">
+                            Description:
+                        </div>
+                        <div class="col-md-7 value">
+                            {{ExpensesCtrl.viewValue.description}}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

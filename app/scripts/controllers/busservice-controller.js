@@ -205,7 +205,7 @@ angular.module('studymonitorApp')
             BusserviceCtrl.formFields.routeDuration = "";
             BusserviceCtrl.formFields.routeFees = "";
             BusserviceCtrl.formFields.routeTime = "";
-        }
+        };
         //Save Routes
         BusserviceCtrl.saveRoutes = function () {
             if (BusserviceCtrl.servicesList) {
@@ -230,7 +230,7 @@ angular.module('studymonitorApp')
                     }
                 });
             }
-        }
+        };
         //Set Routes Float Label
         BusserviceCtrl.setRouteFloatLabel = function () {
             Metronic.setFlotLabel($('input[name=routelocation]'));
@@ -263,15 +263,14 @@ angular.module('studymonitorApp')
             else {
                 $state.go('home.busservice');
             }
-        };
+        }
         //Remove Route
         BusserviceCtrl.removeRoute = function (index) {
             BusserviceCtrl.servicesList.serviceRoutes.splice(index, 1);
-        }
+        };
         //EditRoutes
         BusserviceCtrl.editRoutes = function (index) {
-
             routeseditMode(index);
-        }
+        };
         /* ========================= Route Section End ========================= */
     });

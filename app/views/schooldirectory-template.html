@@ -88,6 +88,12 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="form-group form-md-line-input form-md-floating-label has-info">
+                                            <select data-ng-model="SchooldirectoryCtrl.classId" name="classId" class="form-control input-sm">
+                                                <option value="">CLASS</option>
+                                                <option ng-repeat="class in SchooldirectoryCtrl.classList" value="{{class.id}}">{{class.className}} {{class.sectionName}}</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="col-md-10 col-sm-12">
                                         <table class="table table-striped table-hover table-bordered sm_editable_grid" id="schooldirectory_datatable">
@@ -123,7 +129,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr data-ng-repeat="data in SchooldirectoryCtrl.directorList">
+                                                <tr data-ng-repeat="data in SchooldirectoryCtrl.directorList | filter: SchooldirectoryCtrl.classId | orderBy : 'rollNo'">
                                                     <td><img class="img-thumbnail" ng-src="{{data.file}}" alt="Student" /></td>
                                                     <td>{{data.firstName}} {{data.lastName}}</td>
                                                     <td>{{data.type}}</td>

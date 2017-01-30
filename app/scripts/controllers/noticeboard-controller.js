@@ -1,6 +1,5 @@
 'use strict';
 
-
 /**
  * @ngdoc function
  * @name studymonitorApp.controller:NoticeboardControllerCtrl
@@ -9,11 +8,12 @@
  * Controller of the studymonitorApp
  */
 angular.module('studymonitorApp')
-angular.module('studymonitorApp')
     .controller('NoticeboardController', function (noticeboardService, $cookies, $timeout, APP_MESSAGES, toastr) {
         var NoticeboardCtrl = this;
         NoticeboardCtrl.formFields = {};
         NoticeboardCtrl.editmode = false;
+        NoticeboardCtrl.detailsMode = false;
+        NoticeboardCtrl.viewValue = {};
 
         //Defaults
         NoticeboardCtrl.schoolId = $cookies.getObject('uds').schoolId;
@@ -27,7 +27,7 @@ angular.module('studymonitorApp')
                 }, function (error) {
                     console.log('Error while fetching the assignment records. Error stack : ' + error);
                 });
-            }
+            };
         }
         (new Init()).getNoticeDetails();
         //Initialize the Table Component
@@ -48,6 +48,10 @@ angular.module('studymonitorApp')
                 "orderable": false,
                 "width": "10%",
                 "targets": 0
+            }, {
+                "orderable": false,
+                "width": "10%",
+                "targets": 0
             }];
             TableEditable.init("#notice_datatable", columnsDefs);
             Metronic.init();
@@ -59,11 +63,11 @@ angular.module('studymonitorApp')
 
             //ClearFields
             clearformfields();
-        }
+        };
         NoticeboardCtrl.openModal = function () {
             var modal = $('#edit-notice');
             modal.modal('show');
-        }
+        };
         //Clear Fields
         function clearformfields() {
             NoticeboardCtrl.formFields = {};
@@ -71,11 +75,14 @@ angular.module('studymonitorApp')
         //Delete confirmation box
         NoticeboardCtrl.confirmCallbackMethod = function (index) {
             deleteNotice(index);
-        }
+        };
         //Delete cancel box
         NoticeboardCtrl.confirmCallbackCancel = function (index) {
-            return false;
-        }
+            if (index) {
+                return false;
+            }
+            return;
+        };
         // Add Action
         NoticeboardCtrl.noticeboardAction = function (invalid) {
             if (invalid) {
@@ -89,7 +96,6 @@ angular.module('studymonitorApp')
                 date2: NoticeboardCtrl.formFields.date2
             };
             if (data) {
-
                 //Check whether editmode or normal mode
                 if (!NoticeboardCtrl.editmode) {
                     noticeboardService.getExistingNoticeRecords(data).then(function (result) {
@@ -99,18 +105,20 @@ angular.module('studymonitorApp')
                             return;
                         }
                     }, function (result1) {
-                        noticeboardService.CreateOrUpdateNoticeboard(data).then(function (res) {
-                            if (res) {
-                                (new Init()).getNoticeDetails();
-                                NoticeboardCtrl.closeModal();
-                                //Show Toast Message Success
-                                toastr.success(APP_MESSAGES.INSERT_SUCCESS);
-                            }
+                        if (result1) {
+                            noticeboardService.CreateOrUpdateNoticeboard(data).then(function (res) {
+                                if (res) {
+                                    (new Init()).getNoticeDetails();
+                                    NoticeboardCtrl.closeModal();
+                                    //Show Toast Message Success
+                                    toastr.success(APP_MESSAGES.INSERT_SUCCESS);
+                                }
 
-                        }, function (error) {
-                            toastr.error(error, APP_MESSAGES.SERVER_ERROR);
-                            console.log("Error while Fetching the Records" + error);
-                        });
+                            }, function (error) {
+                                toastr.error(error, APP_MESSAGES.SERVER_ERROR);
+                                console.log("Error while Fetching the Records" + error);
+                            });
+                        }
                     });
                 }
                 else {
@@ -130,7 +138,7 @@ angular.module('studymonitorApp')
                     });
                 }
             }
-        }
+        };
         //Delete Action
         var deleteNotice = function (index) {
             if (NoticeboardCtrl.noticeList) {
@@ -155,6 +163,8 @@ angular.module('studymonitorApp')
             NoticeboardCtrl.formFields.date1 = NoticeboardCtrl.noticeList[index].date1;
             NoticeboardCtrl.formFields.date2 = NoticeboardCtrl.noticeList[index].date2;
             NoticeboardCtrl.editingNoticeId = NoticeboardCtrl.noticeList[index].id;
+            //Set View Mode false
+            NoticeboardCtrl.detailsMode = false;
             //Open Modal
             NoticeboardCtrl.openModal();
 
@@ -183,4 +193,11 @@ angular.module('studymonitorApp')
         $('#noticedate2').on('dp.change', function () {
             NoticeboardCtrl.formFields.date2 = $(this).val();
         });
+        //More Details
+        NoticeboardCtrl.moreDetails = function (index) {
+            NoticeboardCtrl.detailsMode = true;
+            NoticeboardCtrl.openModal();
+            NoticeboardCtrl.viewValue = NoticeboardCtrl.noticeList[index];
+
+        };
     });

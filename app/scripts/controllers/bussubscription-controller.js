@@ -53,7 +53,7 @@ angular.module('studymonitorApp')
                 }, function (error) {
                     console.log('Error while fetching the Bussubscription records. Error stack : ' + error);
                 });
-            }
+            };
         }
         (new Init()).getBussubscriptionDetails();
         (new Init()).getBusserviceDetails();
@@ -143,12 +143,11 @@ angular.module('studymonitorApp')
                     }
                 });
             }
-        }
+        };
         //Delete Route
         BussubscriptionCtrl.confirmCallbackMethod = function (index) {
             if (BussubscriptionCtrl.bussubscriptionList) {
                 deleteBussubscription(BussubscriptionCtrl.bussubscriptionList[index].id);
             }
-        }
-        
+        };
     });

@@ -8,9 +8,9 @@
  * Service in the studymonitorApp.
  */
 angular.module('studymonitorApp')
-  .service('schooldirectoryService', function(Student, $q, Staff, StudentParent) {
+  .service('schooldirectoryService', function (Student, $q, Staff, StudentParent,Class) {
     // AngularJS will instantiate a singleton by calling "new" on this function
-    this.getStudentsList = function(schoolId) {
+    this.getStudentsList = function (schoolId) {
       var _activepromise = $q.defer();
       Student.find({
         filter: {
@@ -19,15 +19,15 @@ angular.module('studymonitorApp')
           },
           include: 'class'
         }
-      }, function(response) {
+      }, function (response) {
         _activepromise.resolve(response);
-      }, function(error) {
+      }, function (error) {
         _activepromise.reject(error);
       });
       return _activepromise.promise;
     };
     //Get List of Staff
-    this.getStaffList = function(schoolId) {
+    this.getStaffList = function (schoolId) {
       var _activepromise = $q.defer();
       Staff.find({
         filter: {
@@ -35,15 +35,15 @@ angular.module('studymonitorApp')
             schoolId: schoolId
           }
         }
-      }, function(response) {
+      }, function (response) {
         _activepromise.resolve(response);
-      }, function(error) {
+      }, function (error) {
         _activepromise.reject(error);
       });
       return _activepromise.promise;
     };
     //Get Parent List
-    this.getParentsListBySchoolId = function(schoolId) {
+    this.getParentsListBySchoolId = function (schoolId) {
       var _activepromise = $q.defer();
       StudentParent.find({
         filter: {
@@ -52,15 +52,15 @@ angular.module('studymonitorApp')
           },
           include: 'parent'
         }
-      }, function(response) {
+      }, function (response) {
         _activepromise.resolve(response);
-      }, function(error) {
+      }, function (error) {
         _activepromise.reject(error);
       });
       return _activepromise.promise;
     };
     //Get Parent List by Student
-    this.getParentsListByStudent = function(studentId) {
+    this.getParentsListByStudent = function (studentId) {
       var _activepromise = $q.defer();
       StudentParent.find({
         filter: {
@@ -69,9 +69,18 @@ angular.module('studymonitorApp')
           },
           include: 'parent'
         }
-      }, function(response) {
+      }, function (response) {
         _activepromise.resolve(response);
-      }, function(error) {
+      }, function (error) {
+        _activepromise.reject(error);
+      });
+      return _activepromise.promise;
+    };
+    this.getClassDetailsBySchoolId = function (schoolId) {
+      var _activepromise = $q.defer();
+      Class.find({ filter: { where: { schoolId: schoolId } } }, function (response) {
+        _activepromise.resolve(response);
+      }, function (error) {
         _activepromise.reject(error);
       });
       return _activepromise.promise;

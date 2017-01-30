@@ -39,7 +39,7 @@ angular.module('studymonitorApp')
       };
       this.deleteBus = function (busId) {
           var _activepromise = $q.defer();
-          Bus.deleteById({ id: busId }, function (response) { _activepromise.resolve(response) }, function (error) { _activepromise.reject(error) }); return _activepromise.promise;
+          Bus.deleteById({ id: busId }, function (response) { _activepromise.resolve(response); }, function (error) { _activepromise.reject(error); }); return _activepromise.promise;
       };
       this.updateTransport = function (data) {
           var _activepromise = $q.defer();

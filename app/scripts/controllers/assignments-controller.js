@@ -8,10 +8,13 @@
  * Controller of the studymonitorApp
  */
 angular.module('studymonitorApp')
-    .controller('AssignmentsController', function (assignmentsService, $cookies, $timeout) {
+    .controller('AssignmentsController', function (assignmentsService, $cookies, $timeout,toastr, APP_MESSAGES) {
         var AssignmentsCtrl = this;
         AssignmentsCtrl.formFields = {};
         AssignmentsCtrl.editmode = false;
+        AssignmentsCtrl.detailsMode = false;
+        AssignmentsCtrl.viewValue = {};
+        
         //Get Assignment details by School ID
         AssignmentsCtrl.schoolId = $cookies.getObject('uds').schoolId;
 
@@ -51,7 +54,7 @@ angular.module('studymonitorApp')
         $timeout(function () {
             var columnsDefs = [null, null, null, {
                 'width': '30%'
-            }, null, null,{
+            }, null, null, {
                     'orderable': false,
                     'width': '10%',
                     'targets': 0
@@ -59,10 +62,14 @@ angular.module('studymonitorApp')
                     'orderable': false,
                     'width': '10%',
                     'targets': 0
+                },{
+                    'orderable': false,
+                    'width': '10%',
+                    'targets': 0
                 }];
             TableEditable.init('#assignments_datatable', columnsDefs);
             Metronic.init();
-        },1000);
+        }, 1000);
         //Close or Open modal
         AssignmentsCtrl.closeModal = function () {
             var modal = $('#edit-assignments');
@@ -169,6 +176,8 @@ angular.module('studymonitorApp')
             AssignmentsCtrl.formFields.fromDate = AssignmentsCtrl.assignmentList[index].fromDate;
             AssignmentsCtrl.formFields.toDate = AssignmentsCtrl.assignmentList[index].toDate;
             AssignmentsCtrl.editingAssignmentId = AssignmentsCtrl.assignmentList[index].id;
+            //Set View Mode false
+            AssignmentsCtrl.detailsMode = false;
             //Open Modal
             AssignmentsCtrl.openModal();
 
@@ -197,14 +206,21 @@ angular.module('studymonitorApp')
         $('#assignmentdate2').on('dp.change', function () {
             AssignmentsCtrl.formFields.toDate = $(this).val();
         });
+        //More Details
+        AssignmentsCtrl.moreDetails = function (index) {
+            AssignmentsCtrl.detailsMode = true;
+            AssignmentsCtrl.openModal();
+            AssignmentsCtrl.viewValue = AssignmentsCtrl.assignmentList[index];
+
+        };
         //Get Subjects based on Selected Classes
-        AssignmentsCtrl.selectedClass = function(){
-            if(AssignmentsCtrl.formFields.classId){
-                assignmentsService.getSubjectsByClassId(AssignmentsCtrl.formFields.classId).then(function(result){
-                    if(result){
+        AssignmentsCtrl.selectedClass = function () {
+            if (AssignmentsCtrl.formFields.classId) {
+                assignmentsService.getSubjectsByClassId(AssignmentsCtrl.formFields.classId).then(function (result) {
+                    if (result) {
                         AssignmentsCtrl.subjectList = result;
                     }
-                })
+                });
             }
-        }
+        };
     });
